@@ -16,19 +16,11 @@
         </div>
       </q-toolbar>
     </q-header>
-
-    <q-footer elevated class="bg-deep-purple">
-      <q-toolbar>
-        <q-toolbar-title class="text-center"
-          >Samanta Barros 2023</q-toolbar-title
-        >
-      </q-toolbar>
-    </q-footer>
   </q-layout>
 </template>
 
 <script>
 export default {
-  name: "HomePage",
+  name: "NavBar",
 };
 </script>
