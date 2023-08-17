@@ -1,7 +1,10 @@
 <template>
-  <div class="q-pa-md fullscreen padding">
-    <q-card class="card-principal absolute-center">
-      <q-card-section horizontal class="bg-blue">
+  <div class="q-pa-md fullscreen">
+    <q-card
+      class="card-principal absolute-center"
+      style="width: 100%; max-width: 1200px"
+    >
+      <q-card-section horizontal>
         <q-card-section class="card-esquerdo col-6 bg-deep-purple-8">
           <div class="text-center q-pa-lg">
             <p class="q-pt-lg q-ma-xs text-h1 text-white">GEMA</p>
@@ -10,48 +13,54 @@
             </p>
           </div>
           <div class="q-pa-sm">
-            <q-img class="" src="/img/estudos.png" />
+            <q-img class="gema-imagem" src="/img/estudos.png" />
           </div>
         </q-card-section>
 
         <q-separator vertical />
 
         <q-card-section class="card-direito col-6 bg-grey-3">
-          <div class="q-pa-md text-center">
-            <q-icon size="lg" name="account_circle" />
-            <p class="text-h2 text-light-green-6">Login</p>
+          <div class="q-pa-md q-pb-lg text-center">
+            <q-img class="user-perfil" src="/img/user-perfil.png" />
+            <p class="text-h2 text-light-green-8">Login</p>
           </div>
-          <div class="q-pa-md" style="max-width: 90vmax">
-            <q-form @submit.prevent.stop="onSubmit" class="q-gutter-md">
-              <p class="text-subtitle2">Usuário</p>
+          <div class="q-pa-md">
+            <q-form
+              @submit="onSubmit"
+              @reset="onReset"
+              class="q-gutter-md"
+              ref="myForm"
+            >
               <q-input
                 ref="nameRef"
                 filled
                 v-model="form.name"
                 color="deep-purple"
+                label="Usuário"
                 lazy-rules
                 :rules="[
-                  (val) => (val && val.length > 0) || 'Por favor, digite algo',
+                  (val) =>
+                    (val && val.length > 0) || 'Nome de usuário obrigatório',
                 ]"
-                class="col-md-12 col-sm-12 col-xs-12"
+                class="col-md-12 col-sm-12 col-xs-12 q-md"
               >
                 <template v-slot:append>
                   <q-icon name="person" />
                 </template>
               </q-input>
 
-              <p class="text-subtitle2">Senha</p>
               <q-input
                 v-model="form.password"
                 color="deep-purple"
                 filled
+                label="Senha"
                 :type="isPwd ? 'password' : 'text'"
                 :rules="[
                   (val) =>
                     (val !== null && val !== '') ||
                     'Por favor, digite sua senha',
                 ]"
-                class="col-md-12 col-sm-12 col-xs-12"
+                class="col-md-12 col-sm-12 col-xs-12 q-md"
               >
                 <template v-slot:append>
                   <q-icon
@@ -61,13 +70,12 @@
                   />
                 </template>
               </q-input>
-              <p>{{ form.password }}</p>
               <div>
                 <q-btn
                   label="ENTRAR"
                   type="submit"
-                  color="green"
-                  class="full-width"
+                  color="deep-purple"
+                  class="full-width q-pa-md"
                 />
               </div>
             </q-form>
@@ -91,12 +99,39 @@ export default {
       },
     };
   },
+  methods: {
+    onSubmit() {
+      this.$q.notify({
+        message: "Login realizado com sucesso!",
+        color: "positive",
+        icon: "check_circle_outline",
+      });
+      this.onReset();
+    },
+    async onReset() {
+      await this.resetForm();
+      this.$refs.myForm.resetValidation();
+    },
+    async resetForm() {
+      this.form = {
+        nome: "",
+        password: "",
+      };
+    },
+  },
 };
 </script>
 
 <style scoped>
-.card-principal {
+.user-perfil {
   width: 100%;
-  max-width: 1400px;
+  max-width: 300px;
+}
+
+.gema-imagem {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
 }
 </style>
