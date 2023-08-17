@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="bg-deep-purple">
       <q-toolbar>
         <q-btn
           flat
@@ -12,8 +12,6 @@
         />
 
         <q-toolbar-title> GEMA </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -41,10 +39,17 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
   {
-    title: "Home",
+    title: "Alunos",
     caption: "",
-    icon: "home",
-    route: { name: home - aluno },
+    icon: "group",
+    route: "/home",
+  },
+
+  {
+    title: "Logout",
+    caption: "",
+    icon: "exit_to_app",
+    route: "/",
   },
 ];
 
