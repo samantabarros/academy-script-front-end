@@ -12,6 +12,15 @@
         />
 
         <q-toolbar-title> GEMA </q-toolbar-title>
+
+        <q-btn
+          flat
+          dense
+          round
+          label="Sair"
+          icon="logout"
+          @click="toggleLeftDrawer"
+        />
       </q-toolbar>
     </q-header>
 
@@ -26,6 +35,14 @@
         />
       </q-list>
     </q-drawer>
+
+    <q-footer elevated class="bg-deep-purple">
+      <q-toolbar>
+        <q-toolbar-title class="text-center"
+          >Samanta Barros 2023</q-toolbar-title
+        >
+      </q-toolbar>
+    </q-footer>
 
     <q-page-container>
       <router-view />
