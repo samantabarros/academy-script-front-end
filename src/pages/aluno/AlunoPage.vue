@@ -17,7 +17,7 @@
         <q-btn color="deep-purple" label="Adicionar" class="q-pa-md q-ml-md" />
       </div>
     </div>
-    <q-table :rows="rows" :columns="columns" row-key="name" color="pink" />
+    <q-table :rows="rows" :columns="columns" row-key="name" />
   </div>
 </template>
 
