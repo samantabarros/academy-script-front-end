@@ -10,9 +10,11 @@
         "
       >
         <q-card-section>
-          <q-avatar size="100px" class="absolute-left-center shadow-10" square>
+          <q-avatar size="100px" class="absolute-center shadow-18" square>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
           </q-avatar>
+        </q-card-section>
+        <q-card-section>
           <div class="q-pt-md">
             <div class="col flex justify-center">
               <q-btn
@@ -24,8 +26,6 @@
             </div>
           </div>
         </q-card-section>
-        <q-card-section> </q-card-section>
-        <q-card-section> </q-card-section>
       </q-card>
     </div>
   </div>

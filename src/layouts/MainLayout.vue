@@ -13,14 +13,7 @@
 
         <q-toolbar-title> GEMA </q-toolbar-title>
 
-        <q-btn
-          flat
-          dense
-          round
-          label="Sair"
-          icon="logout"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round label="Sair" icon="logout" to="/" />
       </q-toolbar>
     </q-header>
 
@@ -78,7 +71,7 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(true);
 
     return {
       essentialLinks: linksList,
