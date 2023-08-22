@@ -1,13 +1,13 @@
 <template>
   <div class="q-pa-md">
-    <div class="row">
+    <div class="row q-pt-xs q-pb-md justify-end">
       <q-input
         class="col-4"
         v-model="search"
         rounded
         filled
         type="search"
-        hint="Search"
+        label="Pesquisar"
       >
         <template v-slot:append>
           <q-icon name="search" />
@@ -60,18 +60,22 @@ export default {
       },
     ];
 
+    const rows = ref([]);
+
     onMounted(() => {
       getPosts();
     });
 
     const getPosts = async () => {
       try {
-        const response = await api.get("/alunos");
-        console.log(response);
+        const { data } = await api.get("/alunos");
+        console.log(data);
+        rows.value = data;
       } catch (error) {}
     };
     return {
       columns,
+      rows,
     };
   },
 };
