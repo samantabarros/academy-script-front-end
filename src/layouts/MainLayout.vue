@@ -8,7 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
+          @click="isOpen = !isOpen"
         />
 
         <q-toolbar-title> GEMA </q-toolbar-title>
@@ -17,7 +17,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer v-model="isOpen" bordered>
       <q-list>
         <q-item-label header> Menu </q-item-label>
 
@@ -71,14 +71,12 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(true);
+    //const leftDrawerOpen = ref(true);
+    const isOpen = ref(false);
 
     return {
       essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      isOpen,
     };
   },
 });
