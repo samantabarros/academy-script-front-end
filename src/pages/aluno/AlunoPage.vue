@@ -6,6 +6,7 @@
         v-model="search"
         rounded
         filled
+        color="deep-purple"
         type="search"
         label="Pesquisar"
       >
@@ -22,7 +23,7 @@
       :columns="columns"
       row-key="name"
       table-header-style="background-color: #7c10e8"
-      table-container-style="background-color: #cbc1e0"
+      card-container-style="background-color: #cbc1e0"
       class=""
     />
   </div>
