@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="height: 100vh">
-    <div class="col-12 col-md-6 flex content-center">
+    <div class="col flex content-center">
       <q-card
         class="bg-deep-purple absolute-center"
         v-bind:style="
