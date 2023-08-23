@@ -2,7 +2,7 @@ import { api } from "boot/axios";
 
 //Cria as funcoes de requisição de forma padronizada
 
-export default function useApi() {
+export default function useApi(url) {
   //Listar dados - requisição get
   const list = async () => {
     try {

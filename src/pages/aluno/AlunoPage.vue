@@ -21,9 +21,9 @@
       :rows="rows"
       :columns="columns"
       row-key="name"
-      table-style="background-color: #7c10e8"
-      card-container-style="background-color: #cbc1e0"
-      class="text-white"
+      table-header-style="background-color: #7c10e8"
+      table-container-style="background-color: #cbc1e0"
+      class=""
     />
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
     const columns = [
       {
         name: "name",
-        field: "name",
+        field: "nome_aluno",
         label: "Nome",
         sortable: true,
         align: "left",
@@ -55,7 +55,7 @@ export default {
       },
       {
         name: "data",
-        field: "data",
+        field: "data_nascimento",
         label: "Data de nascimento",
         sortable: true,
         align: "left",
@@ -81,7 +81,9 @@ export default {
         const data = await list();
         console.log(data);
         rows.value = data;
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     return {
       columns,
