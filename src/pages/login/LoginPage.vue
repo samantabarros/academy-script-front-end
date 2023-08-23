@@ -1,7 +1,7 @@
 <template>
   <div class="row q-pa-md fullscreen items-center justify-center">
     <div
-      class="col-6 self-center"
+      class="col-6"
       style="height: 100%; max-height: 800px; width: 100%; max-width: 1200px"
     >
       <q-card style="height: 100%; width: 100%">

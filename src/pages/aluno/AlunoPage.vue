@@ -17,18 +17,27 @@
         <q-btn color="deep-purple" label="Adicionar" class="q-pa-md q-ml-md" />
       </div>
     </div>
-    <q-table :rows="rows" :columns="columns" row-key="name" />
+    <q-table
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      table-style="background-color: #7c10e8"
+      card-container-style="background-color: #cbc1e0"
+      class="text-white"
+    />
   </div>
 </template>
 
 <script>
 import { defineComponent, ref, onMounted } from "vue";
-import { api } from "boot/axios";
+//import { api } from "boot/axios";
+import postsService from "src/services/posts.js";
 
 export default {
   name: "AlunoPage",
   setup() {
     const posts = ref([]);
+    const { list } = postsService();
     const columns = [
       {
         name: "name",
@@ -68,7 +77,8 @@ export default {
 
     const getPosts = async () => {
       try {
-        const { data } = await api.get("/alunos");
+        //Não precisa das chaves pois já está retornando os dados direto
+        const data = await list();
         console.log(data);
         rows.value = data;
       } catch (error) {}
