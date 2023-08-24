@@ -23,7 +23,6 @@
       :columns="columns"
       row-key="name"
       table-header-style="background-color: #7c10e8"
-      card-container-style="background-color: #cbc1e0"
       class=""
     />
   </div>
