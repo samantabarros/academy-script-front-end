@@ -37,9 +37,9 @@
                 <q-input
                   ref="nameRef"
                   filled
-                  v-model="form.name"
+                  v-model="login.email"
                   color="deep-purple"
-                  label="Usuário"
+                  label="Usuário*"
                   lazy-rules
                   :rules="[
                     (val) =>
@@ -54,10 +54,10 @@
                 </q-input>
 
                 <q-input
-                  v-model="form.password"
+                  v-model="login.senha"
                   color="deep-purple"
+                  label="Senha*"
                   filled
-                  label="Senha"
                   :type="isPwd ? 'password' : 'text'"
                   :rules="[
                     (val) =>
@@ -92,37 +92,63 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { api } from "src/boot/axios";
+import { useRouter } from "vue-router";
+import { Notify, useQuasar } from "quasar";
+
 export default {
   name: "LoginPage",
-  data() {
+
+  setup() {
+    const $q = useQuasar();
+    const router = useRouter();
+
+    const login = ref({
+      email: "",
+      senha: "",
+      isPwd: ref(false),
+    });
+
     return {
-      form: {
-        name: "",
-        password: "",
-        isPwd: ref(true),
-      },
+      login,
     };
-  },
-  methods: {
-    onSubmit() {
-      this.$q.notify({
+
+    async function onSubmit() {
+      const { email, senha } = login.value;
+      const { data } = await api.get("/usuarios", { params: { email, senha } });
+    }
+    async function onReset() {
+      await this.resetForm();
+      this.$refs.myForm.resetValidation();
+    }
+
+    async function resetForm() {
+      this.login = {
+        nome: "",
+        password: "",
+      };
+    }
+
+    console.log(data);
+
+    if (data.length > 0) {
+      router.push("/home");
+      $q.notify({
         message: "Login realizado com sucesso!",
         color: "positive",
         icon: "check_circle_outline",
       });
-      this.onReset();
-    },
-    async onReset() {
-      await this.resetForm();
-      this.$refs.myForm.resetValidation();
-    },
-    async resetForm() {
-      this.form = {
-        nome: "",
-        password: "",
-      };
-    },
+    } else {
+      $q.notify({
+        color: "red-5",
+        textColor: "white",
+        icon: "warning",
+        message: "Usuário ou senha inválidos",
+      });
+      onReset();
+    }
+    //Método para mostrar ou esconder a senha
   },
 };
 </script>
