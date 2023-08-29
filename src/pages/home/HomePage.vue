@@ -5,7 +5,7 @@
         class="bg-deep-purple absolute-center"
         v-bind:style="
           $q.screen.lt.sm
-            ? { width: '30%', height: '30%' }
+            ? { width: '50%', height: '30%' }
             : { width: '20%', height: '20%' }
         "
       >

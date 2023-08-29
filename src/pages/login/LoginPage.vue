@@ -1,8 +1,10 @@
 <template>
-  <div class="row q-pa-md fullscreen items-center justify-center">
+  <!--  class="col-6"
+      style="height: 100%; max-height: 800px; width: 100%; max-width: 1200px"-->
+  <div class="row fullscreen q-pa-md items-center justify-center">
     <div
-      class="col-6"
-      style="height: 100%; max-height: 800px; width: 100%; max-width: 1200px"
+      class="col-8"
+      style="height: 100%; max-height: 90vh; width: 100%; max-width: 1024px"
     >
       <q-card style="height: 100%; width: 100%">
         <q-card-section horizontal style="height: 100%; width: 100%">
