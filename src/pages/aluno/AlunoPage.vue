@@ -1,15 +1,7 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md text-body1">
     <div class="row q-pt-xs q-pb-md justify-end">
-      <q-input
-        class="col-4"
-        v-model="search"
-        rounded
-        filled
-        color="deep-purple"
-        type="search"
-        label="Pesquisar"
-      >
+      <q-input class="col-4" v-model="search" rounded filled color="deep-purple" type="search" label="Pesquisar">
         <template v-slot:append>
           <q-icon name="search" />
         </template>
@@ -18,13 +10,8 @@
         <q-btn color="deep-purple" label="Adicionar" class="q-pa-md q-ml-md" />
       </div>
     </div>
-    <q-table
-      :rows="rows"
-      :columns="columns"
-      row-key="name"
-      table-header-style="background-color: #7c10e8; color: #fff"
-      class=""
-    />
+    <q-table :rows="rows" :columns="columns" row-key="name" table-header-style="background-color: #7c10e8; color: #fff"
+      class="" />
     <pre>{{ rows }}</pre>
   </div>
 </template>
