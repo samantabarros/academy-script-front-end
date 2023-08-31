@@ -6,14 +6,16 @@
     </div>
     <div v-bind:class="{ 'justify-center': $q.screen.md || $q.screen.sm || $q.screen.sm }"
       class="col-12 col-md-6 flex justify-center content-center">
-      <q-card v-bind:style="$q.screen.lt.sm ? { width: '50%', height: '50%' } : { width: '70%', height: '80%' }">
+      <q-card v-bind:style="$q.screen.lt.sm ? { width: '50%', height: '50%' } : { width: '70%', height: '80%' }"
+        class="card-login">
         <q-card-section>
           <div class="q-pt-lg">
             <div class="col flex justify-center content-center">
               <q-img class="img-perfil" size="100px" src="/img/user-perfil.png" />
             </div>
             <div class="col flex justify-center">
-              <p class="text-h3 text-uppercase q-my-none text-weight-regular text-light-green-8 content-center">Login</p>
+              <p class="text-h4 text-uppercase q-my-none text-weight-regular text-light-green-2 content-center">
+                Login</p>
             </div>
           </div>
         </q-card-section>
@@ -42,7 +44,7 @@
             <div>
               <q-btn class="full-width q-pa-md" label="ENTRAR" type="submit" color="deep-purple" rounded />
               <div class="text-center q-mt-lg q-gutter-lg">
-                <router-link class="text-blue" to="/"> Esqueceu a senha?</router-link>
+                <router-link class="" to="/"> Esqueceu a senha?</router-link>
               </div>
             </div>
           </q-form>
@@ -122,6 +124,16 @@ export default {
   margin: 0;
   bottom: 0;
   z-index: -1;
+}
+
+.card-login {
+  position: relative;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  align-items: center;
 }
 
 .img-perfil {
