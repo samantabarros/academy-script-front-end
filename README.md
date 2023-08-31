@@ -1,4 +1,4 @@
-# GEMA (front-end-gema)
+# SGMA (front-end)
 
 Sistema de Gerenciamento de Módulos Avaliativos
 
