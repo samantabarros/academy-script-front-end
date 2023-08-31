@@ -25,6 +25,7 @@
       table-header-style="background-color: #7c10e8; color: #fff"
       class=""
     />
+    <pre>{{ rows }}</pre>
   </div>
 </template>
 

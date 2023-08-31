@@ -1,93 +1,52 @@
 <template>
-  <!--  class="col-6"
-      style="height: 100%; max-height: 800px; width: 100%; max-width: 1200px"-->
-  <div class="row fullscreen q-pa-md items-center justify-center">
-    <div
-      class="col-8"
-      style="height: 100%; max-height: 90vh; width: 100%; max-width: 1024px"
-    >
-      <q-card style="height: 100%; width: 100%">
-        <q-card-section horizontal style="height: 100%; width: 100%">
-          <q-card-section
-            class="card-esquerdo col-6 bg-deep-purple-8 items-center"
-          >
-            <div class="text-center q-pa-md">
-              <p class="q-pt-lg q-ma-xs text-h1 text-white">GEMA</p>
-              <p class="q-p-lg text-h5 text-white">
-                Gerenciamento de Módulos Avaliativos
-              </p>
+  <q-img src="/img/fundo.jpg" class="banner-login" alt="banner da tela inicial de login" />
+  <div class="row" style="height: 90vh">
+    <div class="col-4 ellipsis flex justify-center content-center">
+      <p class="text-h1 text-uppercase q-my-none text-weight-regular text-white">SGMA</p>
+    </div>
+    <div v-bind:class="{ 'justify-center': $q.screen.md || $q.screen.sm || $q.screen.sm }"
+      class="col-12 col-md-6 flex justify-center content-center">
+      <q-card v-bind:style="$q.screen.lt.sm ? { width: '50%', height: '50%' } : { width: '70%', height: '80%' }">
+        <q-card-section>
+          <div class="q-pt-lg">
+            <div class="col flex justify-center content-center">
+              <q-img class="img-perfil" size="100px" src="/img/user-perfil.png" />
             </div>
-            <div class="q-pa-md">
-              <q-img class="gema-imagem" src="/img/estudos.png" />
+            <div class="col flex justify-center">
+              <p class="text-h3 text-uppercase q-my-none text-weight-regular text-light-green-8 content-center">Login</p>
             </div>
-          </q-card-section>
-
-          <q-separator vertical />
-
-          <q-card-section class="card-direito col-6 bg-grey-3 items-center">
-            <div class="q-pa-md q-pb-lg text-center">
-              <q-img class="user-perfil" src="/img/user-perfil.png" />
-              <p class="text-h2 text-light-green-8">Login</p>
-            </div>
-            <div class="q-pa-md">
-              <q-form
-                @submit="onSubmit"
-                @reset="onReset"
-                class="q-gutter-md"
-                ref="myForm"
-              >
-                <q-input
-                  ref="nameRef"
-                  filled
-                  v-model="login.email"
-                  color="deep-purple"
-                  label="Usuário*"
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val && val.length > 0) ||
-                      'Você precisa preencher os campos em vermelho',
-                  ]"
-                  class="col-md-12 col-sm-12 col-xs-12 q-md"
-                >
-                  <template v-slot:append>
-                    <q-icon name="person" />
-                  </template>
-                </q-input>
-
-                <q-input
-                  v-model="login.senha"
-                  color="deep-purple"
-                  label="Senha*"
-                  filled
-                  :type="isPwd ? 'password' : 'text'"
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') ||
-                      'Você precisa preencher os campos em vermelho',
-                  ]"
-                  class="col-md-12 col-sm-12 col-xs-12 q-md"
-                >
-                  <template v-slot:append>
-                    <q-icon
-                      :name="isPwd ? 'visibility_off' : 'visibility'"
-                      class="cursor-pointer"
-                      @click="isPwd = !isPwd"
-                    />
-                  </template>
-                </q-input>
-                <div>
-                  <q-btn
-                    label="ENTRAR"
-                    type="submit"
-                    color="deep-purple"
-                    class="full-width q-pa-md"
-                  />
-                </div>
-              </q-form>
-            </div>
-          </q-card-section>
+          </div>
         </q-card-section>
+        <div class="q-pa-md">
+          <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md" ref="myForm">
+            <q-input ref="nameRef" filled v-model="login.email" color="deep-purple" label="Usuário*" lazy-rules :rules="[
+              (val) =>
+                (val && val.length > 0) ||
+                'Você precisa preencher os campos em vermelho',
+            ]" class="col-md-12 col-sm-12 col-xs-12">
+              <template v-slot:append>
+                <q-icon name="person" />
+              </template>
+            </q-input>
+
+            <q-input v-model="login.senha" color="deep-purple" label="Senha*" filled :type="isPwd ? 'password' : 'text'"
+              :rules="[
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Você precisa preencher os campos em vermelho',
+              ]" class="col-md-12 col-sm-12 col-xs-12 q-md">
+              <template v-slot:append>
+                <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
+              </template>
+            </q-input>
+            <div>
+              <q-btn class="full-width q-pa-md" label="ENTRAR" type="submit" color="deep-purple" rounded />
+              <div class="text-center q-mt-lg q-gutter-lg">
+                <router-link class="text-blue" to="/"> Esqueceu a senha?</router-link>
+              </div>
+            </div>
+          </q-form>
+        </div>
       </q-card>
     </div>
   </div>
@@ -156,15 +115,20 @@ export default {
 </script>
 
 <style scoped>
-.user-perfil {
-  width: 100%;
-  max-width: 200px;
+.banner-login {
+  position: fixed;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
-.gema-imagem {
-  width: 100%;
-  max-width: 900px;
+.img-perfil {
+  max-width: 100%;
+  max-height: 100%;
+  height: 200px;
+  width: 200px;
   display: flex;
-  align-items: center;
 }
 </style>
