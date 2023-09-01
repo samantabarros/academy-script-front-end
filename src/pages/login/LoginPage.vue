@@ -1,8 +1,8 @@
 <template>
   <q-img src="/img/fundo.jpg" class="banner-login" alt="banner da tela inicial de login" />
   <div class="row" style="height: 90vh">
-    <div class="col-4 ellipsis flex justify-center content-center">
-      <p class="text-h1 text-uppercase q-my-none text-weight-regular text-white">SGMA</p>
+    <div class="q-pt-lg col-4 ellipsis flex justify-center">
+      <p class="text-h1 text-uppercase q-my-none text-weight-regular text-white" style="font-size:80px;">SGMA</p>
     </div>
     <div v-bind:class="{ 'justify-center': $q.screen.md || $q.screen.sm || $q.screen.sm }"
       class="col-12 col-md-6 flex justify-center content-center">

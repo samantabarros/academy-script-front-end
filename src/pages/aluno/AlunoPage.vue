@@ -10,8 +10,7 @@
         <q-btn color="deep-purple" label="Adicionar" class="q-pa-md q-ml-md" />
       </div>
     </div>
-    <q-table :rows="rows" :columns="columns" row-key="name" table-header-style="background-color: #7c10e8; color: #fff"
-      class="" />
+    <q-table :rows="rows" :columns="columns" row-key="name" table-header-style="background-color: #7c10e8; color: #fff" />
     <pre>{{ rows }}</pre>
   </div>
 </template>
