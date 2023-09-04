@@ -1,18 +1,40 @@
 <template>
   <div class="q-pa-md text-body1">
     <div class="row q-pt-xs q-pb-md justify-end">
-      <q-input class="col-4 self-center" v-model="search" rounded filled color="deep-purple" type="search"
-        label="Pesquisar" style="height: 50px;">
+      <q-input
+        class="col-4 self-center"
+        v-model="search"
+        rounded
+        filled
+        color="deep-purple"
+        type="search"
+        label="Pesquisar"
+        style="height: 50px"
+      >
         <template v-slot:append>
           <q-icon name="search" />
         </template>
       </q-input>
       <div>
-        <q-btn color="green" label="Adicionar" class="q-pa-xs q-ml-md self-center"
-          style="height: 45px; width: 90px; font-size: 12px;" />
+        <q-btn
+          color="green"
+          label="Adicionar"
+          @click="showModalCadastro = true"
+          class="q-pa-xs q-ml-md self-center"
+          style="height: 45px; width: 90px; font-size: 12px"
+        />
       </div>
+
+      <q-dialog v-model="showModalCadastro">
+        <modal-cadastro />
+      </q-dialog>
     </div>
-    <q-table :rows="rows" :columns="columns" row-key="name" table-header-style="background-color: #7c10e8; color: #fff;">
+    <q-table
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      table-header-style="background-color: #7c10e8; color: #fff;"
+    >
       <template v-slot:body-cell-acoes="props">
         <q-td :props="props" class="q-gutter-sm">
           <q-btn icon="edit" color="info" dense size="sm" />
@@ -28,9 +50,20 @@
 import { defineComponent, ref, onMounted } from "vue";
 //import { api } from "boot/axios";
 import postsService from "src/services/posts.js";
+import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 
 export default {
   name: "AlunoPage",
+  components: { ModalCadastro },
+
+  methods: {
+    /*openModal(){
+      this.showModal = true;
+    },*/
+    /*showModalCadastro() {
+      this.$router.push({path: '/home/alunos/cadastrar'})
+    }*/
+  },
   setup() {
     const posts = ref([]);
     const { list } = postsService();
@@ -64,6 +97,7 @@ export default {
         align: "left",
       },
     ];
+    const showModalCadastro = ref(false);
 
     const rows = ref([]);
 
@@ -84,6 +118,7 @@ export default {
     return {
       columns,
       rows,
+      showModalCadastro,
     };
   },
 };
