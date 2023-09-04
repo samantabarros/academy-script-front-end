@@ -1,38 +1,42 @@
 <template>
-  <q-img src="/img/fundo.jpg" class="banner-login" alt="banner da tela inicial de login" />
+  <q-img src="/img/fundo.jpg" class="banner-login no-repeat" alt="banner da tela inicial de login"
+    style="width:100%; max-width: 1900px; height: 100%; max-height: 1200px;" />
   <div class="row" style="height: 90vh">
-    <div class="q-pt-lg col-4 ellipsis flex justify-center">
-      <p class="text-h1 text-uppercase q-my-none text-weight-regular text-white" style="font-size:80px;">SGMA</p>
+    <div class=" title-sgma col-4 ellipsis flex justify-center">
+      <p class="text-h1 text-uppercase q-my-none text-weight-regular text-white" style="font-size: 70px;">
+        SGMA
+      </p>
     </div>
     <div v-bind:class="{ 'justify-center': $q.screen.md || $q.screen.sm || $q.screen.sm }"
       class="col-12 col-md-6 flex justify-center content-center">
-      <q-card v-bind:style="$q.screen.lt.sm ? { width: '50%', height: '50%' } : { width: '70%', height: '80%' }"
+      <q-card v-bind:style="$q.screen.lt.sm ? { width: '50%', height: '50%' } : { width: '70%', height: '90%' }"
         class="card-login">
         <q-card-section>
           <div class="q-pt-lg">
             <div class="col flex justify-center content-center">
-              <q-img class="img-perfil" size="100px" src="/img/user-perfil.png" />
+              <q-img class="img-perfil" src="/img/user-perfil.png" />
             </div>
             <div class="col flex justify-center">
-              <p class="text-h4 text-uppercase q-my-none text-weight-regular text-light-green-2 content-center">
+              <p class=" lb-login text-h4 text-uppercase q-my-none text-weight-regular text-light-green-2 content-center">
                 Login</p>
             </div>
           </div>
         </q-card-section>
         <div class="q-pa-md">
           <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md" ref="myForm">
-            <q-input ref="nameRef" filled v-model="login.email" color="deep-purple" label="Usuário*" lazy-rules :rules="[
-              (val) =>
-                (val && val.length > 0) ||
-                'Você precisa preencher os campos em vermelho',
-            ]" class="col-md-12 col-sm-12 col-xs-12">
+            <q-input ref="nameRef" v-model="login.email" style="font-size: 18px;" color="white" label="Usuário*" filled
+              lazy-rules :rules="[
+                (val) =>
+                  (val && val.length > 0) ||
+                  'Você precisa preencher os campos em vermelho',
+              ]" class="col-md-12 col-sm-12 col-xs-12">
               <template v-slot:append>
                 <q-icon name="person" />
               </template>
             </q-input>
 
-            <q-input v-model="login.senha" color="deep-purple" label="Senha*" filled :type="isPwd ? 'password' : 'text'"
-              :rules="[
+            <q-input v-model="login.senha" style="font-size: 18px;" color="white" label="Senha*" filled
+              :type="isPwd ? 'text' : 'login.senha'" :rules="[
                 (val) =>
                   (val !== null && val !== '') ||
                   'Você precisa preencher os campos em vermelho',
@@ -44,7 +48,7 @@
             <div>
               <q-btn class="full-width q-pa-md" label="ENTRAR" type="submit" color="deep-purple" rounded />
               <div class="text-center q-mt-lg q-gutter-lg">
-                <router-link class="" to="/"> Esqueceu a senha?</router-link>
+                <router-link style="color:#0f29a8; font-size: 18px;" to="/"> Esqueceu a senha?</router-link>
               </div>
             </div>
           </q-form>
@@ -88,8 +92,8 @@ export default {
 
     async function resetForm() {
       this.login = {
-        nome: "",
-        password: "",
+        email: "",
+        senha: "",
       };
     }
 
@@ -119,21 +123,36 @@ export default {
 <style scoped>
 .banner-login {
   position: fixed;
+  width: 100%;
+  min-height: 100vh;
   height: 100%;
   left: 0;
   margin: 0;
   bottom: 0;
   z-index: -1;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
 }
 
 .card-login {
-  position: relative;
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: transparent;
   border: 2px solid rgba(255, 255, 255, .5);
   border-radius: 20px;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   align-items: center;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  max-width: 650px;
+  max-height: 700px;
 }
 
 .img-perfil {
@@ -142,5 +161,56 @@ export default {
   height: 200px;
   width: 200px;
   display: flex;
+}
+
+.title-sgma {
+  padding: 250px 20px 0 150px;
+}
+
+
+/*480px - 768px = tablet */
+@media (max-width: 600px) {
+
+  .banner-login {
+    display: none;
+  }
+
+  .card-login {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(41, 37, 37, 0.5);
+  }
+
+  .img-perfil {
+    display: none;
+  }
+
+}
+
+/*768px - 1024px = telas menores, laptops*/
+@media (max-width: 1024px) {
+  .img-perfil {
+    height: 100px;
+    width: 100px;
+  }
+
+  .lb-login {
+    font-size: 30px;
+  }
+
+}
+
+
+/*1024px -1200px = desktop*/
+/*1200 e += telas maiores */
+@media (max-width: 1450px) {
+  .title-sgma {
+    display: none;
+  }
+
+  .card-login {
+    max-width: 500px;
+    max-height: 700px;
+  }
 }
 </style>
