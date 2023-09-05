@@ -1,13 +1,13 @@
 <template>
-  <router-link to="/home/alunos" style="text-decoration: none">
-    <div class="row flex justify-right content-center">
-      <div class="card-aluno">
+  <div class="row flex justify-right content-center">
+    <router-link to="/home/alunos" style="text-decoration: none">
+      <div class="card-aluno" to="/home/alunos">
         <p class="text-h3">Alunos</p>
-        <p> Cadastre, edite e remova alunos</p>
+        <p>Cadastre, edite e remova alunos</p>
         <img class="icone-aluno" src="/img/aluno.ico" alt="aluno" />
       </div>
-    </div>
-  </router-link>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -21,6 +21,7 @@ export default {
   padding: 30px;
   margin: 20px;
   width: 400px;
+  height: 200px;
   transition: all 0.3s ease-out;
   background-color: #d4d5d6;
   border-left: 3px solid #5f2680;

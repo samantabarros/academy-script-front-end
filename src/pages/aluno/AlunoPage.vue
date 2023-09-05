@@ -21,12 +21,18 @@
           label="Adicionar"
           @click="showModalCadastro = true"
           class="q-pa-xs q-ml-md self-center"
-          style="height: 45px; width: 90px; font-size: 12px"
+          style="height: 50px; width: 90px; font-size: 12px"
         />
       </div>
 
-      <q-dialog v-model="showModalCadastro">
+      <q-dialog v-model="showModalCadastro" persistent>
         <modal-cadastro />
+      </q-dialog>
+      <q-dialog v-model="showModalEditar" persistent>
+        <modal-editar />
+      </q-dialog>
+      <q-dialog v-model="showModalDeletar" persistent>
+        <modal-deletar />
       </q-dialog>
     </div>
     <q-table
@@ -37,8 +43,20 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-td :props="props" class="q-gutter-sm">
-          <q-btn icon="edit" color="info" dense size="sm" />
-          <q-btn icon="delete" color="negative" dense size="sm" />
+          <q-btn
+            icon="edit"
+            color="info"
+            dense
+            size="sm"
+            @click="showModalEditar = true"
+          />
+          <q-btn
+            icon="delete"
+            color="negative"
+            dense
+            size="sm"
+            @click="showModalDeletar = true"
+          />
           <q-btn icon="folder" color="orange" dense size="sm" />
         </q-td>
       </template>
@@ -51,10 +69,12 @@ import { defineComponent, ref, onMounted } from "vue";
 //import { api } from "boot/axios";
 import postsService from "src/services/posts.js";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
+import ModalEditar from "src/components/modals/ModalEditar.vue";
+import ModalDeletar from "src/components/modals/ModalDeletar.vue";
 
 export default {
   name: "AlunoPage",
-  components: { ModalCadastro },
+  components: { ModalCadastro, ModalEditar, ModalDeletar },
 
   methods: {
     /*openModal(){
@@ -72,32 +92,33 @@ export default {
         name: "name",
         field: "nome_aluno",
         label: "Nome",
-        sortable: true,
+        sortable: false,
         align: "left",
       },
       {
         name: "cpf",
         field: "cpf",
         label: "CPF",
-        sortable: true,
-        align: "left",
+        align: "center",
       },
       {
         name: "data",
         field: "data_nascimento",
         label: "Data de nascimento",
-        sortable: true,
-        align: "left",
+        sortable: false,
+        align: "center",
       },
       {
         name: "acoes",
         field: "acoes",
         label: "Ações",
         sortable: true,
-        align: "left",
+        align: "center",
       },
     ];
     const showModalCadastro = ref(false);
+    const showModalEditar = ref(false);
+    const showModalDeletar = ref(false);
 
     const rows = ref([]);
 
@@ -119,6 +140,8 @@ export default {
       columns,
       rows,
       showModalCadastro,
+      showModalEditar,
+      showModalDeletar,
     };
   },
 };

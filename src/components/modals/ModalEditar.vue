@@ -1,5 +1,5 @@
 <template>
-  <q-card class="modal-cadastro">
+  <q-card class="modal-editar">
     <q-card-section>
       <div align="right">
         <q-btn flat round icon="close" v-close-popup />
@@ -8,7 +8,7 @@
         class="text-h4 row justify-center"
         style="font-family: lucyda-caligraphy"
       >
-        Cadastrar Aluno
+        Editar Aluno
       </div>
     </q-card-section>
     <q-form>
@@ -29,7 +29,7 @@
           />
         </div>
         <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" label="Cadastrar" />
+          <q-btn color="green" label="Confirmar" />
           <q-btn color="red" label="Cancelar" v-close-popup />
         </div>
       </q-card-section>
@@ -40,7 +40,7 @@
 <script>
 import { ref } from "vue";
 export default {
-  name: "ModalCadastro",
+  name: "ModalEditar",
   setup() {
     return {
       //alert: ref(false),
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-cadastro {
+.modal-editar {
   max-width: 100%;
   width: 500px;
   max-height: 100%;
