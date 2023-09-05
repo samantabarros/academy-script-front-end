@@ -57,7 +57,13 @@
             size="sm"
             @click="showModalDeletar = true"
           />
-          <q-btn icon="folder" color="orange" dense size="sm" />
+          <q-btn
+            icon="folder"
+            color="orange"
+            dense
+            size="sm"
+            @click="openModulo"
+          />
         </q-td>
       </template>
     </q-table>
@@ -80,9 +86,9 @@ export default {
     /*openModal(){
       this.showModal = true;
     },*/
-    /*showModalCadastro() {
-      this.$router.push({path: '/home/alunos/cadastrar'})
-    }*/
+    openModulo() {
+      this.$router.push({ name: "modulo-aluno" });
+    },
   },
   setup() {
     const posts = ref([]);
