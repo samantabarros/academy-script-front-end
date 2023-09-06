@@ -125,6 +125,7 @@ export default {
     const showModalCadastro = ref(false);
     const showModalEditar = ref(false);
     const showModalDeletar = ref(false);
+    const search = ref("");
 
     const rows = ref([]);
 
@@ -148,6 +149,7 @@ export default {
       showModalCadastro,
       showModalEditar,
       showModalDeletar,
+      search,
     };
   },
 };

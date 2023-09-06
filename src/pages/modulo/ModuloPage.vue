@@ -19,17 +19,17 @@
         <q-btn
           color="green"
           label="Adicionar"
-          @click="showModalCadastro = true"
+          @click="showModalCadastroModulo = true"
           class="q-pa-xs q-ml-md self-center"
           style="height: 50px; width: 90px; font-size: 12px"
         />
       </div>
 
-      <q-dialog v-model="showModalCadastro" persistent>
-        <modal-cadastro />
+      <q-dialog v-model="showModalCadastroModulo" persistent>
+        <modal-cadastro-modulo />
       </q-dialog>
-      <q-dialog v-model="showModalEditar" persistent>
-        <modal-editar />
+      <q-dialog v-model="showModalEditarModulo" persistent>
+        <modal-editar-modulo />
       </q-dialog>
       <q-dialog v-model="showModalDeletar" persistent>
         <modal-deletar />
@@ -48,7 +48,7 @@
             color="info"
             dense
             size="sm"
-            @click="showModalEditar = true"
+            @click="showModalEditarModulo = true"
           />
           <q-btn
             icon="delete"
@@ -67,17 +67,16 @@
 import { defineComponent, ref, onMounted } from "vue";
 //import { api } from "boot/axios";
 import postsService from "src/services/reqModulos.js";
-import ModalCadastro from "src/components/modals/ModalCadastro.vue";
-import ModalEditar from "src/components/modals/ModalEditar.vue";
+import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
+import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 import ModalDeletar from "src/components/modals/ModalDeletar.vue";
 
 export default {
   name: "ModuloPage",
-  components: { ModalCadastro, ModalEditar, ModalDeletar },
+  components: { ModalCadastroModulo, ModalEditarModulo, ModalDeletar },
 
   methods: {},
   setup() {
-    const posts = ref([]);
     const { list } = postsService();
     const columns = [
       {
@@ -120,9 +119,10 @@ export default {
         align: "center",
       },
     ];
-    const showModalCadastro = ref(false);
-    const showModalEditar = ref(false);
+    const showModalCadastroModulo = ref(false);
+    const showModalEditarModulo = ref(false);
     const showModalDeletar = ref(false);
+    const search = ref("");
 
     const rows = ref([]);
 
@@ -143,9 +143,10 @@ export default {
     return {
       columns,
       rows,
-      showModalCadastro,
-      showModalEditar,
+      showModalCadastroModulo,
+      showModalEditarModulo,
       showModalDeletar,
+      search,
     };
   },
 };
