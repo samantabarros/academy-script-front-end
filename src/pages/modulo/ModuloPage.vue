@@ -115,7 +115,7 @@ export default {
         name: "acoes",
         field: "acoes",
         label: "Ações",
-        sortable: true,
+        sortable: false,
         align: "center",
       },
     ];
