@@ -23,8 +23,8 @@
       <q-card
         v-bind:style="
           $q.screen.lt.sm
-            ? { width: '50%', height: '50%' }
-            : { width: '70%', height: '90%' }
+            ? { width: '70%', height: '100%' }
+            : { width: '70%', height: '100%' }
         "
         class="card-login"
       >
@@ -231,10 +231,15 @@ export default {
     display: flex;
     flex-direction: column;
     border: 2px solid rgba(41, 37, 37, 0.5);
+    background-color: lightslategray;
   }
 
   .img-perfil {
     display: none;
+  }
+
+  .lb-login {
+    font-size: 30px;
   }
 }
 
@@ -254,7 +259,7 @@ export default {
 /*1200 e += telas maiores */
 @media (max-width: 1450px) {
   .title-sgma {
-    display: none;
+    padding: 20px 50px 0 10px;
   }
 
   .card-login {
