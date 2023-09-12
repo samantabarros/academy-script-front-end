@@ -6,7 +6,7 @@
     style="width: 100%; max-width: 1900px; height: 100%; max-height: 1200px"
   />
   <div class="row" style="height: 90vh">
-    <div class="title-sgma col-4 ellipsis flex justify-center">
+    <div class="title-sgma col-6 ellipsis flex justify-center">
       <p
         class="text-h1 text-uppercase q-my-none text-weight-regular text-white"
         style="font-size: 70px; font-family: lucyda-caligraphy"
@@ -71,7 +71,7 @@
 
             <q-input
               v-model="login.senha"
-              style="font-size: 18px"
+              style="color: white; font-size: 18px"
               color="white"
               label="Senha*"
               filled
@@ -100,7 +100,11 @@
                 rounded
               />
               <div class="text-center q-mt-lg q-gutter-lg">
-                <router-link style="color: #0f29a8; font-size: 18px" to="/">
+                <router-link
+                  class="text-weight-bold"
+                  style="color: white; font-size: 18px"
+                  to="/"
+                >
                   Esqueceu a senha?</router-link
                 >
               </div>
@@ -221,50 +225,58 @@ export default {
   padding: 250px 20px 0 150px;
 }
 
-/*480px - 768px = tablet */
-@media (max-width: 600px) {
+/*Medias queries*/
+@media (min-width: 320px) and (max-width: 480px) {
   .banner-login {
     display: none;
   }
+}
 
-  .card-login {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid rgba(41, 37, 37, 0.5);
-    background-color: lightslategray;
-  }
-
-  .img-perfil {
-    display: none;
-  }
-
+/*480px - 768px = tablet */
+@media (min-width: 481px) and (max-width: 768px) {
   .lb-login {
     font-size: 30px;
   }
-}
-
-/*768px - 1024px = telas menores, laptops*/
-@media (max-width: 1024px) {
   .img-perfil {
     height: 100px;
     width: 100px;
   }
+}
 
+/*768px - 1024px = telas menores, laptops*/
+@media (min-width: 769px) and (max-width: 1024px) {
   .lb-login {
     font-size: 30px;
+  }
+  .title-sgma {
+    display: none;
+  }
+  .card-login {
+    max-width: 500px;
+    max-height: 700px;
   }
 }
 
 /*1024px -1200px = desktop*/
-/*1200 e += telas maiores */
-@media (max-width: 1450px) {
+@media (min-width: 1024px) and (max-width: 1200px) {
   .title-sgma {
-    padding: 20px 50px 0 10px;
+    display: none;
   }
 
   .card-login {
-    max-width: 500px;
-    max-height: 700px;
+    max-width: 600px;
+    max-height: 800px;
+  }
+}
+/*1200 e += telas maiores */
+@media (min-width: 1201px) {
+  .title-sgma {
+    padding: 100px 250px 100px 0px;
+  }
+
+  .card-login {
+    max-width: 600px;
+    max-height: 800px;
   }
 }
 </style>
