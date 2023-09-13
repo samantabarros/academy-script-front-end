@@ -26,7 +26,7 @@ export default function useApi(url) {
   //Atualizar dados - requisição put
   const update = async (dados) => {
     try {
-      //o put precisa de uma url e o id que vain ser atualizadoq
+      //o put precisa de uma url e o id que vain ser atualizado
       const { data } = await api.put("${url}/${dados.id}", dados);
       return data;
     } catch (error) {

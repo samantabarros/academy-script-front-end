@@ -68,7 +68,6 @@
                 <q-icon name="person" />
               </template>
             </q-input>
-
             <q-input
               v-model="login.senha"
               style="color: white; font-size: 18px"
@@ -154,8 +153,6 @@ export default {
         senha: "",
       };
     }
-
-    console.log(data);
 
     if (data.length > 0) {
       router.push("/home");
