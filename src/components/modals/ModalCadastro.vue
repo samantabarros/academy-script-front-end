@@ -11,10 +11,15 @@
         Cadastrar Aluno
       </div>
     </q-card-section>
-    <q-form @submit="submitForm">
+    <q-form @submit.prevent="submitForm">
       <q-card-section class="q-pt-none">
         <div class="q-mb-sm">
-          <q-input filled v-model="cadastro.nome" label="Nome" color="purple" />
+          <q-input
+            filled
+            v-model="cadastro.nome_aluno"
+            label="Nome"
+            color="purple"
+          />
         </div>
         <div class="q-mb-sm">
           <q-input filled v-model="cadastro.cpf" label="CPF" color="purple" />
@@ -41,8 +46,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Notify, useQuasar } from "quasar";
-//import { defineComponent, ref, onMounted } from "vue";
-import postsService from "src/services/reqModulos";
+import { api } from "src/boot/axios";
 
 export default {
   name: "ModalCadastro",
@@ -50,18 +54,20 @@ export default {
   setup() {
     const $q = useQuasar();
     const router = useRouter();
-    const { post } = postsService();
 
     const cadastro = ref({
-      nome: "",
+      nome_aluno: "",
       cpf: "",
       data_nascimento: "",
     });
 
     const submitForm = async () => {
       try {
-        const data = await post("/alunos", cadastro.value);
-        console.log(data);
+        console.log(cadastro.value);
+        //const data = await post(cadastro.value);>
+        const response = await api.post("alunos", cadastro.value);
+        console.log(response.data);
+        console.log(response);
         console.log("Chegou aqui");
       } catch (error) {
         console.log(error);
@@ -71,6 +77,7 @@ export default {
     return {
       //alert: ref(false),
       cadastro,
+      submitForm,
     };
   },
 };

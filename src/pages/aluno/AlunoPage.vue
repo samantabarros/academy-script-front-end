@@ -72,8 +72,7 @@
 
 <script>
 import { defineComponent, ref, onMounted } from "vue";
-//import { api } from "boot/axios";
-import postsService from "src/services/reqAlunos.js";
+import { api } from "boot/axios";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
 import ModalDeletar from "src/components/modals/ModalDeletar.vue";
@@ -92,7 +91,6 @@ export default {
   },
   setup() {
     const posts = ref([]);
-    const { list } = postsService();
     const columns = [
       {
         name: "name",
@@ -136,7 +134,8 @@ export default {
     const getAlunos = async () => {
       try {
         //Não precisa das chaves pois já está retornando os dados direto
-        const data = await list();
+        const { data } = await api.get("alunos");
+
         console.log(data);
         rows.value = data;
       } catch (error) {
