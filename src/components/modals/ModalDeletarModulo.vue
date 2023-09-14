@@ -3,7 +3,7 @@
     <q-card-section class="row items-center">
       <q-avatar icon="warning" color="orange" text-color="white" />
       <p class="q-ml-sm">
-        Você tem certeza que deseja excluir esse aluno? <br />
+        Você tem certeza que deseja excluir esse módulo? <br />
         Ao confirmar essa ação, você não poderá desfazê-la.
       </p>
     </q-card-section>
@@ -18,7 +18,7 @@
 <script>
 import { ref } from "vue";
 export default {
-  name: "ModalDeletar",
+  name: "ModalDeletarModulo",
   setup() {
     return {
       //alert: ref(false),
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-deletar {
+.modal-deletar-modulo {
   max-width: 100%;
   width: 500px;
   max-height: 100%;

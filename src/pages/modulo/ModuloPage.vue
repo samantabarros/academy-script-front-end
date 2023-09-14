@@ -31,8 +31,8 @@
       <q-dialog v-model="showModalEditarModulo" persistent>
         <modal-editar-modulo />
       </q-dialog>
-      <q-dialog v-model="showModalDeletar" persistent>
-        <modal-deletar />
+      <q-dialog v-model="showModalDeletarModulo" persistent>
+        <modal-deletar-modulo />
       </q-dialog>
     </div>
     <q-table
@@ -55,7 +55,7 @@
             color="negative"
             dense
             size="sm"
-            @click="showModalDeletar = true"
+            @click="showModalDeletarModulo = true"
           />
         </q-td>
       </template>
@@ -69,11 +69,11 @@ import { defineComponent, ref, onMounted } from "vue";
 import postsService from "src/services/reqModulos.js";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
-import ModalDeletar from "src/components/modals/ModalDeletar.vue";
+import ModalDeletarModulo from "src/components/modals/ModalDeletarModulo.vue";
 
 export default {
   name: "ModuloPage",
-  components: { ModalCadastroModulo, ModalEditarModulo, ModalDeletar },
+  components: { ModalCadastroModulo, ModalEditarModulo, ModalDeletarModulo },
 
   methods: {},
   setup() {
@@ -121,7 +121,7 @@ export default {
     ];
     const showModalCadastroModulo = ref(false);
     const showModalEditarModulo = ref(false);
-    const showModalDeletar = ref(false);
+    const showModalDeletarModulo = ref(false);
     const search = ref("");
 
     const rows = ref([]);
@@ -145,7 +145,7 @@ export default {
       rows,
       showModalCadastroModulo,
       showModalEditarModulo,
-      showModalDeletar,
+      showModalDeletarModulo,
       search,
     };
   },
