@@ -2,8 +2,8 @@
   <div class="row flex justify-right content-center">
     <router-link to="/home/alunos" style="text-decoration: none">
       <div class="card-aluno" to="/home/alunos">
-        <p class="text-h3">Alunos</p>
-        <p>Cadastre, edite e remova alunos</p>
+        <p class="text-h3 text-deep-purple">Alunos</p>
+        <p class="text-h6 text-black">Cadastre, edite e remova alunos</p>
         <img class="icone-aluno" src="/img/aluno.ico" alt="aluno" />
       </div>
     </router-link>
@@ -18,22 +18,18 @@ export default {
 <style scoped>
 .card-aluno {
   border-radius: 5px;
-  padding: 30px;
+  padding: 20px;
   margin: 20px;
   width: 400px;
   height: 200px;
   transition: all 0.3s ease-out;
-  background-color: #d4d5d6;
-  border-left: 3px solid #5f2680;
+  background-color: #c1ccd7;
+  border-left: 5px solid #540880;
 }
 
 .card-aluno:hover {
   transform: translateY(-5px);
   cursor: pointer;
-}
-
-.card-aluno p {
-  color: #7e479e;
 }
 
 .icone-aluno {
