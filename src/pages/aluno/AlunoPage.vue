@@ -24,16 +24,6 @@
           style="height: 50px; width: 90px; font-size: 12px"
         />
       </div>
-
-      <q-dialog v-model="showModalCadastro" persistent>
-        <modal-cadastro />
-      </q-dialog>
-      <q-dialog v-model="showModalEditar" persistent>
-        <modal-editar />
-      </q-dialog>
-      <q-dialog v-model="showModalDeletar" persistent>
-        <modal-deletar />
-      </q-dialog>
     </div>
     <q-table
       :rows="rows"
@@ -42,6 +32,15 @@
       table-header-style="background-color: #7c10e8; color: #fff;"
     >
       <template v-slot:body-cell-acoes="props">
+        <q-dialog v-model="showModalCadastro" persistent>
+          <modal-cadastro />
+        </q-dialog>
+        <q-dialog v-model="showModalEditar" persistent>
+          <modal-editar />
+        </q-dialog>
+        <q-dialog v-model="showModalDeletar" persistent>
+          <modal-deletar :idStudent="props.row.id" />
+        </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
             icon="edit"
@@ -55,7 +54,7 @@
             color="negative"
             dense
             size="sm"
-            @click="DeleteUser(props.row.id)"
+            @click="showModalDeletar = true"
           />
           <q-btn
             icon="folder"
@@ -124,7 +123,7 @@ export default {
     ];
     const showModalCadastro = ref(false);
     const showModalEditar = ref(false);
-    //const showModalDeletar = ref(false);
+    const showModalDeletar = ref(false);
     const search = ref("");
     const $q = useQuasar();
     const rows = ref([]);
@@ -146,19 +145,11 @@ export default {
       }
     };
 
-    // eslint-disable-next-line consistent-return
-    const remove = async (id) => {
-      try {
-        const data = await api.delete(`rows/${id}`);
-        return data.data;
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-
     const DeleteUser = async (id) => {
       try {
-        $q.dialog({
+        //const data = await api.delete(`alunos/${id}`);
+        //console.log(data);
+        /*$q.dialog({
           dark: true,
           title: "Confirmar",
           message:
@@ -166,14 +157,15 @@ export default {
           cancel: true,
           persistent: true,
         }).onOk(async () => {
+          console.log("Entrou em onOk");
           await remove(id);
-          $q.notify({
+           $q.notify({
             message: "Usuário deletado",
             icon: "check",
             color: "positive",
           });
           $router.push({ name: "home-aluno" });
-        });
+        });*/
       } catch (error) {
         $q.notify({
           message: "Erro ao deletar o aluno!",
@@ -188,7 +180,7 @@ export default {
       rows,
       showModalCadastro,
       showModalEditar,
-      //showModalDeletar,
+      showModalDeletar,
       search,
       DeleteUser,
     };
