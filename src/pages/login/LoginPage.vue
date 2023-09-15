@@ -140,7 +140,7 @@ export default {
 
     async function onSubmit() {
       const { email, senha } = login.value;
-      const { data } = await api.get("/usuarios", { params: { email, senha } });
+      const { data } = await api.get("usuarios", { params: { email, senha } });
     }
     async function onReset() {
       await this.resetForm();

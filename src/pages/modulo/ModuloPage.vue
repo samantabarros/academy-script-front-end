@@ -65,8 +65,7 @@
 
 <script>
 import { defineComponent, ref, onMounted } from "vue";
-//import { api } from "boot/axios";
-import postsService from "src/services/reqModulos.js";
+import { api } from "boot/axios";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 import ModalDeletarModulo from "src/components/modals/ModalDeletarModulo.vue";
@@ -77,7 +76,6 @@ export default {
 
   methods: {},
   setup() {
-    const { list } = postsService();
     const columns = [
       {
         name: "name",
@@ -133,7 +131,7 @@ export default {
     const getPosts = async () => {
       try {
         //Não precisa das chaves pois já está retornando os dados direto
-        const data = await list();
+        const { data } = await api.get("modulos");
         console.log(data);
         rows.value = data;
       } catch (error) {

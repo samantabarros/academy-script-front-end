@@ -22,7 +22,17 @@
           />
         </div>
         <div class="q-mb-sm">
-          <q-input filled v-model="cadastro.cpf" label="CPF" color="purple" />
+          <q-input
+            ref="cpfRef"
+            filled
+            v-model="cadastro.cpf"
+            label="CPF"
+            color="purple"
+            :rules="[
+              (val) => val.length == 11 || 'O cpf dever conter 11 digitos',
+            ]"
+            lazy-rules
+          />
         </div>
         <div class="q-mb-sm">
           <q-input
@@ -43,7 +53,7 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { Notify, useQuasar } from "quasar";
 import { api } from "src/boot/axios";
@@ -54,6 +64,7 @@ export default {
   setup() {
     const $q = useQuasar();
     const router = useRouter();
+    const cpfRef = ref(null);
 
     const cadastro = ref({
       nome_aluno: "",
@@ -64,10 +75,10 @@ export default {
     const submitForm = async () => {
       try {
         console.log(cadastro.value);
-        //const data = await post(cadastro.value);>
-        const response = await api.post("alunos", cadastro.value);
-        console.log(response.data);
-        console.log(response);
+        //const data = await post(cadastro.value);
+        const { data } = await api.post("alunos", cadastro.value);
+        //console.log(response.data);
+        //console.log(response);
         console.log("Chegou aqui");
       } catch (error) {
         console.log(error);
@@ -78,6 +89,7 @@ export default {
       //alert: ref(false),
       cadastro,
       submitForm,
+      cpfRef,
     };
   },
 };

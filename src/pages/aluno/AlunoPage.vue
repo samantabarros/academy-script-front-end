@@ -55,7 +55,7 @@
             color="negative"
             dense
             size="sm"
-            @click="showModalDeletar = true"
+            @click="DeleteUser(props.row.id)"
           />
           <q-btn
             icon="folder"
@@ -73,6 +73,8 @@
 <script>
 import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
+import { useRoute, useRouter } from "vue-router";
+import { useQuasar } from "quasar";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
 import ModalDeletar from "src/components/modals/ModalDeletar.vue";
@@ -90,7 +92,7 @@ export default {
     },
   },
   setup() {
-    const posts = ref([]);
+    //const posts = ref([]);
     const columns = [
       {
         name: "name",
@@ -122,10 +124,11 @@ export default {
     ];
     const showModalCadastro = ref(false);
     const showModalEditar = ref(false);
-    const showModalDeletar = ref(false);
+    //const showModalDeletar = ref(false);
     const search = ref("");
-
+    const $q = useQuasar();
     const rows = ref([]);
+    const $router = useRouter();
 
     onMounted(() => {
       getAlunos();
@@ -142,13 +145,52 @@ export default {
         console.log(error);
       }
     };
+
+    // eslint-disable-next-line consistent-return
+    const remove = async (id) => {
+      try {
+        const data = await api.delete(`rows/${id}`);
+        return data.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+
+    const DeleteUser = async (id) => {
+      try {
+        $q.dialog({
+          dark: true,
+          title: "Confirmar",
+          message:
+            "Tem certeza que deseja excluir esse aluno? Ao realizar essa ação você não poderá desfazê-la!",
+          cancel: true,
+          persistent: true,
+        }).onOk(async () => {
+          await remove(id);
+          $q.notify({
+            message: "Usuário deletado",
+            icon: "check",
+            color: "positive",
+          });
+          $router.push({ name: "home-aluno" });
+        });
+      } catch (error) {
+        $q.notify({
+          message: "Erro ao deletar o aluno!",
+          icon: "times",
+          color: "negative",
+        });
+      }
+    };
+
     return {
       columns,
       rows,
       showModalCadastro,
       showModalEditar,
-      showModalDeletar,
+      //showModalDeletar,
       search,
+      DeleteUser,
     };
   },
 };
