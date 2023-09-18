@@ -3,7 +3,7 @@
     <div class="row q-pt-xs q-pb-md justify-end">
       <q-input
         class="col-4 self-center"
-        v-model="search"
+        v-model="pesquisa"
         rounded
         filled
         color="deep-purple"
@@ -69,87 +69,76 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref, onMounted } from "vue";
+<script setup>
+import { useQuasar } from "quasar";
 import { api } from "boot/axios";
 import { useRoute, useRouter } from "vue-router";
-import { useQuasar } from "quasar";
+import { defineComponent, ref, onMounted } from "vue";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
 import ModalDeletar from "src/components/modals/ModalDeletar.vue";
 
-export default {
-  name: "AlunoPage",
-  components: { ModalCadastro, ModalEditar, ModalDeletar },
+const router = useRouter();
+const showModalCadastro = ref(false);
+const showModalEditar = ref(false);
+const showModalDeletar = ref(false);
+const pesquisa = ref("");
+const $q = useQuasar();
+const rows = ref([]);
 
-  methods: {
-    /*openModal(){
-      this.showModal = true;
-    },*/
-    openModulo() {
-      this.$router.push({ name: "modulo-aluno" });
-    },
+const openModulo = () => {
+  router.push({ name: "modulo-aluno" });
+};
+
+const columns = [
+  {
+    name: "name",
+    field: "nome_aluno",
+    label: "Nome",
+    sortable: false,
+    align: "left",
   },
-  setup() {
-    //const posts = ref([]);
-    const columns = [
-      {
-        name: "name",
-        field: "nome_aluno",
-        label: "Nome",
-        sortable: false,
-        align: "left",
-      },
-      {
-        name: "cpf",
-        field: "cpf",
-        label: "CPF",
-        align: "center",
-      },
-      {
-        name: "data",
-        field: "data_nascimento",
-        label: "Data de nascimento",
-        sortable: false,
-        align: "center",
-      },
-      {
-        name: "acoes",
-        field: "acoes",
-        label: "Ações",
-        sortable: true,
-        align: "center",
-      },
-    ];
-    const showModalCadastro = ref(false);
-    const showModalEditar = ref(false);
-    const showModalDeletar = ref(false);
-    const search = ref("");
-    const $q = useQuasar();
-    const rows = ref([]);
-    const $router = useRouter();
+  {
+    name: "cpf",
+    field: "cpf",
+    label: "CPF",
+    align: "center",
+  },
+  {
+    name: "data",
+    field: "data_nascimento",
+    label: "Data de nascimento",
+    sortable: false,
+    align: "center",
+  },
+  {
+    name: "acoes",
+    field: "acoes",
+    label: "Ações",
+    sortable: true,
+    align: "center",
+  },
+];
 
-    onMounted(() => {
-      getAlunos();
-    });
+onMounted(() => {
+  getAlunos();
+});
 
-    const getAlunos = async () => {
-      try {
-        //Não precisa das chaves pois já está retornando os dados direto
-        const { data } = await api.get("alunos");
+const getAlunos = async () => {
+  try {
+    const { data } = await api.get("alunos");
+    console.log(data);
+    rows.value = data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-        console.log(data);
-        rows.value = data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const DeleteUser = async (id) => {
-      try {
-        //const data = await api.delete(`alunos/${id}`);
-        //console.log(data);
-        /*$q.dialog({
+const DeleteUser = async (id) => {
+  try {
+    //const data = await api.delete(`alunos/${id}`);
+    //console.log(data);
+    /*$q.dialog({
           dark: true,
           title: "Confirmar",
           message:
@@ -166,24 +155,12 @@ export default {
           });
           $router.push({ name: "home-aluno" });
         });*/
-      } catch (error) {
-        $q.notify({
-          message: "Erro ao deletar o aluno!",
-          icon: "times",
-          color: "negative",
-        });
-      }
-    };
-
-    return {
-      columns,
-      rows,
-      showModalCadastro,
-      showModalEditar,
-      showModalDeletar,
-      search,
-      DeleteUser,
-    };
-  },
+  } catch (error) {
+    $q.notify({
+      message: "Erro ao deletar o aluno!",
+      icon: "times",
+      color: "negative",
+    });
+  }
 };
 </script>

@@ -63,89 +63,72 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 import ModalDeletarModulo from "src/components/modals/ModalDeletarModulo.vue";
 
-export default {
-  name: "ModuloPage",
-  components: { ModalCadastroModulo, ModalEditarModulo, ModalDeletarModulo },
+const showModalCadastroModulo = ref(false);
+const showModalEditarModulo = ref(false);
+const showModalDeletarModulo = ref(false);
+const pesquisa = ref("");
+const rows = ref([]);
 
-  methods: {},
-  setup() {
-    const columns = [
-      {
-        name: "name",
-        field: "nome_modulo",
-        label: "Nome",
-        sortable: false,
-        align: "left",
-      },
-      {
-        name: "nota-um",
-        field: "nota1",
-        label: "Nota 1",
-        align: "center",
-      },
-      {
-        name: "nota-dois",
-        field: "nota2",
-        label: "Nota 2",
-        align: "center",
-      },
-      {
-        name: "nota-tres",
-        field: "nota3",
-        label: "Nota 3",
-        align: "center",
-      },
-      {
-        name: "status",
-        field: "status",
-        label: "Status",
-        sortable: false,
-        align: "center",
-      },
-      {
-        name: "acoes",
-        field: "acoes",
-        label: "Ações",
-        sortable: false,
-        align: "center",
-      },
-    ];
-    const showModalCadastroModulo = ref(false);
-    const showModalEditarModulo = ref(false);
-    const showModalDeletarModulo = ref(false);
-    const search = ref("");
-
-    const rows = ref([]);
-
-    onMounted(() => {
-      getPosts();
-    });
-
-    const getPosts = async () => {
-      try {
-        //Não precisa das chaves pois já está retornando os dados direto
-        const { data } = await api.get("modulos");
-        console.log(data);
-        rows.value = data;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    return {
-      columns,
-      rows,
-      showModalCadastroModulo,
-      showModalEditarModulo,
-      showModalDeletarModulo,
-      search,
-    };
+const columns = [
+  {
+    name: "name",
+    field: "nome_modulo",
+    label: "Nome",
+    sortable: false,
+    align: "left",
   },
+  {
+    name: "nota-um",
+    field: "nota1",
+    label: "Nota 1",
+    align: "center",
+  },
+  {
+    name: "nota-dois",
+    field: "nota2",
+    label: "Nota 2",
+    align: "center",
+  },
+  {
+    name: "nota-tres",
+    field: "nota3",
+    label: "Nota 3",
+    align: "center",
+  },
+  {
+    name: "status",
+    field: "status",
+    label: "Status",
+    sortable: false,
+    align: "center",
+  },
+  {
+    name: "acoes",
+    field: "acoes",
+    label: "Ações",
+    sortable: false,
+    align: "center",
+  },
+];
+
+onMounted(() => {
+  getPosts();
+});
+
+const getPosts = async () => {
+  try {
+    const { data } = await api.get("modulos");
+    console.log(data);
+    rows.value = data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>

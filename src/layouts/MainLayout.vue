@@ -26,7 +26,7 @@
         <q-item-label header class="row justify-left"> Menu </q-item-label>
 
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in linksList"
           :key="link.title"
           v-bind="link"
         />
@@ -47,10 +47,11 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from "vue";
+<script setup>
+import { defineComponent, onMounted, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 
+const isOpen = ref(false);
 const linksList = [
   {
     title: "Alunos",
@@ -66,24 +67,6 @@ const linksList = [
     route: "/",
   },
 ];
-
-export default defineComponent({
-  name: "MainLayout",
-
-  components: {
-    EssentialLink,
-  },
-
-  setup() {
-    //const leftDrawerOpen = ref(true);
-    const isOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      isOpen,
-    };
-  },
-});
 </script>
 
 <style scoped></style>

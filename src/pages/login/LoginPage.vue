@@ -115,64 +115,60 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from "vue";
 import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
 import { Notify, useQuasar } from "quasar";
 
-export default {
-  name: "LoginPage",
+const $q = useQuasar();
+const router = useRouter();
 
-  setup() {
-    const $q = useQuasar();
-    const router = useRouter();
+const login = ref({
+  email: "",
+  senha: "",
+  isPwd: ref(false),
+});
 
-    const login = ref({
-      email: "",
-      senha: "",
-      isPwd: ref(false),
+const onSubmit = async () => {
+  //quando define-se uma variável dentro de uma função com const ela fica visível só dentro
+  //da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
+  //usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida
+  const { email, senha } = login.value;
+  const { data } = await api.get("usuarios", { params: { email, senha } });
+  console.log(data);
+
+  if (data.length > 0) {
+    router.push("/home");
+    $q.notify({
+      message: "Login realizado com sucesso!",
+      color: "positive",
+      icon: "check_circle_outline",
     });
-
-    return {
-      login,
-    };
-
-    async function onSubmit() {
-      const { email, senha } = login.value;
-      const { data } = await api.get("usuarios", { params: { email, senha } });
-    }
-    async function onReset() {
-      await this.resetForm();
-      this.$refs.myForm.resetValidation();
-    }
-
-    async function resetForm() {
-      this.login = {
-        email: "",
-        senha: "",
-      };
-    }
-
-    if (data.length > 0) {
-      router.push("/home");
-      $q.notify({
-        message: "Login realizado com sucesso!",
-        color: "positive",
-        icon: "check_circle_outline",
-      });
-    } else {
-      $q.notify({
-        color: "red-5",
-        textColor: "white",
-        icon: "warning",
-        message: "Usuário ou senha inválidos",
-      });
-      onReset();
-    }
-    //Método para mostrar ou esconder a senha
-  },
+  } else {
+    $q.notify({
+      color: "red-5",
+      textColor: "white",
+      icon: "warning",
+      message: "Usuário ou senha inválidos",
+    });
+    onReset();
+  }
 };
+
+async function onReset() {
+  await this.resetForm();
+  this.$refs.myForm.resetValidation();
+}
+
+async function resetForm() {
+  this.login = {
+    email: "",
+    senha: "",
+  };
+}
+
+//Método para mostrar ou esconder a senha
 </script>
 
 <style scoped>

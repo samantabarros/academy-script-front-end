@@ -52,46 +52,35 @@
   </q-card>
 </template>
 
-<script>
+<script setup>
 import { defineComponent, onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { Notify, useQuasar } from "quasar";
 import { api } from "src/boot/axios";
 
-export default {
-  name: "ModalCadastro",
+name: "ModalCadastro";
 
-  setup() {
-    const $q = useQuasar();
-    const router = useRouter();
-    const cpfRef = ref(null);
+const $q = useQuasar();
+const router = useRouter();
+const cpfRef = ref(null);
 
-    const cadastro = ref({
-      nome_aluno: "",
-      cpf: "",
-      data_nascimento: "",
-    });
+const cadastro = ref({
+  nome_aluno: "",
+  cpf: "",
+  data_nascimento: "",
+});
 
-    const submitForm = async () => {
-      try {
-        console.log(cadastro.value);
-        //const data = await post(cadastro.value);
-        const { data } = await api.post("alunos", cadastro.value);
-        //console.log(response.data);
-        //console.log(response);
-        console.log("Chegou aqui");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    return {
-      //alert: ref(false),
-      cadastro,
-      submitForm,
-      cpfRef,
-    };
-  },
+const submitForm = async () => {
+  try {
+    console.log(cadastro.value);
+    //const data = await post(cadastro.value);
+    const { data } = await api.post("alunos", cadastro.value);
+    //console.log(response.data);
+    //console.log(response);
+    console.log("Chegou aqui");
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 

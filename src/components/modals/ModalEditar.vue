@@ -37,16 +37,8 @@
   </q-card>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-export default {
-  name: "ModalEditar",
-  setup() {
-    return {
-      //alert: ref(false),
-    };
-  },
-};
 </script>
 
 <style scoped>

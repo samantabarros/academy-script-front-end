@@ -11,11 +11,13 @@
   </q-item>
 </template>
 
-<script>
+<script setup>
 import { defineComponent } from "vue";
+import { withDefaults } from "vue";
+</script>
 
-export default defineComponent({
-  name: "EssentialLink",
+<script>
+export default {
   props: {
     title: {
       type: String,
@@ -37,5 +39,5 @@ export default defineComponent({
       default: "",
     },
   },
-});
+};
 </script>

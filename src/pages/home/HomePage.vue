@@ -10,11 +10,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "HomePage",
-};
+<script setup>
 </script>
+
 <style scoped>
 .card-aluno {
   border-radius: 5px;
