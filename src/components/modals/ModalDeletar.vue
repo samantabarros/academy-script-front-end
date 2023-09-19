@@ -31,6 +31,9 @@ export default {
   setup() {
     const DeleteUser = async (id) => {
       const { data } = await api.delete(`alunos/${id}`);
+      //console.log(`alunos/${id}`);
+      console.log(data);
+
       location.reload();
     };
 

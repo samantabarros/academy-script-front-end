@@ -26,10 +26,13 @@
             ref="cpfRef"
             filled
             v-model="cadastro.cpf"
+            mask="###.###.###-##"
             label="CPF"
             color="purple"
             :rules="[
-              (val) => val.length == 11 || 'O cpf dever conter 11 digitos',
+              (val) =>
+                (val.length > 0 && val.length == 14) ||
+                'O cpf dever conter 11 digitos',
             ]"
             lazy-rules
           />
@@ -75,12 +78,13 @@ const submitForm = async () => {
     console.log(cadastro.value);
     //const data = await post(cadastro.value);
     const { data } = await api.post("alunos", cadastro.value);
-    //console.log(response.data);
+    console.log(cadastro.value);
     //console.log(response);
     console.log("Chegou aqui");
   } catch (error) {
     console.log(error);
   }
+  location.reload();
 };
 </script>
 
