@@ -1,5 +1,7 @@
 <template>
   <q-card style="border-left: 3px solid #5f2680">
+    <p>{{ idStudent }}</p>
+
     <q-card-section class="row items-center">
       <q-avatar icon="warning" color="orange" text-color="white" />
       <p class="q-ml-sm">
@@ -22,25 +24,18 @@
   </q-card>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import { api } from "src/boot/axios";
-export default {
-  name: "ModalDeletar",
-  props: ["idStudent"], //nome da variável que vem pelo parametro
-  setup() {
-    const DeleteUser = async (id) => {
-      const { data } = await api.delete(`alunos/${id}`);
-      //console.log(`alunos/${id}`);
-      console.log(data);
 
-      location.reload();
-    };
+const props = defineProps(["idStudent"]);
+//props: ["idStudent"], //nome da variável que vem pelo parametro
 
-    return {
-      DeleteUser,
-    };
-  },
+const DeleteUser = async (id) => {
+  console.log(id);
+  const { data } = await api.delete(`alunos/${id}`);
+  console.log(data);
+  location.reload();
 };
 </script>
 

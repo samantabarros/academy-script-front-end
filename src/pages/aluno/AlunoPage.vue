@@ -25,6 +25,7 @@
         />
       </div>
     </div>
+
     <q-table
       :rows="rows"
       :columns="columns"
@@ -56,6 +57,8 @@
             size="sm"
             @click="showModalDeletar = true"
           />
+          <!-- <q-btn :to="props.row.id">s </q-btn> -->
+
           <q-btn
             icon="folder"
             color="orange"
@@ -131,36 +134,6 @@ const getAlunos = async () => {
     rows.value = data;
   } catch (error) {
     console.log(error);
-  }
-};
-
-const DeleteUser = async (id) => {
-  try {
-    //const data = await api.delete(`alunos/${id}`);
-    //console.log(data);
-    /*$q.dialog({
-          dark: true,
-          title: "Confirmar",
-          message:
-            "Tem certeza que deseja excluir esse aluno? Ao realizar essa ação você não poderá desfazê-la!",
-          cancel: true,
-          persistent: true,
-        }).onOk(async () => {
-          console.log("Entrou em onOk");
-          await remove(id);
-           $q.notify({
-            message: "Usuário deletado",
-            icon: "check",
-            color: "positive",
-          });
-          $router.push({ name: "home-aluno" });
-        });*/
-  } catch (error) {
-    $q.notify({
-      message: "Erro ao deletar o aluno!",
-      icon: "times",
-      color: "negative",
-    });
   }
 };
 </script>
