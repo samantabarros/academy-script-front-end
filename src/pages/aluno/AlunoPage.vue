@@ -29,7 +29,7 @@
     <q-table
       :rows="rows"
       :columns="columns"
-      row-key="name"
+      row-key="id"
       table-header-style="background-color: #7c10e8; color: #fff;"
     >
       <template v-slot:body-cell-acoes="props">
@@ -64,7 +64,7 @@
             color="orange"
             dense
             size="sm"
-            @click="openModulo"
+            @click="openModulo(props.row.id)"
           />
         </q-td>
       </template>
@@ -82,16 +82,19 @@ import ModalEditar from "src/components/modals/ModalEditar.vue";
 import ModalDeletar from "src/components/modals/ModalDeletar.vue";
 
 const router = useRouter();
+const route = useRoute();
 const showModalCadastro = ref(false);
 const showModalEditar = ref(false);
 const showModalDeletar = ref(false);
 const pesquisa = ref("");
 const $q = useQuasar();
 const rows = ref([]);
+const id = route.params.id;
+console.log(id);
 
-const openModulo = () => {
-  router.push({ name: "modulo-aluno" });
-};
+async function openModulo(id) {
+  router.push(`/home/alunos/modulos/${id}`);
+}
 
 const columns = [
   {

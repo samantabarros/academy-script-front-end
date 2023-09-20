@@ -68,7 +68,8 @@ const DeleteUser = async (id) => {
 }
 
 .time-text {
-  font-size: 15px;
+  padding: 15px 5px 5px 20px;
+  font-size: 14px;
   margin-top: 0px;
   margin-left: 15px;
   font-weight: 600;
@@ -76,9 +77,10 @@ const DeleteUser = async (id) => {
 }
 
 .icon-aviso {
+  padding: 15px 15px 20px 15px;
   font-size: 50px;
   position: absolute;
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   top: 15px;
