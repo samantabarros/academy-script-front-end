@@ -1,13 +1,23 @@
 <template>
-  <q-card style="border-left: 3px solid #5f2680">
+  <q-card class="modal-deletar" style="border-left: 3px solid #5f2680">
     <p>{{ idStudent }}</p>
 
     <q-card-section class="row items-center">
-      <q-avatar icon="warning" color="orange" text-color="white" />
-      <p class="q-ml-sm">
-        Você tem certeza que deseja excluir esse aluno? <br />
-        Ao confirmar essa ação, você não poderá desfazê-la.
-      </p>
+      <div class="icon-aviso">
+        <q-avatar
+          icon="warning"
+          color="red"
+          text-color="white"
+          class="icon-aviso"
+        />
+      </div>
+
+      <div class="q-pa-md items-center justify-content">
+        <p class="time-text">
+          Você tem certeza que deseja excluir esse aluno? <br />
+          Ao confirmar essa ação, você não poderá desfazê-la.
+        </p>
+      </div>
     </q-card-section>
 
     <q-card-actions align="right">
@@ -42,9 +52,36 @@ const DeleteUser = async (id) => {
 
 <style scoped>
 .modal-deletar {
-  max-width: 100%;
-  width: 500px;
-  max-height: 100%;
-  height: 500px;
+  width: 480px;
+  height: 280px;
+  background: rgb(17, 4, 134);
+  border-radius: 15px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  background: linear-gradient(to right, rgb(20, 30, 48), rgb(36, 59, 85));
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.time-text {
+  font-size: 15px;
+  margin-top: 0px;
+  margin-left: 15px;
+  font-weight: 600;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.icon-aviso {
+  font-size: 50px;
+  position: absolute;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  top: 15px;
+  transition: all 0.3s ease-in-out;
 }
 </style>
