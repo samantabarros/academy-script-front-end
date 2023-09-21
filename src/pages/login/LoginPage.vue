@@ -35,7 +35,7 @@
             </div>
             <div class="col flex justify-center">
               <p
-                class="lb-login text-h4 text-uppercase q-my-none text-weight-regular text-purple content-center"
+                class="lb-login text-h4 text-uppercase q-my-none text-weight-regular text-white content-center"
               >
                 Login
               </p>

@@ -2,14 +2,13 @@
   <div class="q-pa-md text-body1">
     <div class="row q-pt-xs q-pb-md justify-end">
       <q-input
-        class="col-4 self-center"
+        class="col-4 self-center input-style"
         v-model="pesquisa"
         rounded
         filled
         color="deep-purple"
         type="search"
         label="Pesquisar"
-        style="height: 50px"
       >
         <template v-slot:append>
           <q-icon name="search" />
@@ -20,8 +19,7 @@
           color="green"
           label="Adicionar"
           @click="showModalCadastro = true"
-          class="q-pa-xs q-ml-md self-center"
-          style="height: 50px; width: 90px; font-size: 12px"
+          class="q-pa-xs q-ml-md self-center btn-style"
         />
       </div>
     </div>
@@ -40,8 +38,9 @@
           <modal-editar />
         </q-dialog>
         <q-dialog v-model="showModalDeletar" persistent>
-          <modal-deletar :idStudent="props.row.id" />
+          <modal-deletar :id="props.row.id" @confirmDelete="DeleteUser" />
         </q-dialog>
+
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
             icon="edit"
@@ -139,4 +138,26 @@ const getAlunos = async () => {
     console.log(error);
   }
 };
+
+const DeleteUser = async (id) => {
+  try {
+    await api.delete(`alunos/${id}`);
+    showModalDeletar.value = false;
+    getAlunos(); //em vez de utilizar location.reload()
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
+
+<style scoped>
+.input-style {
+  height: 50px;
+}
+
+.btn-style {
+  height: 50px;
+  width: 90px;
+  font-size: 12px;
+}
+</style>
