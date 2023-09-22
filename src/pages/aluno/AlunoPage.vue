@@ -3,6 +3,7 @@
     <div class="row justify-end">
       <q-input
         filled
+        dense
         type="search"
         class="q-pr-md"
         v-model="pesquisa"
@@ -15,6 +16,7 @@
         </template>
       </q-input>
       <q-btn
+        dense
         icon="person_add"
         label="Adicionar"
         style="background: #27dc30; color: white"
