@@ -76,7 +76,6 @@ const cadastro = ref({
 const submitForm = async () => {
   try {
     console.log(cadastro.value);
-    //const data = await post(cadastro.value);
     const { data } = await api.post("alunos", cadastro.value);
     console.log(cadastro.value);
     //console.log(response);

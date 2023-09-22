@@ -1,48 +1,44 @@
 <template>
   <div class="q-pa-md text-body1">
-    <div class="row q-pt-xs q-pb-md justify-end">
+    <div class="row justify-end">
       <q-input
-        class="col-4 self-center input-style"
-        v-model="pesquisa"
-        rounded
         filled
-        color="deep-purple"
         type="search"
-        label="Pesquisar"
+        class="q-pr-md"
+        v-model="pesquisa"
+        color="deep-purple"
+        label="Pesquisar aluno"
+        style="width: 50%"
       >
         <template v-slot:append>
           <q-icon name="search" />
         </template>
       </q-input>
-      <div>
-        <q-btn
-          color="green"
-          label="Adicionar"
-          @click="showModalCadastro = true"
-          class="q-pa-xs q-ml-md self-center btn-style"
-        />
-      </div>
+      <q-btn
+        icon="person_add"
+        label="Adicionar"
+        style="background: #27dc30; color: white"
+        @click="showModalCadastrar = true"
+      ></q-btn>
     </div>
-
     <q-table
-      :rows="rows"
+      class="q-mt-lg"
+      :rows="rows_alunos"
       :columns="columns"
       row-key="id"
-      table-header-style="background-color: #7c10e8; color: #fff;"
+      table-header-style="background-color: #7c10e8; color: #fff"
     >
       <template v-slot:body-cell-acoes="props">
-        <q-dialog v-model="showModalCadastro" persistent>
-          <modal-cadastro />
-        </q-dialog>
         <q-dialog v-model="showModalEditar" persistent>
           <modal-editar />
         </q-dialog>
-        <q-dialog v-model="showModalDeletar" persistent>
-          <modal-deletar :id="props.row.id" @confirmDelete="DeleteUser" />
+        <q-dialog v-model="showModalCadastrar" persistent>
+          <modal-cadastro />
         </q-dialog>
 
-        <q-td :props="props" class="q-gutter-sm">
+        <q-td :props="props">
           <q-btn
+            class="q-mr-xs"
             icon="edit"
             color="info"
             dense
@@ -50,15 +46,15 @@
             @click="showModalEditar = true"
           />
           <q-btn
+            class="q-mr-xs"
             icon="delete"
             color="negative"
             dense
             size="sm"
-            @click="showModalDeletar = true"
+            @click="confirmDelete(props.row.id)"
           />
-          <!-- <q-btn :to="props.row.id">s </q-btn> -->
-
           <q-btn
+            class="q-mr-xs"
             icon="folder"
             color="orange"
             dense
@@ -73,34 +69,27 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { api } from "boot/axios";
+import { api } from "src/boot/axios";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { defineComponent, ref, onMounted } from "vue";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
-import ModalDeletar from "src/components/modals/ModalDeletar.vue";
 
 const router = useRouter();
 const route = useRoute();
-const showModalCadastro = ref(false);
-const showModalEditar = ref(false);
-const showModalDeletar = ref(false);
 const pesquisa = ref("");
-const $q = useQuasar();
-const rows = ref([]);
+const rows_alunos = ref([]);
 const id = route.params.id;
+const $q = useQuasar();
+const showModalEditar = ref(false);
+const showModalCadastrar = ref(false);
 console.log(id);
-
-async function openModulo(id) {
-  router.push(`/home/alunos/modulos/${id}`);
-}
 
 const columns = [
   {
     name: "name",
     field: "nome_aluno",
     label: "Nome",
-    sortable: false,
     align: "left",
   },
   {
@@ -113,14 +102,12 @@ const columns = [
     name: "data",
     field: "data_nascimento",
     label: "Data de nascimento",
-    sortable: false,
     align: "center",
   },
   {
     name: "acoes",
     field: "acoes",
     label: "Ações",
-    sortable: true,
     align: "center",
   },
 ];
@@ -129,35 +116,47 @@ onMounted(() => {
   getAlunos();
 });
 
+async function openModulo(id) {
+  router.push(`/home/alunos/modulos/${id}`);
+}
+
 const getAlunos = async () => {
   try {
     const { data } = await api.get("alunos");
     console.log(data);
-    rows.value = data;
+    rows_alunos.value = data;
   } catch (error) {
     console.log(error);
   }
 };
 
-const DeleteUser = async (id) => {
+const confirmDelete = async (id) => {
+  $q.notify({
+    message: "Tem certeza que deseja excluir esse aluno?",
+    color: "gray",
+    actions: [
+      {
+        label: "Confirmar",
+        color: "green",
+        handler: () => {
+          deletarAluno(id);
+        },
+      },
+      {
+        label: "Cancelar",
+        color: "red",
+        handler: () => {},
+      },
+    ],
+  });
+};
+
+const deletarAluno = async (id) => {
   try {
-    await api.delete(`alunos/${id}`);
-    showModalDeletar.value = false;
-    getAlunos(); //em vez de utilizar location.reload()
+    const { data } = await api.delete(`alunos/${id}`);
+    getAlunos();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 </script>
-
-<style scoped>
-.input-style {
-  height: 50px;
-}
-
-.btn-style {
-  height: 50px;
-  width: 90px;
-  font-size: 12px;
-}
-</style>
