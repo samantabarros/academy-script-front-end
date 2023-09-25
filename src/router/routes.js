@@ -14,13 +14,13 @@ const routes = [
         component: () => import("pages/home/HomePage.vue")
       },
       {
-        path: "/home/alunos",
+        path: "/alunos",
         name: "home-aluno",
         component: () => import("pages/aluno/AlunoPage.vue")
       },
       {
-        path: "/home/alunos/modulos/:id",
-        name: "modulo-aluno",
+        path: "/modulos/:id",
+        name: "modulo",
         component: () => import("pages/modulo/ModuloPage.vue")
       }
     ],

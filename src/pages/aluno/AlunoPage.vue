@@ -119,7 +119,9 @@ onMounted(() => {
 });
 
 async function openModulo(id) {
-  router.push(`/home/alunos/modulos/${id}`);
+  console.log("Entrou na função openModulo");
+  console.log(id);
+  router.push(`modulos/${id}`);
 }
 
 const getAlunos = async () => {

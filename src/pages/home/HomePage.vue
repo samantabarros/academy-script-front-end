@@ -1,6 +1,6 @@
 <template>
   <div class="row flex justify-right content-center">
-    <router-link to="/home/alunos" style="text-decoration: none">
+    <router-link to="/alunos" style="text-decoration: none">
       <div class="card-aluno" to="/home/alunos">
         <p class="text-h3 text-deep-purple">Alunos</p>
         <p class="text-h6 text-black">Cadastre, edite e remova alunos</p>
