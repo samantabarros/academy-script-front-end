@@ -50,29 +50,21 @@
             size="sm"
             @click="showModalEditarModulo = true"
           />
-          <q-btn
-            icon="delete"
-            color="negative"
-            dense
-            size="sm"
-            @click="showModalDeletarModulo = true"
-          />
+          <q-btn icon="delete" color="negative" dense size="sm" />
         </q-td>
       </template>
     </q-table>
   </div>
 </template>
 
-<script setup>
+// <script setup>
 import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
-import ModalDeletarModulo from "src/components/modals/ModalDeletarModulo.vue";
 
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
-const showModalDeletarModulo = ref(false);
 const pesquisa = ref("");
 const rows = ref([]);
 
@@ -124,7 +116,7 @@ onMounted(() => {
 
 const getPosts = async () => {
   try {
-    const { data } = await api.get("modulos");
+    const { data } = await api.get("alunos/id");
     console.log(data);
     rows.value = data;
   } catch (error) {

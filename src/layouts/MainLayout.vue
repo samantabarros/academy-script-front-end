@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr hFf">
-    <q-header elevated class="bg-deep-purple">
+    <q-header elevated class="bg-primary">
       <q-toolbar>
         <q-btn
           flat
@@ -33,12 +33,8 @@
       </q-list>
     </q-drawer>
 
-    <q-footer elevated class="bg-deep-purple">
-      <q-toolbar>
-        <q-toolbar-title class="text-center"
-          >Samanta Barros 2023</q-toolbar-title
-        >
-      </q-toolbar>
+    <q-footer elevated class="q-pa-xs text-center bg-primary">
+      <span>Samanta Barros &copy; 2023</span>
     </q-footer>
 
     <q-page-container>

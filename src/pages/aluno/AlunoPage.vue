@@ -61,7 +61,7 @@
             color="orange"
             dense
             size="sm"
-            @click="openModulo(props.row.id)"
+            :to="`/modulos/${props.row.id}`"
           />
         </q-td>
       </template>
@@ -81,11 +81,9 @@ const router = useRouter();
 const route = useRoute();
 const pesquisa = ref("");
 const rows_alunos = ref([]);
-const id = route.params.id;
 const $q = useQuasar();
 const showModalEditar = ref(false);
 const showModalCadastrar = ref(false);
-console.log(id);
 
 const columns = [
   {
@@ -118,11 +116,16 @@ onMounted(() => {
   getAlunos();
 });
 
-async function openModulo(id) {
-  console.log("Entrou na função openModulo");
-  console.log(id);
-  router.push(`modulos/${id}`);
-}
+// async function openModulo(id) {
+//   console.log("Entrou na função openModulo");
+//   console.log(id);
+//   router.push(`modulos/${id}`);
+// }
+
+// const openModulo = async (id) => {
+//   //router.push(`/modulos/${id}`);
+//   console.log(id);
+// };
 
 const getAlunos = async () => {
   try {
