@@ -220,8 +220,12 @@ async function resetForm() {
 
 /*Medias queries*/
 @media (min-width: 320px) and (max-width: 480px) {
-  .banner-login {
+  .title-sgma {
     display: none;
+  }
+  .img-perfil {
+    height: 100px;
+    width: 100px;
   }
 }
 

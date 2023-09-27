@@ -1,8 +1,8 @@
 <template>
-  <div class="row flex justify-right content-center">
+  <div>
     <router-link to="/alunos" style="text-decoration: none">
       <div class="card-aluno" to="/home/alunos">
-        <p class="text-h3 text-deep-purple">Alunos</p>
+        <p class="text-h3 text-primary">Alunos</p>
         <p class="text-h6 text-black">Cadastre, edite e remova alunos</p>
         <img class="icone-aluno" src="/img/aluno.ico" alt="aluno" />
       </div>
@@ -22,7 +22,7 @@
   height: 200px;
   transition: all 0.3s ease-out;
   background-color: #c1ccd7;
-  border-left: 5px solid #540880;
+  border-left: 5px solid #1976d2;
 }
 
 .card-aluno:hover {
@@ -34,3 +34,4 @@
   float: right;
 }
 </style>
+

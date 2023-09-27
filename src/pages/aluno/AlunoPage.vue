@@ -23,19 +23,19 @@
         @click="showModalCadastrar = true"
       ></q-btn>
     </div>
+    <q-dialog v-model="showModalCadastrar" persistent>
+      <modal-cadastro />
+    </q-dialog>
     <q-table
       class="q-mt-lg"
       :rows="rows_alunos"
       :columns="columns"
       row-key="id"
-      table-header-style="background-color: #7c10e8; color: #fff"
+      table-header-style="background-color:  #1976d2; color: #fff"
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
           <modal-editar />
-        </q-dialog>
-        <q-dialog v-model="showModalCadastrar" persistent>
-          <modal-cadastro />
         </q-dialog>
 
         <q-td :props="props">

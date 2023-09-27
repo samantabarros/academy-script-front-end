@@ -39,7 +39,7 @@
       :rows="rows"
       :columns="columns"
       row-key="name"
-      table-header-style="background-color: #7c10e8; color: #fff;"
+      table-header-style="background-color: #1976d2; color: #fff;"
     >
       <template v-slot:body-cell-acoes="props">
         <q-td :props="props" class="q-gutter-sm">
