@@ -7,7 +7,7 @@
         type="search"
         class="q-pr-md"
         v-model="pesquisa"
-        color="deep-purple"
+        color="primary"
         label="Pesquisar aluno"
         style="width: 50%"
       >
@@ -17,9 +17,9 @@
       </q-input>
       <q-btn
         dense
+        class= "bg-positive text-white"
         icon="person_add"
         label="Adicionar"
-        style="background: #27dc30; color: white"
         @click="showModalCadastrar = true"
       ></q-btn>
     </div>
@@ -31,7 +31,7 @@
       :rows="rows_alunos"
       :columns="columns"
       row-key="id"
-      table-header-style="background-color:  #1976d2; color: #fff"
+      table-header-style="background-color: #dcdcdc; "
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>

@@ -21,7 +21,7 @@
   width: 400px;
   height: 200px;
   transition: all 0.3s ease-out;
-  background-color: #c1ccd7;
+  background-color: #dcdcdc;
   border-left: 5px solid #1976d2;
 }
 

@@ -1,47 +1,43 @@
 <template>
   <div class="q-pa-md text-body1">
-    <div class="row q-pt-xs q-pb-md justify-end">
+    <div class="row justify-end">
       <q-input
-        class="col-4"
-        v-model="search"
-        rounded
+        class="q-pr-md"
+        v-model="pesquisa"
+        dense
         filled
-        color="deep-purple"
-        type="search"
-        label="Pesquisar"
-        style="height: 50px"
+        color="primary"
+        type="pesquisa"
+        label="Pesquisar módulo"
+        style="width: 50%"
       >
         <template v-slot:append>
           <q-icon name="search" />
         </template>
       </q-input>
-      <div>
-        <q-btn
-          color="green"
-          label="Adicionar"
-          @click="showModalCadastroModulo = true"
-          class="q-pa-xs q-ml-md self-center"
-          style="height: 50px; width: 90px; font-size: 12px"
-        />
-      </div>
 
-      <q-dialog v-model="showModalCadastroModulo" persistent>
-        <modal-cadastro-modulo />
-      </q-dialog>
-      <q-dialog v-model="showModalEditarModulo" persistent>
-        <modal-editar-modulo />
-      </q-dialog>
-      <q-dialog v-model="showModalDeletarModulo" persistent>
-        <modal-deletar-modulo />
-      </q-dialog>
+      <q-btn
+        label="Adicionar"
+        class="bg-positive text-white"
+        dense
+        icon="person_add"
+        @click="showModalCadastroModulo = true"
+      />
     </div>
+    <q-dialog v-model="showModalCadastroModulo" persistent>
+      <modal-cadastro-modulo />
+    </q-dialog>
     <q-table
+      class="q-mt-lg"
       :rows="rows"
       :columns="columns"
       row-key="name"
-      table-header-style="background-color: #1976d2; color: #fff;"
+      table-header-style="background-color: #dcdcdc;"
     >
       <template v-slot:body-cell-acoes="props">
+        <q-dialog v-model="showModalEditarModulo" persistent>
+          <modal-editar-modulo />
+        </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
             icon="edit"
