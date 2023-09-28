@@ -29,7 +29,7 @@
           />
         </div>
         <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" label="Confirmar" />
+          <q-btn color="green" label="Confirmar" @click="atualizarDados" />
           <q-btn color="red" label="Cancelar" v-close-popup />
         </div>
       </q-card-section>
@@ -38,7 +38,30 @@
 </template>
 
 <script setup>
+import { useQuasar } from "quasar";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const $q = useQuasar();
+const router = useRouter;
+
+const atualizarDados = async (id) => {
+  try {
+    const { data } = await api.put(`alunos/${id}`).then(data =>
+    {
+      this.$q.notify({
+        type: 'positive',
+      message: 'Dados alterados com sucesso!'
+      });
+    })
+  } catch (error) {
+    this.$q.notify({
+      type: 'negative',
+      message: 'Erro ao atualizar os dados!'
+    });
+  }
+  location.reload();
+};
 </script>
 
 <style scoped>

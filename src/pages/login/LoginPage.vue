@@ -96,7 +96,7 @@
                 label="ENTRAR"
                 type="submit"
                 color="primary"
-                rounded
+            
               />
               <div class="text-center q-mt-lg q-gutter-lg">
                 <router-link

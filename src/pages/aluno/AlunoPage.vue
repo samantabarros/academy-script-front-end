@@ -3,13 +3,14 @@
     <div class="row justify-end">
       <q-input
         filled
+        borderless
         dense
+        debounce="300"
         type="search"
-        class="q-pr-md"
-        v-model="pesquisa"
+        class="q-pr-md col-6"
+        v-model="filter"
         color="primary"
         label="Pesquisar aluno"
-        style="width: 50%"
       >
         <template v-slot:append>
           <q-icon name="search" />
@@ -17,7 +18,7 @@
       </q-input>
       <q-btn
         dense
-        class= "bg-positive text-white"
+        class="bg-positive text-white"
         icon="person_add"
         label="Adicionar"
         @click="showModalCadastrar = true"
@@ -26,10 +27,12 @@
     <q-dialog v-model="showModalCadastrar" persistent>
       <modal-cadastro />
     </q-dialog>
+
     <q-table
       class="q-mt-lg"
       :rows="rows_alunos"
       :columns="columns"
+      :filter="filter"
       row-key="id"
       table-header-style="background-color: #dcdcdc; "
     >
@@ -72,14 +75,16 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { api } from "src/boot/axios";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
+import { data } from "autoprefixer";
 
 const router = useRouter();
 const route = useRoute();
-const pesquisa = ref("");
+const filter = ref("");
+const search = ref("");
 const rows_alunos = ref([]);
 const $q = useQuasar();
 const showModalEditar = ref(false);
@@ -127,6 +132,7 @@ onMounted(() => {
 //   console.log(id);
 // };
 
+//Mostrar alunos
 const getAlunos = async () => {
   try {
     const { data } = await api.get("alunos");
@@ -137,6 +143,7 @@ const getAlunos = async () => {
   }
 };
 
+//Notify para confirmar se realmente deseja excluir o aluno
 const confirmDelete = async (id) => {
   $q.notify({
     message: "Tem certeza que deseja excluir esse aluno?",
@@ -158,6 +165,7 @@ const confirmDelete = async (id) => {
   });
 };
 
+//Deletar o aluno
 const deletarAluno = async (id) => {
   try {
     const { data } = await api.delete(`alunos/${id}`);

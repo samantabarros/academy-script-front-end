@@ -2,14 +2,15 @@
   <div class="q-pa-md text-body1">
     <div class="row justify-end">
       <q-input
-        class="q-pr-md"
-        v-model="pesquisa"
         dense
         filled
+        borderless
+        debounce="300"
+        class="q-pr-md col-6"
+        v-model="filter"
         color="primary"
-        type="pesquisa"
+        type="search"
         label="Pesquisar módulo"
-        style="width: 50%"
       >
         <template v-slot:append>
           <q-icon name="search" />
@@ -31,6 +32,7 @@
       class="q-mt-lg"
       :rows="rows"
       :columns="columns"
+      :filter="filter"
       row-key="name"
       table-header-style="background-color: #dcdcdc;"
     >
