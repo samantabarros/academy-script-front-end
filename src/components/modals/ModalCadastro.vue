@@ -11,14 +11,17 @@
         Cadastrar Aluno
       </div>
     </q-card-section>
-    <q-form @submit.prevent="submitForm">
+    <q-form @submit.prevent="submitForm" color="primary">
       <q-card-section class="q-pt-none">
         <div class="q-mb-sm">
           <q-input
             filled
             v-model="cadastro.nome_aluno"
             label="Nome"
-            color="purple"
+            :rules="[
+              (val) =>
+                (val && val.length > 0) || 'O nome deve ser preenchido',
+            ]"
           />
         </div>
         <div class="q-mb-sm">
@@ -28,13 +31,11 @@
             v-model="cadastro.cpf"
             mask="###.###.###-##"
             label="CPF"
-            color="purple"
             :rules="[
               (val) =>
                 (val.length > 0 && val.length == 14) ||
-                'O cpf dever conter 11 digitos',
+                'cpf inválido',
             ]"
-            lazy-rules
           />
         </div>
         <div class="q-mb-sm">
@@ -43,12 +44,11 @@
             v-model="cadastro.data_nascimento"
             type="date"
             label="Data de Nascimento"
-            color="purple"
           />
         </div>
         <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" type="submit" label="Cadastrar" />
-          <q-btn color="red" label="Cancelar" v-close-popup />
+          <q-btn color="positive" type="submit" label="Cadastrar" />
+          <q-btn color="negative" label="Cancelar" v-close-popup />
         </div>
       </q-card-section>
     </q-form>
