@@ -47,13 +47,14 @@
 
 <script setup>
 import { useQuasar } from "quasar";
+import { route } from "quasar/wrappers";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const $q = useQuasar();
 const router = useRouter;
 
-const { id } = route.params;
+//const { id } = route.params;
 
 
 const atualizarDados = async (dados) => {
@@ -75,11 +76,12 @@ const atualizarDados = async (dados) => {
     });
   }
   location.reload();
-
-  function onSubmit(data) {
-    atualizarDados(data);
-  }
 };
+
+function onSubmit(data) {
+    atualizarDados(data);
+}
+
 </script>
 
 <style scoped>

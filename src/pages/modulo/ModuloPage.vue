@@ -112,7 +112,7 @@ onMounted(() => {
   getPosts();
 });
 
-const getPosts = async () => {
+const getPosts = async (id) => {
   try {
     const { data } = await api.get("alunos/id");
     console.log(data);

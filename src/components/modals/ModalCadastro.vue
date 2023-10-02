@@ -13,7 +13,7 @@
     </q-card-section>
     <q-form @submit.prevent="submitForm" color="primary">
       <q-card-section class="q-pt-none">
-        <div class="q-mb-sm">
+        <div class="q-mb-xs">
           <q-input
             filled
             v-model="cadastro.nome_aluno"
@@ -24,7 +24,7 @@
             ]"
           />
         </div>
-        <div class="q-mb-sm">
+        <div class="q-mb-xs">
           <q-input
             ref="cpfRef"
             filled
@@ -38,7 +38,7 @@
             ]"
           />
         </div>
-        <div class="q-mb-sm">
+        <div class="q-mb-lg">
           <q-input
             filled
             v-model="cadastro.data_nascimento"
@@ -46,7 +46,7 @@
             label="Data de Nascimento"
           />
         </div>
-        <div class="row q-pa-md q-gutter-lg justify-evenly">
+        <div class="row q-pa-xs q-gutter-lg justify-evenly">
           <q-btn color="positive" type="submit" label="Cadastrar" />
           <q-btn color="negative" label="Cancelar" v-close-popup />
         </div>

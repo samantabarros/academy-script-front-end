@@ -92,7 +92,7 @@
             </q-input>
             <div>
               <q-btn
-                class="full-width q-pa-md"
+                class="full-width q-pa-xs"
                 label="ENTRAR"
                 type="submit"
                 color="primary"
