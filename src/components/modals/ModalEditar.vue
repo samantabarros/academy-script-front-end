@@ -8,7 +8,7 @@
         class="text-h4 row justify-center"
         style="font-family: lucyda-caligraphy"
       >
-        Editar Aluno
+        Editar Aluno {{id}}
       </div>
     </q-card-section>
     <q-form color="primary">
@@ -48,40 +48,33 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { route } from "quasar/wrappers";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const $q = useQuasar();
 const router = useRouter;
+const props = defineProps(["id"]);
 
-//const { id } = route.params;
 
+onMounted(() => {
+  getData();
+}) 
 
-const atualizarDados = async (dados) => {
-  try {
-    const data = { dados };
-    const { response } = await api
-      .put(`alunos/${id}`, data)
-      .then((response) => {
-        this.$q.notify({
-          type: "positive",
-          message: "Dados alterados com sucesso!",
-        });
-        router.push("/alunos");
-      });
-  } catch (error) {
-    this.$q.notify({
-      type: "negative",
-      message: "Erro ao atualizar os dados!",
-    });
+const getData = async () => {
+  try{
+    const {data} = await api.get("alunos/" + id); 
+    console.log(data);
+  }catch(error){
+    console.log(error);
   }
-  location.reload();
-};
-
-function onSubmit(data) {
-    atualizarDados(data);
 }
 
+
+
+function onSubmit(data) {
+  console.log("entrou em onSubmit");
+  atualizarDados(data);
+}
 </script>
 
 <style scoped>

@@ -219,9 +219,24 @@ async function resetForm() {
 }
 
 /*Medias queries*/
+@media (min-width: 0px) and (max-width: 320px) {
+   .title-sgma {
+    display: none;
+  }
+  .lb-login {
+    font-size: 30px;
+  }
+  .img-perfil {
+    height: 100px;
+    width: 100px;
+  }
+}
 @media (min-width: 320px) and (max-width: 480px) {
   .title-sgma {
     display: none;
+  }
+  .lb-login {
+    font-size: 30px;
   }
   .img-perfil {
     height: 100px;

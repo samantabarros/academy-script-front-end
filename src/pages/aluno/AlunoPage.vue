@@ -38,7 +38,7 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
-          <modal-editar />
+          <modal-editar :id="props.row.id"/> 
         </q-dialog>
 
         <q-td :props="props">
@@ -48,7 +48,7 @@
             color="info"
             dense
             size="sm"
-            @click="showModalEditar = true"
+            @click="showModalEditar=true"
           />
           <q-btn
             class="q-mr-xs"
@@ -174,4 +174,5 @@ const deletarAluno = async (id) => {
     console.log(error);
   }
 };
+
 </script>
