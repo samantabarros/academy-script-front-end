@@ -69,8 +69,6 @@ const getData = async () => {
   }
 }
 
-
-
 function onSubmit(data) {
   console.log("entrou em onSubmit");
   atualizarDados(data);

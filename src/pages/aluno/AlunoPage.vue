@@ -38,7 +38,7 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
-          <modal-editar :id="props.row.id"/> 
+          <modal-editar :id="props.row.id" />
         </q-dialog>
 
         <q-td :props="props">
@@ -48,7 +48,7 @@
             color="info"
             dense
             size="sm"
-            @click="showModalEditar=true"
+            @click="showModalEditar = true"
           />
           <q-btn
             class="q-mr-xs"
@@ -145,23 +145,19 @@ const getAlunos = async () => {
 
 //Notify para confirmar se realmente deseja excluir o aluno
 const confirmDelete = async (id) => {
-  $q.notify({
-    message: "Tem certeza que deseja excluir esse aluno?",
+  $q.dialog({
+    title: "Tem certeza que deseja excluir esse aluno?",
+    message: "Ao confirmar essa ação você não poderá desfazê-la",
+    cancel: true,
+    dark: false,
+
+    persistent: true,
     color: "gray",
-    actions: [
-      {
-        label: "Confirmar",
-        color: "green",
-        handler: () => {
-          deletarAluno(id);
-        },
-      },
-      {
-        label: "Cancelar",
-        color: "red",
-        handler: () => {},
-      },
-    ],
+    align: "center",
+
+  }).onOk(() => {
+    color: "green",
+    deletarAluno(id);
   });
 };
 
@@ -174,5 +170,4 @@ const deletarAluno = async (id) => {
     console.log(error);
   }
 };
-
 </script>
