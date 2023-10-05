@@ -5,15 +5,15 @@
         <q-btn flat round icon="close" v-close-popup />
       </div>
       <div
-        class="text-h4 row justify-center"
+        class="text-h3 row justify-center"
         style="font-family: lucyda-caligraphy"
       >
         Cadastrar Aluno
       </div>
     </q-card-section>
-    <q-form @submit.prevent="submitForm" color="primary">
-      <q-card-section class="q-pt-none">
-        <div class="q-mb-xs">
+    <q-form @submit.prevent="submitForm">
+      <q-card-section class="q-pt-xs">
+        <div>
           <q-input
             filled
             v-model="cadastro.nome_aluno"
@@ -24,18 +24,14 @@
             ]"
           />
         </div>
-        <div class="q-mb-xs">
+        <div>
           <q-input
             ref="cpfRef"
             filled
             v-model="cadastro.cpf"
             mask="###.###.###-##"
+            unmasked-value
             label="CPF"
-            :rules="[
-              (val) =>
-                (val.length > 0 && val.length == 14) ||
-                'cpf inválido',
-            ]"
           />
         </div>
         <div class="q-mb-lg">
@@ -46,7 +42,7 @@
             label="Data de Nascimento"
           />
         </div>
-        <div class="row q-pa-xs q-gutter-lg justify-evenly">
+        <div class="row q-pa-l q-gutter-lg justify-evenly">
           <q-btn color="positive" type="submit" label="Cadastrar" />
           <q-btn color="negative" label="Cancelar" v-close-popup />
         </div>

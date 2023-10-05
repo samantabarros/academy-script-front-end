@@ -41,6 +41,10 @@
           <modal-editar :id="props.row.id" />
         </q-dialog>
 
+        <q-dialog v-model="showExibirMensagem" persistent>
+          <exibir-mensagem :id="props.row.id" />
+        </q-dialog>
+
         <q-td :props="props">
           <q-btn
             class="q-mr-xs"
@@ -50,13 +54,14 @@
             size="sm"
             @click="showModalEditar = true"
           />
+
           <q-btn
             class="q-mr-xs"
             icon="delete"
             color="negative"
             dense
             size="sm"
-            @click="confirmDelete(props.row.id)"
+            @click="showExibirMensagem = true"
           />
           <q-btn
             class="q-mr-xs"
@@ -79,6 +84,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
+import ExibirMensagem from "src/components/ExibirMensagem.vue";
 import { data } from "autoprefixer";
 
 const router = useRouter();
@@ -89,6 +95,7 @@ const rows_alunos = ref([]);
 const $q = useQuasar();
 const showModalEditar = ref(false);
 const showModalCadastrar = ref(false);
+const showExibirMensagem = ref(false);
 
 const columns = [
   {
@@ -154,10 +161,8 @@ const confirmDelete = async (id) => {
     persistent: true,
     color: "gray",
     align: "center",
-
   }).onOk(() => {
-    color: "green",
-    deletarAluno(id);
+    color: "green", deletarAluno(id);
   });
 };
 
