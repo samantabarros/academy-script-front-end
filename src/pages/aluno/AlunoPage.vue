@@ -38,11 +38,11 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
-          <modal-editar :id="props.row.id" />
+          <modal-editar :id="alunoAtual" />
         </q-dialog>
 
         <q-dialog v-model="showExibirMensagem" persistent>
-          <exibir-mensagem :id="props.row.id" />
+          <exibir-mensagem :id="alunoAtual.id" />
         </q-dialog>
 
         <q-td :props="props">
@@ -52,7 +52,7 @@
             color="info"
             dense
             size="sm"
-            @click="showModalEditar = true"
+            @click="iniciarModalEditar(props.row)"
           />
 
           <q-btn
@@ -61,7 +61,7 @@
             color="negative"
             dense
             size="sm"
-            @click="showExibirMensagem = true"
+            @click="iniciarModalDeletar(props.row)"
           />
           <q-btn
             class="q-mr-xs"
@@ -94,8 +94,10 @@ const search = ref("");
 const rows_alunos = ref([]);
 const $q = useQuasar();
 const showModalEditar = ref(false);
+const showModal = ref(false);
 const showModalCadastrar = ref(false);
 const showExibirMensagem = ref(false);
+const alunoAtual = ref({});
 
 const columns = [
   {
@@ -106,13 +108,13 @@ const columns = [
   },
   {
     name: "cpf",
-    field: "cpf",
+    field: (row) => row.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'),
     label: "CPF",
     align: "center",
   },
   {
     name: "data",
-    field: "data_nascimento",
+    field: (row) => new Date(row.data_nascimento),
     label: "Data de nascimento",
     align: "center",
   },
@@ -138,6 +140,17 @@ onMounted(() => {
 //   //router.push(`/modulos/${id}`);
 //   console.log(id);
 // };
+
+//Função
+const iniciarModalDeletar = async (aluno) => {
+  alunoAtual.value = aluno;
+  showExibirMensagem.value = true;
+}
+
+const iniciarModalEditar = async (aluno) => {
+  alunoAtual.value = aluno;
+  showModalEditar.value = true;
+}
 
 //Mostrar alunos
 const getAlunos = async () => {

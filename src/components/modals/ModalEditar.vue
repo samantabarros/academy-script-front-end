@@ -57,17 +57,8 @@ const props = defineProps(["id"]);
 
 
 onMounted(() => {
-  getData();
-}) 
 
-const getData = async () => {
-  try{
-    const {data} = await api.get("alunos/" + id); 
-    console.log(data);
-  }catch(error){
-    console.log(error);
-  }
-}
+}) 
 
 function onSubmit(data) {
   console.log("entrou em onSubmit");
