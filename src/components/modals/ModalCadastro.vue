@@ -39,6 +39,7 @@
             filled
             v-model="cadastro.data_nascimento"
             type="date"
+            mask=##/##/####
             label="Data de Nascimento"
           />
         </div>
@@ -66,7 +67,7 @@ const cpfRef = ref(null);
 const cadastro = ref({
   nome_aluno: "",
   cpf: "",
-  data_nascimento: "",
+  data_nascimento: null,
 });
 
 const submitForm = async () => {
