@@ -8,18 +8,18 @@
         class="text-h4 row justify-center"
         style="font-family: lucyda-caligraphy"
       >
-        Editar Aluno {{id}}
+        Editar Aluno {{dados_aluno}}
       </div>
     </q-card-section>
     <q-form color="primary">
       <q-card-section class="q-pt-none">
         <div class="q-mb-sm">
-          <q-input filled v-model="text" label="Nome" />
+          <q-input filled v-model="formularioEditar.nome_aluno" label="Nome" />
         </div>
         <div class="q-mb-sm">
           <q-input
             filled
-            v-model="text"
+            v-model="formularioEditar.cpf"
             mask="###.###.###-##"
             label="CPF"
             :rules="[
@@ -31,7 +31,7 @@
         <div class="q-mb-sm">
           <q-input
             filled
-            v-model="date"
+            v-model="formularioEditar.data_nascimento"
             type="date"
             label="Data de Nascimento"
           />
@@ -53,11 +53,18 @@ import { useRouter } from "vue-router";
 
 const $q = useQuasar();
 const router = useRouter;
-const props = defineProps(["id"]);
+const props = defineProps(["dados_aluno"]);
+const text = ref("");
 
+const formularioEditar = ref({
+  nome_aluno: props.dados_aluno.nome_aluno,
+  cpf: props.dados_aluno.cpf,
+  data_nascimento: props.dados_aluno.data_nascimento
+
+})
 
 onMounted(() => {
-
+ formularioEditar
 }) 
 
 function onSubmit(data) {

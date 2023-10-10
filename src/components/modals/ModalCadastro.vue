@@ -14,7 +14,7 @@
     <q-form @submit.prevent="submitForm">
       <q-card-section class="q-pt-xs">
         <div>
-          <q-input
+          <q-input class="q-mb-xs"
             filled
             v-model="cadastro.nome_aluno"
             label="Nome"
@@ -25,7 +25,7 @@
           />
         </div>
         <div>
-          <q-input
+          <q-input class="q-mb-md"
             ref="cpfRef"
             filled
             v-model="cadastro.cpf"
@@ -34,8 +34,8 @@
             label="CPF"
           />
         </div>
-        <div class="q-mb-lg">
-          <q-input
+        <div >
+          <q-input class="q-mb-lg"
             filled
             v-model="cadastro.data_nascimento"
             type="date"
@@ -67,20 +67,22 @@ const cpfRef = ref(null);
 const cadastro = ref({
   nome_aluno: "",
   cpf: "",
-  data_nascimento: null,
+  data_nascimento: "",
 });
 
 const submitForm = async () => {
   try {
-    console.log(cadastro.value);
+    console.log(cadastro.value.data_nascimento);
+    //Função para formatar a data
+    cadastro.value.data_nascimento = new Date(cadastro.value.data_nascimento).toISOString();
     const { data } = await api.post("alunos", cadastro.value);
-    console.log(cadastro.value);
+    console.log(cadastro.value.data_nascimento);
     //console.log(response);
     console.log("Chegou aqui");
   } catch (error) {
     console.log(error);
   }
-  // location.reload();
+  location.reload();
 };
 </script>
 

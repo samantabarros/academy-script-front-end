@@ -38,7 +38,7 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
-          <modal-editar :id="alunoAtual" />
+          <modal-editar :dados_aluno="alunoAtual" />
         </q-dialog>
 
         <q-dialog v-model="showExibirMensagem" persistent>
@@ -78,14 +78,13 @@
 </template>
 
 <script setup>
-import { useQuasar } from "quasar";
+import { useQuasar} from "quasar";
 import { api } from "src/boot/axios";
 import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
 import ExibirMensagem from "src/components/ExibirMensagem.vue";
-import { data } from "autoprefixer";
 
 const router = useRouter();
 const route = useRoute();
@@ -114,7 +113,7 @@ const columns = [
   },
   {
     name: "data",
-    field: (row) => new Date(row.data_nascimento),
+    field: (row) => row.data_nascimento.slice(0,10).split("-").reverse().join("/"),
     label: "Data de nascimento",
     align: "center",
   },
@@ -163,29 +162,4 @@ const getAlunos = async () => {
   }
 };
 
-//Notify para confirmar se realmente deseja excluir o aluno
-const confirmDelete = async (id) => {
-  $q.dialog({
-    title: "Tem certeza que deseja excluir esse aluno?",
-    message: "Ao confirmar essa ação você não poderá desfazê-la",
-    cancel: true,
-    dark: false,
-
-    persistent: true,
-    color: "gray",
-    align: "center",
-  }).onOk(() => {
-    color: "green", deletarAluno(id);
-  });
-};
-
-//Deletar o aluno
-const deletarAluno = async (id) => {
-  try {
-    const { data } = await api.delete(`alunos/${id}`);
-    getAlunos();
-  } catch (error) {
-    console.log(error);
-  }
-};
 </script>
