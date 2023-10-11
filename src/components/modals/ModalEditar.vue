@@ -8,7 +8,7 @@
         class="text-h4 row justify-center"
         style="font-family: lucyda-caligraphy"
       >
-        Editar Aluno {{dados_aluno}}
+        Editar Aluno
       </div>
     </q-card-section>
     <q-form color="primary">
@@ -59,13 +59,14 @@ const text = ref("");
 const formularioEditar = ref({
   nome_aluno: props.dados_aluno.nome_aluno,
   cpf: props.dados_aluno.cpf,
-  data_nascimento: props.dados_aluno.data_nascimento
+  data_nascimento: (new Date( props.dados_aluno.data_nascimento).toISOString()).split('T', 1)
 
 })
 
 onMounted(() => {
  formularioEditar
 }) 
+
 
 function onSubmit(data) {
   console.log("entrou em onSubmit");
