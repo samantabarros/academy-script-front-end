@@ -1,4 +1,4 @@
-# SGMA (front-end)
+# SGMA  ( front-end )
 
 Sistema de Gerenciamento de Módulos Avaliativos
 
