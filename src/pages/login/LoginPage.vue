@@ -1,6 +1,6 @@
 <template>
   <q-img
-    src="/img/fundo.jpg"
+    src="/img/fundo-1200.jpg"
     class="banner-login no-repeat"
     alt="banner da tela inicial de login"
     style="width: 100%; max-width: 1900px; height: 100%; max-height: 1200px"
