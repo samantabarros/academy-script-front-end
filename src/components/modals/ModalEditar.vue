@@ -37,7 +37,7 @@
           />
         </div>
         <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" label="Confirmar" @submit="onSubmit" />
+          <q-btn color="green" label="Confirmar" @click="onSubmit(id, dados_aluno)" />
           <q-btn color="red" label="Cancelar" v-close-popup />
         </div>
       </q-card-section>
@@ -48,6 +48,7 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { route } from "quasar/wrappers";
+import { api } from "src/boot/axios";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -55,11 +56,13 @@ const $q = useQuasar();
 const router = useRouter;
 const props = defineProps(["dados_aluno"]);
 const text = ref("");
+const id = props.dados_aluno.id;
 
 const formularioEditar = ref({
   nome_aluno: props.dados_aluno.nome_aluno,
   cpf: props.dados_aluno.cpf,
   data_nascimento: (new Date( props.dados_aluno.data_nascimento).toISOString()).split('T', 1)
+  //field: (row) => row.data_nascimento.slice(0,10).split("-").reverse().join("/"),
 
 })
 
@@ -68,10 +71,28 @@ onMounted(() => {
 }) 
 
 
-function onSubmit(data) {
-  console.log("entrou em onSubmit");
-  atualizarDados(data);
+function onSubmit(id) {
+  console.log("Atualizando dados");
+  atualizarDados(id);
 }
+const atualizarDados = async (id) => {
+  try{
+    console.log("Antes da função formatar " + formularioEditar.value.data_nascimento);
+    //Formatação da data para o formato que o backend aceita
+    formularioEditar.value.data_nascimento = new Date(formularioEditar.value.data_nascimento).toISOString();
+    console.log("Depois da função formatar " + formularioEditar.value.data_nascimento);
+    const {data} = await api.put(`alunos/${id}`, formularioEditar.value)
+    //formularioEditar.value.data_nascimento = new Date(formularioEditar.value.data_nascimento).toISOString().split('T',1);
+    //formularioEditar.value.data_nascimento = formularioEditar.value.data_nascimento.slice(0,10).split("-").reverse().join("/"),
+    console.log("Depois da requisição put " +formularioEditar.value.data_nascimento);
+
+  }catch(error){
+    console.log(error);
+  }
+  location.reload();
+
+}
+
 </script>
 
 <style scoped>

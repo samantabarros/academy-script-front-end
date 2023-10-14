@@ -78,7 +78,6 @@ const submitForm = async () => {
     const { data } = await api.post("alunos", cadastro.value);
     console.log(cadastro.value.data_nascimento);
     //console.log(response);
-    console.log("Chegou aqui");
   } catch (error) {
     console.log(error);
   }
