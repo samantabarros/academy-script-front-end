@@ -14,34 +14,30 @@
     <q-form @submit.prevent="submitForm">
       <q-card-section class="q-pt-xs">
         <div>
-          <q-input class="q-mb-xs"
+          <q-input
+            class="q-mb-xs"
             filled
             v-model="cadastro.nome_aluno"
             label="Nome"
-            :rules="[
-              (val) =>
-                (val && val.length > 0) || 'O nome deve ser preenchido',
-            ]"
+            :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
           />
         </div>
         <div>
-          <q-input class="q-mb-md"
+          <q-input
+            class="q-mb-md"
             ref="cpfRef"
             filled
             v-model="cadastro.cpf"
             mask="###.###.###-##"
             unmasked-value
             label="CPF"
+            :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
           />
         </div>
-        <div >
-          <q-input class="q-mb-lg"
-            filled
-            v-model="cadastro.data_nascimento"
-            type="date"
-            mask=##/##/####
-            label="Data de Nascimento"
-          />
+        <div>
+          <q-input class="q-mb-lg" filled v-model="cadastro.data_nascimento"
+          type="date" mask=##/##/#### label="Data de Nascimento" rules="[ (val)
+          => (val && val.length > 0) || 'Campo obrigatório']" />
         </div>
         <div class="row q-pa-l q-gutter-lg justify-evenly">
           <q-btn color="positive" type="submit" label="Cadastrar" />
@@ -72,16 +68,43 @@ const cadastro = ref({
 
 const submitForm = async () => {
   try {
-    console.log(cadastro.value.data_nascimento);
+    //console.log(cadastro.value.data_nascimento);
     //Função para formatar a data
     cadastro.value.data_nascimento = new Date(cadastro.value.data_nascimento).toISOString();
+    console.log("data");
     const { data } = await api.post("alunos", cadastro.value);
+    console.log(data);
+   // location.reload();
+    $q.notify({
+      message: "Aluno cadastrado com sucesso!",
+      color: "positive",
+      icon: "check_circle_outline",
+    });
+    // const { data } = await api.post("alunos", cadastro.value).then((res) => {
+    //   console.log(data);
+    //   $q.notify({
+    //     message: "Aluno cadastrado com sucesso!",
+    //     color: "positive",
+    //     icon: "check_circle_outline",
+    //   });
+    // });
     console.log(cadastro.value.data_nascimento);
-    //console.log(response);
+    //Resolver esse problema de carregar a página
   } catch (error) {
-    console.log(error);
+    if (error.response) {
+      $q.notify({
+        message: error.response.data.message,
+        color: "negative",
+        icon: "check_circle_outline",
+      });
+    } else {
+      $q.notify({
+        message: "Erro ao cadastrar aluno!",
+        color: "negative",
+        icon: "check_circle_outline",
+      });
+    }
   }
-  location.reload();
 };
 </script>
 

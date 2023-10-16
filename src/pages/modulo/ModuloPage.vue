@@ -69,6 +69,7 @@ const showModalEditarModulo = ref(false);
 const pesquisa = ref("");
 const rows = ref([]);
 
+
 const columns = [
   {
     name: "name",
