@@ -21,11 +21,8 @@
             filled
             v-model="formularioEditar.cpf"
             mask="###.###.###-##"
+            unmasked-value
             label="CPF"
-            :rules="[
-              (val) => (val.length > 0 && val.length == 14) || 'cpf inválido',
-            ]"
-            lazy-rules
           />
         </div>
         <div class="q-mb-sm">

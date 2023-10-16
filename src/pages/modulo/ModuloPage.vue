@@ -1,7 +1,9 @@
 <template>
   <div class="q-pa-md text-body1">
     <div class="row justify-end">
-      
+      <div class="col subtitle-1 ellipsis"> 
+        Nome do Aluno
+      </div>
       <q-input
         dense
         filled
