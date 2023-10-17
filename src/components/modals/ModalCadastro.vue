@@ -1,34 +1,57 @@
 <template>
   <q-card class="modal-cadastro">
-    <q-card-section>
-      <div align="right">
-        <q-btn flat round icon="close" v-close-popup />
-      </div>
-      <div class="text-h3 row justify-center" style="font-family: lucyda-caligraphy">
+    <q-card-section class="row justify-between">
+      <div class="text-h4 co" style="font-family: lucyda-caligraphy">
         Cadastrar Aluno
       </div>
+      <div >
+        <q-btn flat round icon="close" v-close-popup />
+      </div>
     </q-card-section>
-    <q-form @submit.prevent="submitForm">
-      <q-card-section class="q-pt-xs">
-        <div>
-          <q-input class="q-mb-xs" filled v-model="cadastro.nome_aluno" label="Nome"
-            :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']" />
-        </div>
-        <div>
-          <q-input class="q-mb-md" ref="cpfRef" filled v-model="cadastro.cpf" mask="###.###.###-##" unmasked-value
-            label="CPF" :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']" />
-        </div>
-        <div>
-          <q-input class="q-mb-lg" filled v-model="cadastro.data_nascimento" type="date"  :max="maximumDate" label="Data de Nascimento"
-            rules="[dateRules]">
-          </q-input>
-        </div>
-        <div class="row q-pa-l q-gutter-lg justify-evenly">
-          <q-btn color="positive" type="submit" label="Cadastrar" />
-          <q-btn color="negative" label="Cancelar" v-close-popup />
-        </div>
-      </q-card-section>
-    </q-form>
+    <q-separator />
+    <div class="q-pa-md">
+      <q-form @submit.prevent="submitForm">
+        <q-card-section class="q-pt-xs">
+          <div>
+            <q-input
+              class="q-mb-xs"
+              filled
+              v-model="cadastro.nome_aluno"
+              label="Nome"
+              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+            />
+          </div>
+          <div>
+            <q-input
+              class="q-mb-md"
+              ref="cpfRef"
+              filled
+              v-model="cadastro.cpf"
+              mask="###.###.###-##"
+              unmasked-value
+              label="CPF"
+              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+            />
+          </div>
+          <div>
+            <q-input
+              class="q-mb-lg"
+              filled
+              v-model="cadastro.data_nascimento"
+              type="date"
+              :max="maximumDate"
+              label="Data de Nascimento"
+              rules="[dateRules]"
+            >
+            </q-input>
+          </div>
+          <div class="row q-pa-l q-gutter-lg justify-evenly">
+            <q-btn color="positive" type="submit" label="Cadastrar" />
+            <q-btn color="negative" label="Cancelar" v-close-popup />
+          </div>
+        </q-card-section>
+      </q-form>
+    </div>
   </q-card>
 </template>
 
@@ -54,7 +77,9 @@ const submitForm = async () => {
   try {
     //console.log(cadastro.value.data_nascimento);
     //Função para formatar a data
-    cadastro.value.data_nascimento = new Date(cadastro.value.data_nascimento).toISOString();
+    cadastro.value.data_nascimento = new Date(
+      cadastro.value.data_nascimento
+    ).toISOString();
     const { data } = await api.post("alunos", cadastro.value);
     console.log(data);
     $q.notify({
@@ -62,7 +87,6 @@ const submitForm = async () => {
       color: "positive",
       icon: "check_circle_outline",
       position: "top",
-
     });
     // const { data } = await api.post("alunos", cadastro.value).then((res) => {
     //   console.log(data);
@@ -79,7 +103,6 @@ const submitForm = async () => {
         color: "negative",
         icon: "error",
         position: "top",
-
       });
     } else {
       $q.notify({
@@ -92,7 +115,7 @@ const submitForm = async () => {
   }
 
   setTimeout(() => {
-    location.reload()
+    location.reload();
   }, 2000);
 
   // Regras para a data de nascimento
@@ -114,14 +137,13 @@ const submitForm = async () => {
   //   return `${year}-${month}-${day}`;
   // }
 };
-
 </script>
 
 <style scoped>
 .modal-cadastro {
   max-width: 100%;
-  width: 500px;
+  width: 1500px;
   max-height: 100%;
-  height: 500px;
+  height: 550px;
 }
 </style>

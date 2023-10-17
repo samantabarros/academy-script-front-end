@@ -34,7 +34,7 @@
           />
         </div>
         <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" label="Confirmar" @click="onSubmit(id, dados_aluno)" />
+          <q-btn color="green" label="Atualizar" @click="onSubmit(id, dados_aluno)" />
           <q-btn color="red" label="Cancelar" v-close-popup />
         </div>
       </q-card-section>
@@ -79,9 +79,28 @@ const atualizarDados = async (id) => {
     console.log("Depois da função formatar " + formularioEditar.value.data_nascimento);
     const {data} = await api.put(`alunos/${id}`, formularioEditar.value)
     console.log("Depois da requisição put " +formularioEditar.value.data_nascimento);
-
+    $q.notify({
+      message: "Aluno atualizado com sucesso!",
+      position:"top",
+      color: "positive",
+      icon: "check_circle_outline"
+    });
   }catch(error){
-    console.log(error);
+    if(error.response){
+      $q.notify({
+        message: error.response.data.message,
+        color: "negative",
+        icon:"error",
+        position: "top",
+      });
+    }else{
+      $q.notify({
+        message: error.response.data.message,
+        color: "negative",
+        icon: "error",
+        position: "top",
+      })
+    }
   }
   setTimeout(() => {
     location.reload()
