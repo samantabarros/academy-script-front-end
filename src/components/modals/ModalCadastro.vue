@@ -4,40 +4,24 @@
       <div align="right">
         <q-btn flat round icon="close" v-close-popup />
       </div>
-      <div
-        class="text-h3 row justify-center"
-        style="font-family: lucyda-caligraphy"
-      >
+      <div class="text-h3 row justify-center" style="font-family: lucyda-caligraphy">
         Cadastrar Aluno
       </div>
     </q-card-section>
     <q-form @submit.prevent="submitForm">
       <q-card-section class="q-pt-xs">
         <div>
-          <q-input
-            class="q-mb-xs"
-            filled
-            v-model="cadastro.nome_aluno"
-            label="Nome"
-            :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
-          />
+          <q-input class="q-mb-xs" filled v-model="cadastro.nome_aluno" label="Nome"
+            :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']" />
         </div>
         <div>
-          <q-input
-            class="q-mb-md"
-            ref="cpfRef"
-            filled
-            v-model="cadastro.cpf"
-            mask="###.###.###-##"
-            unmasked-value
-            label="CPF"
-            :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
-          />
+          <q-input class="q-mb-md" ref="cpfRef" filled v-model="cadastro.cpf" mask="###.###.###-##" unmasked-value
+            label="CPF" :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']" />
         </div>
         <div>
-          <q-input class="q-mb-lg" filled v-model="cadastro.data_nascimento"
-          type="date" mask=##/##/#### label="Data de Nascimento" rules="[ (val)
-          => (val && val.length > 0) || 'Campo obrigatório']" />
+          <q-input class="q-mb-lg" filled v-model="cadastro.data_nascimento" type="date"  :max="maximumDate" label="Data de Nascimento"
+            rules="[dateRules]">
+          </q-input>
         </div>
         <div class="row q-pa-l q-gutter-lg justify-evenly">
           <q-btn color="positive" type="submit" label="Cadastrar" />
@@ -71,14 +55,14 @@ const submitForm = async () => {
     //console.log(cadastro.value.data_nascimento);
     //Função para formatar a data
     cadastro.value.data_nascimento = new Date(cadastro.value.data_nascimento).toISOString();
-    console.log("data");
     const { data } = await api.post("alunos", cadastro.value);
     console.log(data);
-   // location.reload();
     $q.notify({
       message: "Aluno cadastrado com sucesso!",
       color: "positive",
       icon: "check_circle_outline",
+      position: "top",
+
     });
     // const { data } = await api.post("alunos", cadastro.value).then((res) => {
     //   console.log(data);
@@ -88,24 +72,49 @@ const submitForm = async () => {
     //     icon: "check_circle_outline",
     //   });
     // });
-    console.log(cadastro.value.data_nascimento);
-    //Resolver esse problema de carregar a página
   } catch (error) {
     if (error.response) {
       $q.notify({
         message: error.response.data.message,
         color: "negative",
-        icon: "check_circle_outline",
+        icon: "error",
+        position: "top",
+
       });
     } else {
       $q.notify({
         message: "Erro ao cadastrar aluno!",
         color: "negative",
-        icon: "check_circle_outline",
+        icon: "error",
+        position: "top",
       });
     }
   }
+
+  setTimeout(() => {
+    location.reload()
+  }, 2000);
+
+  // Regras para a data de nascimento
+
+  // const maximumDate = today();
+  // const date = ref(null);
+
+  // function dateRules(val) {
+  //   if (!val) {
+  //     return "Data de nascimento é obrigatória";
+  //   }
+  //   return true;
+  // }
+  // function today() {
+  //   const currentDate = new Date();
+  //   const year = currentDate.getFullYear();
+  //   const month = String(currentDate.getMonth() + 1).padStart(2, '0');  // Adiciona um zero à esquerda se necessário
+  //   const day = String(currentDate.getDate()).padStart(2, '0');        // Adiciona um zero à esquerda se necessário
+  //   return `${year}-${month}-${day}`;
+  // }
 };
+
 </script>
 
 <style scoped>

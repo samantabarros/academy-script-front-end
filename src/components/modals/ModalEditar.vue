@@ -75,21 +75,19 @@ function onSubmit(id) {
 const atualizarDados = async (id) => {
   try{
     console.log("Antes da função formatar " + formularioEditar.value.data_nascimento);
-    //Formatação da data para o formato que o backend aceita
     formularioEditar.value.data_nascimento = new Date(formularioEditar.value.data_nascimento).toISOString();
     console.log("Depois da função formatar " + formularioEditar.value.data_nascimento);
     const {data} = await api.put(`alunos/${id}`, formularioEditar.value)
-    //formularioEditar.value.data_nascimento = new Date(formularioEditar.value.data_nascimento).toISOString().split('T',1);
-    //formularioEditar.value.data_nascimento = formularioEditar.value.data_nascimento.slice(0,10).split("-").reverse().join("/"),
     console.log("Depois da requisição put " +formularioEditar.value.data_nascimento);
 
   }catch(error){
     console.log(error);
   }
-  location.reload();
+  setTimeout(() => {
+    location.reload()
+  }, 2000);
 
 }
-
 </script>
 
 <style scoped>
