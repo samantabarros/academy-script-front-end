@@ -1,18 +1,14 @@
 <template>
-  <div class="q-pa-md row">
+  <div class="q-pa-md">
     <router-link to="/alunos" style="text-decoration: none">
-      <q-card flat bordered class="bg-blue">
-        <q-card-section class="row bg-green q-py-sm">
-          <div>
-            <p class="q-pa-xs text-h4 text-white">Alunos</p>
-            <p class="text-h6 text-black">Cadastre, edite e remova alunos</p>
-            <img
-              src="/img/aluno.ico"
-              alt="aluno"
-              class="q-pa-lg absolute-right"
-            />
-          </div>
-        </q-card-section>
+      <q-card
+        class="bg-blue-3 row justify-center items-center card-hovered"
+        style="width: 320px; height: 180px"
+      >
+        <div class="column items-center">
+          <q-icon name="groups" size="100px" color="white" />
+          <p class="text-white" style="font-size: 30px">Alunos</p>
+        </div>
       </q-card>
     </router-link>
   </div>
@@ -20,3 +16,9 @@
 
 <script setup>
 </script>
+<style scoped>
+.card-hovered:hover{
+  background-color: rgba(0,0,255,0.8)
+}
+
+</style>
