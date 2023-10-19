@@ -1,9 +1,7 @@
 <template>
-  <div class="q-pa-md text-body1">
+  <div class="q-pa-md text-body1 " style="height: 500px">
     <div class="row justify-end">
-      <div class="col subtitle-1 ellipsis"> 
-        Nome do Aluno
-      </div>
+      <div class="col subtitle-1 ellipsis">Nome do Aluno</div>
       <q-input
         dense
         filled
@@ -55,6 +53,7 @@
         </q-td>
       </template>
     </q-table>
+     
   </div>
 </template>
 
@@ -68,7 +67,6 @@ const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
 const pesquisa = ref("");
 const rows = ref([]);
-
 
 const columns = [
   {
