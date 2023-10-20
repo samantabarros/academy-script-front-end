@@ -8,7 +8,7 @@
         class="text-h4 row justify-center"
         style="font-family: lucyda-caligraphy"
       >
-        Editar Aluno
+        Editar Aluno 
       </div>
     </q-card-section>
     <q-form color="primary">

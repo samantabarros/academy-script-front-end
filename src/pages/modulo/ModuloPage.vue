@@ -65,6 +65,8 @@ import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
+const props = defineProps(["id"]);
+const id = props.id;
 const pesquisa = ref("");
 const rows = ref([]);
 
