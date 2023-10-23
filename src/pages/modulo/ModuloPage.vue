@@ -1,7 +1,10 @@
 <template>
   <div class="q-pa-md text-body1 " style="height: 500px">
     <div class="row justify-end">
-      <div class="col subtitle-1 ellipsis">Nome do Aluno</div>
+      {{idAluno}} 
+      {{nomeAlunoSelecionado}}
+      
+      <div class="col subtitle-1 ellipsis"></div>
       <q-input
         dense
         filled
@@ -63,12 +66,15 @@ import { api } from "boot/axios";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 
+import { useRoute } from "vue-router";
+
+const route = useRoute()
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
-const props = defineProps(["id"]);
-const id = props.id;
 const pesquisa = ref("");
 const rows = ref([]);
+const idAluno = route.params.id;
+const nomeAlunoSelecionado = ref('');
 
 const columns = [
   {
@@ -113,16 +119,26 @@ const columns = [
 ];
 
 onMounted(() => {
-  getPosts();
+  buscarAlunoSelecionado(idAluno);
 });
 
-const getPosts = async (id) => {
-  try {
-    const { data } = await api.get("alunos/id");
-    console.log(data);
-    rows.value = data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const getPosts = async (id) => {
+//   try {
+//     const { data } = await api.get("alunos/id");
+//     console.log(data);
+//     rows.value = data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// const buscarAlunoSelecionado = async (idAluno) => {
+//   try{
+//     const response = await api.get(`alunos/${idAluno}`);
+//     console.log(response);
+//     nomeAlunoSelecionado.value = response.data.nome_aluno; 
+//   }catch(error) {
+//     console.error("Erro ao buscar o nome do aluno:", error);
+//   }
+// }
 </script>
