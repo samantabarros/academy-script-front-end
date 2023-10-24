@@ -23,8 +23,8 @@
       <q-card
         v-bind:style="
           $q.screen.lt.sm
-            ? { width: '70%', height: '100%' }
-            : { width: '70%', height: '100%' }
+            ? { width: '70%', height: '95%' }
+            : { width: '70%', height: '98%' }
         "
         class="card-login transparent"
       >
@@ -189,7 +189,6 @@ async function resetForm() {
 
 .card-login {
   position: absolute;
-  display: block;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

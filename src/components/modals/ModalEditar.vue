@@ -6,19 +6,19 @@
       </div>
       <div
         class="text-h4 row justify-center"
-        style="font-family: lucyda-caligraphy"
       >
         Editar Aluno 
       </div>
+    <q-separator />
     </q-card-section>
     <q-form color="primary">
       <q-card-section class="q-pt-none">
         <div class="q-mb-sm">
-          <q-input filled v-model="formularioEditar.nome_aluno" label="Nome" />
+          <q-input outlined v-model="formularioEditar.nome_aluno" label="Nome" />
         </div>
         <div class="q-mb-sm">
           <q-input
-            filled
+            outlined
             v-model="formularioEditar.cpf"
             mask="###.###.###-##"
             unmasked-value
@@ -27,15 +27,15 @@
         </div>
         <div class="q-mb-sm">
           <q-input
-            filled
+            outlined
             v-model="formularioEditar.data_nascimento"
             type="date"
             label="Data de Nascimento"
           />
         </div>
-        <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" label="Atualizar" @click="onSubmit(id, dados_aluno)" />
-          <q-btn color="red" label="Cancelar" v-close-popup />
+        <div class="row q-pa-md q-gutter-lg justify-center">
+          <q-btn color="positive" label="Atualizar" @click="onSubmit(id, dados_aluno)" />
+          <q-btn color="negative" label="Cancelar" v-close-popup />
         </div>
       </q-card-section>
     </q-form>

@@ -1,56 +1,65 @@
 <template>
-  <q-card class="modal-cadastro">
+  <q-card
+    class="modal-cadastro"
+    :style="`min-height:${$q.screen.height - 120}px`"
+  >
     <q-card-section class="row justify-between">
-      <div class="text-h4 co" style="font-family: lucyda-caligraphy">
+      <div class="text-h5 q-ml-sm" style="font-family: lucyda-caligraphy">
         Cadastrar Aluno
       </div>
-      <div >
+      <div>
         <q-btn flat round icon="close" v-close-popup />
       </div>
     </q-card-section>
     <q-separator />
-    <div class="q-pa-md">
-      <q-form @submit.prevent="submitForm">
-        <q-card-section class="q-pt-xs">
-          <div>
-            <q-input
-              class="q-mb-xs"
-              filled
-              v-model="cadastro.nome_aluno"
-              label="Nome"
-              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
-            />
-          </div>
-          <div>
-            <q-input
-              class="q-mb-md"
-              ref="cpfRef"
-              filled
-              v-model="cadastro.cpf"
-              mask="###.###.###-##"
-              unmasked-value
-              label="CPF"
-              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
-            />
-          </div>
-          <div>
-            <q-input
-              class="q-mb-lg"
-              filled
-              v-model="cadastro.data_nascimento"
-              type="date"
-              :max="maximumDate"
-              label="Data de Nascimento"
-              rules="[dateRules]"
-            >
-            </q-input>
-          </div>
-          <div class="row q-pa-l q-gutter-lg justify-evenly">
-            <q-btn color="positive" type="submit" label="Cadastrar" />
-            <q-btn color="negative" label="Cancelar" v-close-popup />
-          </div>
-        </q-card-section>
-      </q-form>
+    <div class="q-pa-md row">
+      <div class="col-12 col-4-md">
+        <q-form @submit.prevent="submitForm">
+          <q-card-section class="q-pt-xs">
+            <div>
+              <q-input 
+                outlined
+                class="q-mb-xs"
+                v-model="cadastro.nome_aluno"
+                label="Nome"
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Campo obrigatório',
+                ]"
+              />
+            </div>
+            <div>
+              <q-input
+                outlined
+                class="q-mb-md"
+                ref="cpfRef"
+                v-model="cadastro.cpf"
+                mask="###.###.###-##"
+                unmasked-value
+                label="CPF"
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Campo obrigatório',
+                ]"
+              />
+            </div>
+            <div>
+              <q-input
+                outlined
+                class="q-mb-lg"
+                v-model="cadastro.data_nascimento"
+                type="date"
+                :max="maximumDate"
+                label="Data de Nascimento"
+                rules="[dateRules]"
+              >
+              </q-input>
+            </div>
+            <div class="row q-pa-l q-gutter-lg justify-center">
+              <q-btn color="positive" type="submit" label="Cadastrar" />
+              <q-btn color="negative" label="Cancelar" v-close-popup />
+            </div>
+          </q-card-section>
+        </q-form>
+      </div>
     </div>
   </q-card>
 </template>
@@ -142,8 +151,8 @@ const submitForm = async () => {
 <style scoped>
 .modal-cadastro {
   max-width: 100%;
-  width: 1500px;
   max-height: 100%;
   height: 550px;
+  width: 550px;
 }
 </style>

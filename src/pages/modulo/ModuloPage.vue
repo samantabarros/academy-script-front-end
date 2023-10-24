@@ -1,9 +1,12 @@
 <template>
-  <div class="q-pa-md text-body1 " style="height: 500px">
+  <div
+    class="q-pa-sm text-body1"
+    :style="`min-height: ${$q.screen.height - 120}px`"
+  >
     <div class="row justify-end">
-      {{idAluno}} 
-      {{nomeAlunoSelecionado}}
-      
+      {{ idAluno }}
+      {{ nomeAlunoSelecionado }}
+
       <div class="col subtitle-1 ellipsis"></div>
       <q-input
         dense
@@ -57,6 +60,11 @@
       </template>
     </q-table>
   </div>
+  <router-link to="/alunos" style="text-decoration: none">
+    <div class="justify-end-left q-pa-xs">
+      <q-btn flat class="text-primary">Voltar</q-btn>
+    </div>
+  </router-link>
 </template>
 
 // <script setup>
@@ -66,14 +74,16 @@ import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 
 import { useRoute } from "vue-router";
+import { useQuasar } from "quasar";
 
-const route = useRoute()
+const $q = useQuasar();
+const route = useRoute();
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
 const pesquisa = ref("");
 const rows = ref([]);
 const idAluno = route.params.id;
-const nomeAlunoSelecionado = ref('');
+const nomeAlunoSelecionado = ref("");
 
 const columns = [
   {
@@ -118,7 +128,7 @@ const columns = [
 ];
 
 onMounted(() => {
-  buscarAlunoSelecionado(idAluno);
+  //buscarAlunoSelecionado(idAluno);
 });
 
 // const getPosts = async (id) => {
@@ -135,7 +145,7 @@ onMounted(() => {
 //   try{
 //     const response = await api.get(`alunos/${idAluno}`);
 //     console.log(response);
-//     nomeAlunoSelecionado.value = response.data.nome_aluno; 
+//     nomeAlunoSelecionado.value = response.data.nome_aluno;
 //   }catch(error) {
 //     console.error("Erro ao buscar o nome do aluno:", error);
 //   }
