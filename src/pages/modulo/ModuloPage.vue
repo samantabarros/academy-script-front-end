@@ -56,7 +56,6 @@
         </q-td>
       </template>
     </q-table>
-     
   </div>
 </template>
 

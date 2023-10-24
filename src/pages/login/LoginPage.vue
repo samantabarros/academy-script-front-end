@@ -26,7 +26,7 @@
             ? { width: '70%', height: '100%' }
             : { width: '70%', height: '100%' }
         "
-        class="card-login"
+        class="card-login transparent"
       >
         <q-card-section>
           <div class="q-pt-lg">
@@ -193,7 +193,6 @@ async function resetForm() {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(20px);
