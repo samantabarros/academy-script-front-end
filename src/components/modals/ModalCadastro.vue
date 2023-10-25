@@ -3,16 +3,16 @@
     class="modal-cadastro"
     :style="`min-height:${$q.screen.height - 120}px`"
   >
-    <q-card-section class="row justify-between">
-      <div class="text-h5 q-ml-sm" style="font-family: lucyda-caligraphy">
+    <q-card-section>
+      <div class="row justify-end">
+        <q-btn round color="negative" icon="close"  size="10px"  v-close-popup />
+      </div>
+      <div class="text-h4 q-ml-xs row justify-center" style="font-family: lucyda-caligraphy"> 
         Cadastrar Aluno
       </div>
-      <div>
-        <q-btn flat round icon="close" v-close-popup />
-      </div>
     </q-card-section>
-    <q-separator />
-    <div class="q-pa-md row">
+    <q-separator/>
+    <div class="q-pa-md">
       <div class="col-12 col-4-md">
         <q-form @submit.prevent="submitForm">
           <q-card-section class="q-pt-xs">

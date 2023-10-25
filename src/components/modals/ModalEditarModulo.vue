@@ -1,36 +1,38 @@
 <template>
-  <q-card class="modal-editar-modulo">
+  <q-card class="modal-editar-modulo"  :style="`min-height:${$q.screen.height - 120}px`">
     <q-card-section>
-      <div align="right">
-        <q-btn flat round icon="close" v-close-popup />
+      <div class="row justify-end">
+        <q-btn round color="negative" icon="close" size="10px" v-close-popup />
       </div>
-      <div
-        class="text-h4 row justify-center"
-        style="font-family: lucyda-caligraphy"
-      >
+      <div class="text-h4 q-ml-xs row justify-center" style="font-family: lucyda-caligraphy">
         Editar Módulo
       </div>
     </q-card-section>
-    <q-form>
-      <q-card-section class="q-pt-none">
-        <div class="q-mb-sm">
-          <q-input filled v-model="text" label="Nome" color="purple" />
-        </div>
-        <div class="q-mb-sm">
-          <q-input filled v-model="text" label="Nota 1" color="purple" />
-        </div>
-        <div class="q-mb-sm">
-          <q-input filled v-model="text" label="Nota 2" color="purple" />
-        </div>
-        <div class="q-mb-sm">
-          <q-input filled v-model="text" label="Nota 3" color="purple" />
-        </div>
-        <div class="row q-pa-md q-gutter-lg justify-evenly">
-          <q-btn color="green" label="Atualizar" />
-          <q-btn color="red" label="Cancelar" v-close-popup />
-        </div>
-      </q-card-section>
-    </q-form>
+    <q-separator />
+    <div class="row q-pa-md">
+      <div clas="col-12 col-4-md">
+        <q-form>
+          <q-card-section class="q-pt-none">
+            <div class="q-mb-sm">
+              <q-input filled v-model="text" label="Nome" color="purple" />
+            </div>
+            <div class="q-mb-sm">
+              <q-input filled v-model="text" label="Nota 1" color="purple" />
+            </div>
+            <div class="q-mb-sm">
+              <q-input filled v-model="text" label="Nota 2" color="purple" />
+            </div>
+            <div class="q-mb-sm">
+              <q-input filled v-model="text" label="Nota 3" color="purple" />
+            </div>
+            <div class="row q-pa-md q-gutter-lg justify-evenly">
+              <q-btn color="green" label="Atualizar" />
+              <q-btn color="red" label="Cancelar" v-close-popup />
+            </div>
+          </q-card-section>
+        </q-form>I
+      </div>
+    </div>
   </q-card>
 </template>
 

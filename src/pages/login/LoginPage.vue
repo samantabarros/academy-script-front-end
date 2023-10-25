@@ -15,13 +15,13 @@
       </p>
     </div>
     <div
-      v-bind:class="{
+      :class="{
         'justify-center': $q.screen.md || $q.screen.sm || $q.screen.sm,
       }"
       class="col-12 col-md-6 flex justify-center content-center"
     >
       <q-card
-        v-bind:style="
+        :style="
           $q.screen.lt.sm
             ? { width: '70%', height: '95%' }
             : { width: '70%', height: '98%' }
@@ -144,6 +144,7 @@ const onSubmit = async () => {
       message: "Login realizado com sucesso!",
       color: "positive",
       icon: "check_circle_outline",
+      position: "top"
     });
   } else {
     $q.notify({
@@ -151,6 +152,7 @@ const onSubmit = async () => {
       textColor: "white",
       icon: "warning",
       message: "Usuário ou senha inválidos",
+      position: "top"
     });
     onReset();
   }

@@ -9,3 +9,9 @@ export default defineComponent({
   name: 'App'
 })
 </script>
+
+<style>
+.app{
+  font-family: 'Inter', sans-serif;
+}
+</style>

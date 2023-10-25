@@ -1,16 +1,17 @@
 <template>
   <q-card>
-    <q-card-section class="q-pa-lg row justify-center">
+    <div class="q-pt-lg q-pb-sm row justify-center">
       <q-avatar icon="info" color="orange" text-color="white" />
-      <span class="text-h6 q-ml-sm justify-content"
-        >Tem certeza que deseja excluir esse aluno? Ao confirmar essa ação, você não poderá desfazê-la!</span
-      >
-    </q-card-section>
-
+    </div>
+    <div class="row">
+      <span class="text-h6 q-ml-sm text-center">Tem certeza que deseja excluir esse aluno? Ao confirmar essa ação, você
+        não poderá desfazê-la!</span>
+    </div>
     <q-card-actions align="center" class="">
       <q-btn flat label="Cancelar" color="negative" v-close-popup />
-      <q-btn flat label="Sim, excluir" color="positive" v-close-popup @click="deletarAluno(id)"/>
+      <q-btn flat label="Sim, excluir" color="positive" v-close-popup @click="deletarAluno(id)" />
     </q-card-actions>
+
   </q-card>
 </template>
 
@@ -21,7 +22,7 @@ import { useQuasar } from "quasar";
 
 const $q = useQuasar();
 const props = defineProps({
-  id:{type:String}
+  id: { type: String }
 });
 
 //Deletar o aluno
@@ -43,9 +44,9 @@ const deletarAluno = async (id) => {
     console.log(error);
     $q.notify({
       message: error.response.data.message,
-      color:"negative",
-      icon:"error",
-      position:"top"
+      color: "negative",
+      icon: "error",
+      position: "top"
 
     });
   }
