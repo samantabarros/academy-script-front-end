@@ -139,13 +139,14 @@ const onSubmit = async () => {
   console.log(data);
 
   if (data.length > 0) {
-    router.push("/home");
     $q.notify({
       message: "Login realizado com sucesso!",
       color: "positive",
       icon: "check_circle_outline",
       position: "top"
     });
+    router.push("/home");
+    
   } else {
     $q.notify({
       color: "red-5",

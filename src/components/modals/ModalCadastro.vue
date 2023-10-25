@@ -30,7 +30,6 @@
             <div>
               <q-input
                 outlined
-                class="q-mb-md"
                 ref="cpfRef"
                 v-model="cadastro.cpf"
                 mask="###.###.###-##"

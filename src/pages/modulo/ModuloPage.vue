@@ -84,6 +84,8 @@ const pesquisa = ref("");
 const rows = ref([]);
 const idAluno = route.params.id;
 const nomeAlunoSelecionado = ref("");
+const media = ref(0);
+const status = ref('');
 
 const columns = [
   {
@@ -128,7 +130,8 @@ const columns = [
 ];
 
 onMounted(() => {
-  //buscarAlunoSelecionado(idAluno);
+  buscarAlunoSelecionado(idAluno);
+  //statusDoAluno()
 });
 
 // const getPosts = async (id) => {
@@ -141,13 +144,14 @@ onMounted(() => {
 //   }
 // };
 
-// const buscarAlunoSelecionado = async (idAluno) => {
-//   try{
-//     const response = await api.get(`alunos/${idAluno}`);
-//     console.log(response);
-//     nomeAlunoSelecionado.value = response.data.nome_aluno;
-//   }catch(error) {
-//     console.error("Erro ao buscar o nome do aluno:", error);
-//   }
-// }
+const buscarAlunoSelecionado = async (idAluno) => {
+  console.log(idAluno)
+  try{
+    const response = await api.get(`alunos/${idAluno}`);
+    console.log(response);
+    nomeAlunoSelecionado.value = response.data.nome_aluno;
+  }catch(error) {
+    console.error("Erro ao buscar o nome do aluno:", error);
+  }
+}
 </script>
