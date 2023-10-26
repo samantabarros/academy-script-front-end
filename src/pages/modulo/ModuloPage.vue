@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-sm text-body1" :style="`min-height: ${$q.screen.height - 120}px`">
+  <div class="q-pa-sm text-body1 " :style="`min-height: ${$q.screen.height - 120}px`">
     <div class="row q-pt-md">
       <div class="col-4">
         <p class="text-h6 q-pr-md">{{ nomeAlunoSelecionado }}</p>
@@ -36,10 +36,11 @@
     </q-table>
   </div>
   <router-link to="/alunos" style="text-decoration: none">
-    <div class="justify-end-left q-pa-xs">
-      <q-btn flat class="text-primary">Voltar</q-btn>
+    <div class="justify-end-left q-pa-xs q-mb-xs">
+      <q-btn outline class="text-orange-10 ">Voltar</q-btn>
     </div>
   </router-link>
+ 
 </template>
 
 <script setup>
@@ -56,7 +57,7 @@ const route = useRoute();
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
 const pesquisa = ref("");
-const rows = ref([]);
+const rows_modulos = ref([]);
 const idAluno = route.params.id;
 const nomeAlunoSelecionado = ref("");
 const media = ref(0);
@@ -106,6 +107,7 @@ const columns = [
 
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
+  getModulos();
   //statusDoAluno()
 });
 
@@ -129,4 +131,16 @@ const buscarAlunoSelecionado = async (idAluno) => {
     console.error("Erro ao buscar o nome do aluno:", error);
   }
 }
+
+const getModulos = async(idAluno) => {
+  try{
+    const {data}= await api.get(`alunos/$idAluno`);
+    rows_modulos.value = data;
+  }catch(error){
+    console.log.error;
+  }
+}
 </script>
+<style>
+
+</style>

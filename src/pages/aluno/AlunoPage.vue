@@ -162,7 +162,6 @@ const getAlunos = async () => {
     console.log(error);
   }
 };
-
 </script>
 
 <style></style>
