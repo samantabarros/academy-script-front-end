@@ -123,11 +123,11 @@ import { Notify, useQuasar } from "quasar";
 
 const $q = useQuasar();
 const router = useRouter();
+const isPwd = ref(false)
 
 const login = ref({
   email: "",
   senha: "",
-  isPwd: ref(false),
 });
 
 const onSubmit = async () => {

@@ -1,60 +1,35 @@
 <template>
-  <div
-    class="q-pa-sm text-body1"
-    :style="`min-height: ${$q.screen.height - 120}px`"
-  >
-    <div class="row justify-end">
-      {{ idAluno }}
-      {{ nomeAlunoSelecionado }}
-
-      <div class="col subtitle-1 ellipsis"></div>
-      <q-input
-        dense
-        filled
-        borderless
-        debounce="300"
-        class="q-pr-md col-6"
-        v-model="filter"
-        color="primary"
-        type="search"
-        label="Pesquisar módulo"
-      >
-        <template v-slot:append>
-          <q-icon name="search" />
-        </template>
-      </q-input>
-
-      <q-btn
-        label="Adicionar"
-        class="bg-positive text-white"
-        dense
-        icon="person_add"
-        @click="showModalCadastroModulo = true"
-      />
+  <div class="q-pa-sm text-body1" :style="`min-height: ${$q.screen.height - 120}px`">
+    <div class="row q-pt-md">
+      <div class="col-4">
+        <p class="text-h6 q-pr-md">{{ nomeAlunoSelecionado }}</p>
+      </div>
+      <div class="col-6">
+        <q-input filled borderless dense debounce="300" type="search" v-model="filter"
+          color="primary" label="Pesquisar módulo">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </div>
+      <div class="col-2 q-pl-md justify-end">   
+        <q-btn dense class="bg-positive text-white col-2" size= "16px" icon="add" label="Adicionar"
+          @click="showModalCadastrar = true">
+        </q-btn>
+      </div>
     </div>
+
     <q-dialog v-model="showModalCadastroModulo" persistent>
       <modal-cadastro-modulo />
     </q-dialog>
-    <q-table
-      class="q-mt-lg"
-      :rows="rows"
-      :columns="columns"
-      :filter="filter"
-      row-key="name"
-      table-header-style="background-color: #dcdcdc;"
-    >
+    <q-table class="q-mt-lg" :rows="rows" :columns="columns" :filter="filter" row-key="name"
+      table-header-style="background-color: #dcdcdc;">
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditarModulo" persistent>
           <modal-editar-modulo />
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
-          <q-btn
-            icon="edit"
-            color="info"
-            dense
-            size="sm"
-            @click="showModalEditarModulo = true"
-          />
+          <q-btn icon="edit" color="info" dense size="sm" @click="showModalEditarModulo = true" />
           <q-btn icon="delete" color="negative" dense size="sm" />
         </q-td>
       </template>
@@ -67,7 +42,7 @@
   </router-link>
 </template>
 
-// <script setup>
+<script setup>
 import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
@@ -146,11 +121,11 @@ onMounted(() => {
 
 const buscarAlunoSelecionado = async (idAluno) => {
   console.log(idAluno)
-  try{
+  try {
     const response = await api.get(`alunos/${idAluno}`);
     console.log(response);
     nomeAlunoSelecionado.value = response.data.nome_aluno;
-  }catch(error) {
+  } catch (error) {
     console.error("Erro ao buscar o nome do aluno:", error);
   }
 }
