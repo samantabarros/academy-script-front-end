@@ -46,6 +46,7 @@
         </q-td>
       </template>
     </q-table>
+    <pre>{{rows_matriculas}}</pre>
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-pa-xs q-mb-xs">
@@ -69,7 +70,7 @@ const route = useRoute();
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
 const pesquisa = ref("");
-const rows_modulos = ref([]);
+const rows_matriculas = ref([]);
 const idAluno = route.params.id;
 const nomeAlunoSelecionado = ref("");
 const media = ref(0);
@@ -84,7 +85,7 @@ const dados_modulo = ref({
 
 const columns = [
   {
-    name: "nome_modulo",
+    name: "rows_matriculas.nome_modulo",
     field: "nome_modulo",
     label: "Nome",
     sortable: false,
@@ -127,7 +128,7 @@ const columns = [
 //Valores para teste
 const rows_modulo = [
   {
-    nome_modulo: 'CSS',
+    nome_modulo: 'Quasar',
     nota1: 5,
     nota2: 5,
     nota3: '-',
@@ -153,10 +154,10 @@ onMounted(() => {
 // };
 
 const buscarAlunoSelecionado = async (idAluno) => {
-  console.log(idAluno)
+  // console.log(idAluno)
   try {
     const response = await api.get(`alunos/${idAluno}`);
-    console.log(response);
+    // console.log(response);
     nomeAlunoSelecionado.value = response.data.nome_aluno;
   } catch (error) {
     console.error("Erro ao buscar o nome do aluno:", error);
@@ -165,9 +166,13 @@ const buscarAlunoSelecionado = async (idAluno) => {
 
 const getModulos = async(idAluno) => {
   try{
-    const resp = await api.get(`matricula/${idAluno}`);
-    console.log(resp);
-    dados_modulo.value = resp.data;
+    const resp = await api.get(`alunos/${idAluno}`);
+    // console.log(resp);
+    resp.data.Matricula.map((modulo) => {
+      console.log(modulo);
+      rows_matriculas.value.push(modulo);
+    })
+    // console.log(dados_modulo)
   }catch(error){
     console.error(error);
   }

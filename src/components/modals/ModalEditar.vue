@@ -94,9 +94,6 @@ const atualizarDados = async (id) => {
       })
     }
   }
-  setTimeout(() => {
-    location.reload()
-  }, 2000);
 
 }
 </script>
