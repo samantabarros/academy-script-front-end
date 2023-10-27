@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md text-body1">
+  <div class="q-pa-md text-body1"  :style="`min-height: ${$q.screen.height - 130}px`">
     <div class="row justify-end">
       <q-input
         filled
@@ -34,7 +34,6 @@
       :columns="columns"
       :filter="filter"
       row-key="id"
-      table-header-style="background-color: #dcdcdc; "
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>

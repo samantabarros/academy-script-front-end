@@ -1,29 +1,41 @@
 <template>
-  <div class="q-pa-sm text-body1 " :style="`min-height: ${$q.screen.height - 120}px`">
-    <div class="row q-pt-md">
-      <div class="col-4">
-        <p class="text-h6 q-pr-md">{{ nomeAlunoSelecionado }}</p>
-      </div>
-      <div class="col-6">
-        <q-input filled borderless dense debounce="300" type="search" v-model="filter"
-          color="primary" label="Pesquisar módulo">
+  <div class="q-pa-md text-body1 " :style="`min-height: ${$q.screen.height - 130}px`">
+    <div class="row justify-end">
+        <q-input 
+          filled
+          borderless
+          dense 
+          debounce="300"
+          type="search"
+          v-model="filter"
+          color="primary"
+          label="Pesquisar módulo"
+          class="q-pr-md col-6"
+        >
           <template v-slot:append>
             <q-icon name="search" />
           </template>
         </q-input>
-      </div>
-      <div class="col-2 q-pl-md justify-end">   
-        <q-btn dense class="bg-positive text-white col-2" size= "16px" icon="add" label="Adicionar"
-          @click="showModalCadastrar = true">
+        <q-btn 
+          dense 
+          class="bg-positive text-white"
+          icon="add"
+          label="Adicionar"
+          @click="showModalCadastroModulo= true">
         </q-btn>
-      </div>
     </div>
-
     <q-dialog v-model="showModalCadastroModulo" persistent>
       <modal-cadastro-modulo />
     </q-dialog>
-    <q-table class="q-mt-lg" :rows="rows" :columns="columns" :filter="filter" row-key="name"
-      table-header-style="background-color: #dcdcdc;">
+    <q-table 
+      class="q-mt-lg" 
+      :title="nomeAlunoSelecionado" 
+      :rows="rows" 
+      :columns="columns" 
+      :filter="filter"
+      row-key="name"
+      table-header-style="text-italic text-purple"
+    >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditarModulo" persistent>
           <modal-editar-modulo />
@@ -134,7 +146,7 @@ const buscarAlunoSelecionado = async (idAluno) => {
 
 const getModulos = async(idAluno) => {
   try{
-    const {data}= await api.get(`alunos/$idAluno`);
+    const {data}= await api.get(`alunos/${idAluno}`);
     rows_modulos.value = data;
   }catch(error){
     console.log.error;
