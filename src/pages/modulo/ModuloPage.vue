@@ -30,17 +30,17 @@
     <q-table 
       class="q-mt-lg" 
       :title="nomeAlunoSelecionado" 
-      :rows="rows" 
+      :rows="rows_modulo" 
       :columns="columns" 
       :filter="filter"
       row-key="name"
-      table-header-style="text-italic text-purple"
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditarModulo" persistent>
           <modal-editar-modulo />
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
+
           <q-btn icon="edit" color="info" dense size="sm" @click="showModalEditarModulo = true" />
           <q-btn icon="delete" color="negative" dense size="sm" />
         </q-td>
@@ -75,28 +75,35 @@ const nomeAlunoSelecionado = ref("");
 const media = ref(0);
 const status = ref('');
 
+const dados_modulo = ref({
+  nome_modulo: "",
+  nota1: "",
+  nota2: "",
+  nota3: ''
+});
+
 const columns = [
   {
-    name: "name",
+    name: "nome_modulo",
     field: "nome_modulo",
     label: "Nome",
     sortable: false,
     align: "left",
   },
   {
-    name: "nota-um",
+    name: "nota1",
     field: "nota1",
     label: "Nota 1",
     align: "center",
   },
   {
-    name: "nota-dois",
+    name: "nota2",
     field: "nota2",
     label: "Nota 2",
     align: "center",
   },
   {
-    name: "nota-tres",
+    name: "nota3",
     field: "nota3",
     label: "Nota 3",
     align: "center",
@@ -117,9 +124,21 @@ const columns = [
   },
 ];
 
+//Valores para teste
+const rows_modulo = [
+  {
+    nome_modulo: 'CSS',
+    nota1: 5,
+    nota2: 5,
+    nota3: '-',
+    status: 'Incompleto'
+
+  }
+]
+
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
-  getModulos();
+  getModulos(idAluno);
   //statusDoAluno()
 });
 
@@ -146,12 +165,26 @@ const buscarAlunoSelecionado = async (idAluno) => {
 
 const getModulos = async(idAluno) => {
   try{
-    const {data}= await api.get(`alunos/${idAluno}`);
-    rows_modulos.value = data;
+    const resp = await api.get(`matricula/${idAluno}`);
+    console.log(resp);
+    dados_modulo.value = resp.data;
   }catch(error){
-    console.log.error;
+    console.error(error);
   }
 }
+
+//Função para ver o status do aluno
+
+//  const statusDoAluno = () => {
+//   media.value = (dados_modulo.nota1 + dados_modulo.nota2 + dados_modulo.nota3) / 3
+//   if(dados_modulo.nota1.value == '' || dados_modulo.nota2.value == '' || dados_modulo.nota3.value == ''){
+//     status.value = 'Incompleto';
+//   }else if(media.value >= 5){
+//     status.value = 'Apto';
+//   }else{
+//     status.value = 'Inapto';
+//   }
+//  }
 </script>
 <style>
 
