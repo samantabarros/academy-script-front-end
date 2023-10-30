@@ -30,7 +30,7 @@
     <q-table 
       class="q-mt-lg" 
       :title="nomeAlunoSelecionado" 
-      :rows="rows_modulo" 
+      :rows="rows_matriculas" 
       :columns="columns" 
       :filter="filter"
       row-key="name"
@@ -46,7 +46,6 @@
         </q-td>
       </template>
     </q-table>
-    <pre>{{rows_matriculas}}</pre>
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-pa-xs q-mb-xs">
@@ -76,21 +75,14 @@ const nomeAlunoSelecionado = ref("");
 const media = ref(0);
 const status = ref('');
 
-const dados_modulo = ref({
-  nome_modulo: "",
-  nota1: "",
-  nota2: "",
-  nota3: ''
-});
-
 const columns = [
   {
-    name: "rows_matriculas.nome_modulo",
-    field: "nome_modulo",
+    name: "name",
+    field: (row) => row.moduloId.nome_modulo,
     label: "Nome",
-    sortable: false,
     align: "left",
   },
+
   {
     name: "nota1",
     field: "nota1",
@@ -113,34 +105,32 @@ const columns = [
     name: "status",
     field: "status",
     label: "Status",
-    sortable: false,
     align: "center",
   },
   {
     name: "acoes",
-    field: "acoes",
+    field: "nota3",
     label: "Ações",
-    sortable: false,
     align: "center",
   },
 ];
 
-//Valores para teste
-const rows_modulo = [
-  {
-    nome_modulo: 'Quasar',
-    nota1: 5,
-    nota2: 5,
-    nota3: '-',
-    status: 'Incompleto'
+// Valores para teste
+// const rows_modulo = [
+//   {
+//     nome_modulo: 'Quasar',
+//     nota1: 5,
+//     nota2: 5,
+//     nota3: '-',
+//     status: 'Incompleto'
 
-  }
-]
+//   }
+// ]
 
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  //statusDoAluno()
+  //statusDoAluno(idModulo)
 });
 
 // const getPosts = async (id) => {
@@ -172,7 +162,6 @@ const getModulos = async(idAluno) => {
       console.log(modulo);
       rows_matriculas.value.push(modulo);
     })
-    // console.log(dados_modulo)
   }catch(error){
     console.error(error);
   }
@@ -180,15 +169,16 @@ const getModulos = async(idAluno) => {
 
 //Função para ver o status do aluno
 
-//  const statusDoAluno = () => {
-//   media.value = (dados_modulo.nota1 + dados_modulo.nota2 + dados_modulo.nota3) / 3
-//   if(dados_modulo.nota1.value == '' || dados_modulo.nota2.value == '' || dados_modulo.nota3.value == ''){
-//     status.value = 'Incompleto';
-//   }else if(media.value >= 5){
-//     status.value = 'Apto';
-//   }else{
-//     status.value = 'Inapto';
-//   }
+//  const statusDoAluno = (id_modulo) => {
+//   media.value = (row.nota1.value) / 3;
+//   console.log(media);
+//   // if(nota1.value == '' || nota2.value == '' || nota3.value == ''){
+//   //   status.value = 'Incompleto';
+//   // }else if(media.value >= 5){
+//   //   status.value = 'Apto';
+//   // }else{
+//   //   status.value = 'Inapto';
+//   // }
 //  }
 </script>
 <style>
