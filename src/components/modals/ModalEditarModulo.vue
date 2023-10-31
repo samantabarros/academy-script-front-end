@@ -9,25 +9,25 @@
       </div>
     </q-card-section>
     <q-separator />
-    <div class="row q-pa-md">
+    <div class="q-pa-md">
       <div clas="col-12 col-4-md">
         <q-form>
           <q-card-section class="q-pt-none">
             <div class="q-mb-sm">
-              <q-input filled v-model="text" label="Nome" color="purple" />
+              <q-input outlined v-model="text" label="Nome"/>
             </div>
             <div class="q-mb-sm">
-              <q-input filled v-model="text" label="Nota 1" color="purple" />
+              <q-input outlined v-model="text" label="Nota 1"  />
             </div>
             <div class="q-mb-sm">
-              <q-input filled v-model="text" label="Nota 2" color="purple" />
+              <q-input outlined v-model="text" label="Nota 2"  />
             </div>
             <div class="q-mb-sm">
-              <q-input filled v-model="text" label="Nota 3" color="purple" />
+              <q-input outlined v-model="text" label="Nota 3" />
             </div>
-            <div class="row q-pa-md q-gutter-lg justify-evenly">
-              <q-btn color="green" label="Atualizar" />
-              <q-btn color="red" label="Cancelar" v-close-popup />
+            <div class="row q-pa-md q-gutter-lg justify-center">
+              <q-btn color="positive" label="Atualizar" />
+              <q-btn color="negative" label="Cancelar" v-close-popup />
             </div>
           </q-card-section>
         </q-form>I

@@ -52,7 +52,7 @@
               >
               </q-input>
             </div>
-            <div class="row q-pa-l q-gutter-lg justify-center">
+            <div class="row q-pa-md q-gutter-lg justify-center">
               <q-btn color="positive" type="submit" label="Cadastrar" />
               <q-btn color="negative" label="Cancelar" v-close-popup />
             </div>
