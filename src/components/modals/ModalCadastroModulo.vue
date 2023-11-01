@@ -11,23 +11,26 @@
     <q-separator />
     <div class="q-pa-md">
       <div clas="col-12 col-4-md">
-        <q-form>
+        <q-form @submit.prevent="submitForm">
           <q-card-section class="q-pt-xs">
-            <div class="q-mb-md">
-                
-              <q-input outlined v-model="text" label="Nome" />
+            <div>
+              <q-input outlined v-model="cadastro.nome_modulo" label="Nome"
+               :rules="[
+                (val) => (val && val.length > 0) || 'Campo obrigatório'
+               ]"
+               />
             </div>
             <div class="q-mb-md">
-              <q-input outlined v-model="text" label="Nota 1"  />
+              <q-input outlined v-model="cadastro.nota1" label="Nota 1"  />
             </div>
             <div class="q-mb-md" >
-              <q-input outlined v-model="text" label="Nota 2" />
+              <q-input outlined v-model="cadastro.nota2" label="Nota 2" />
             </div>
             <div class="q-mb-md">
-              <q-input outlined v-model="text" label="Nota 3" />
+              <q-input outlined v-model="cadastro.nota3" label="Nota 3" />
             </div>
-            <div class="row q-pa-lg q-gutter-lg justify-center">
-              <q-btn color="positive" label="Cadastrar" />
+            <div class="row q-pa-md q-gutter-lg justify-center">
+              <q-btn color="positive" type=submit label="Cadastrar" />
               <q-btn color="negative" label="Cancelar" v-close-popup />
             </div>
           </q-card-section>
@@ -38,7 +41,22 @@
 </template>
 
 <script setup>
+import { api } from "src/boot/axios";
 import { ref } from "vue";
+
+const cadastro = ref({
+  nome_modulo: "",
+  //nota1: "",
+  //nota2: "",
+  //nota3: ""
+});
+
+const submitForm = async () => {
+  const {data} = await api.post(`matricula`, cadastro.value)
+  console.log(data)
+
+}
+
 </script>
 
 <style scoped>

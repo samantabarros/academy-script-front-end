@@ -33,7 +33,7 @@
       :rows="rows_matriculas" 
       :columns="columns" 
       :filter="filter"
-      row-key="name"
+      row-key="id"
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditarModulo" persistent>
@@ -154,19 +154,19 @@ const buscarAlunoSelecionado = async () => {
   }
 }
 
+
 const getModulos = async(idAluno) => {
   try{
     const resp = await api.get(`alunos/${idAluno}`);
     // console.log(resp);
     resp.data.Matricula.map((modulo) => {
-      console.log(modulo);
       rows_matriculas.value.push(modulo);
     })
-    console.log(media)
   }catch(error){
     console.error(error);
   }
 }
+
 
 //Função para ver o status do aluno
 
