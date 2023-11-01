@@ -17,7 +17,7 @@
               <q-input outlined v-model="formularioEditar.nome_aluno" label="Nome" />
             </div>
             <div class="q-mb-md">
-              <q-input outlined v-model="formularioEditar.cpf" mask="###.###.###-##" unmasked-value label="CPF" />
+              <q-input outlined v-model="formularioEditar.cpf" mask="###.###.###-##" unmasked-value disable label="CPF" />
             </div>
             <div>
               <q-input outlined v-model="formularioEditar.data_nascimento" type="date" label="Data de Nascimento" />

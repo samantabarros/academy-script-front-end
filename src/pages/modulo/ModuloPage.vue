@@ -130,7 +130,7 @@ const columns = [
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  //statusDoAluno(idModulo)
+  //statusDoAluno()
 });
 
 // const getPosts = async (id) => {
@@ -143,7 +143,7 @@ onMounted(() => {
 //   }
 // };
 
-const buscarAlunoSelecionado = async (idAluno) => {
+const buscarAlunoSelecionado = async () => {
   // console.log(idAluno)
   try {
     const response = await api.get(`alunos/${idAluno}`);
@@ -162,6 +162,7 @@ const getModulos = async(idAluno) => {
       console.log(modulo);
       rows_matriculas.value.push(modulo);
     })
+    console.log(media)
   }catch(error){
     console.error(error);
   }
@@ -170,15 +171,15 @@ const getModulos = async(idAluno) => {
 //Função para ver o status do aluno
 
 //  const statusDoAluno = (id_modulo) => {
-//   media.value = (row.nota1.value) / 3;
+//   media.value = 15 / 3;
 //   console.log(media);
-//   // if(nota1.value == '' || nota2.value == '' || nota3.value == ''){
-//   //   status.value = 'Incompleto';
-//   // }else if(media.value >= 5){
-//   //   status.value = 'Apto';
-//   // }else{
-//   //   status.value = 'Inapto';
-//   // }
+//   if(nota1.value == '' || nota2.value == '' || nota3.value == ''){
+//     status.value = 'Incompleto';
+//   }else if(media.value >= 5){
+//     status.value = 'Apto';
+//   }else{
+//     status.value = 'Inapto';
+//   }
 //  }
 </script>
 <style>
