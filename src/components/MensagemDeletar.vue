@@ -1,8 +1,5 @@
 <template>
   <q-card>
-    <div class="q-pt-lg q-pb-sm row justify-center">
-      <q-avatar icon="info" color="orange" text-color="white" />
-    </div>
     <div class="row">
       <span class="text-h6 q-ml-sm text-center">Tem certeza que deseja excluir esse aluno? Ao confirmar essa ação, você
         não poderá desfazê-la!</span>
