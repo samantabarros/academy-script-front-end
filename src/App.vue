@@ -11,7 +11,5 @@ export default defineComponent({
 </script>
 
 <style>
-.app{
-  font-family: 'Inter', sans-serif;
-}
+
 </style>

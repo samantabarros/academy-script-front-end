@@ -166,8 +166,8 @@ const getModulos = async(idAluno) => {
   }catch(error){
     console.error(error);
   }
+  
 }
-
 
 //Função para ver o status do aluno
 
