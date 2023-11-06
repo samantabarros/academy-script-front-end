@@ -43,7 +43,6 @@
           <mensagem-deletar-modulo  :id="moduloAtual.id"/>
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
-
           <q-btn icon="edit" color="info" dense size="sm" @click="showModalEditarModulo = true" />
           <q-btn icon="delete" color="negative" dense size="sm" @click = "iniciarDeletarModulo(props.row)"/>
         </q-td>
@@ -67,8 +66,6 @@ import MensagemDeletarModulo from "src/components/modals/MensagemDeletarModulo.v
 import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 
-const media = ref(0);
-const status = ref('');
 const $q = useQuasar();
 const route = useRoute();
 const filter = ref("");
@@ -79,6 +76,7 @@ const nomeAlunoSelecionado = ref("");
 const showModalCadastroModulo = ref(false);
 const showModalEditarModulo = ref(false);
 const showMensagemDeletarModulo = ref(false)
+
 
 const columns = [
   {
@@ -135,7 +133,7 @@ const columns = [
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  //statusDoAluno()
+  calcularMediaEStatus();
 });
 
 // Abre o modal componente para deletar o módulo
@@ -160,9 +158,11 @@ const getModulos = async(idAluno) => {
   try{
     const resp = await api.get(`alunos/${idAluno}`);
     // console.log(resp);
+    
     resp.data.Matricula.map((modulo) => {
       rows_matriculas.value.push(modulo);
     })
+
   }catch(error){
     console.error(error);
   }
@@ -171,17 +171,25 @@ const getModulos = async(idAluno) => {
 
 //Função para ver o status do aluno
 
-//  const statusDoAluno = (id_modulo) => {
-//   media.value = 15 / 3;
-//   console.log(media);
-//   if(nota1.value == '' || nota2.value == '' || nota3.value == ''){
-//     status.value = 'Incompleto';
-//   }else if(media.value >= 5){
-//     status.value = 'Apto';
-//   }else{
-//     status.value = 'Inapto';
-//   }
-//  }
+ const calcularMediaEStatus = async () => {
+  console.log('Entrou em calcularMediaEStatus')
+  rows_matriculas.value.forEach((value, index) => {
+    console.log("Testando")
+    const media = ref(0);
+  
+    media.value = (Number(value.nota1) + Number(value.nota2) + Number(value.nota3)) / 3;
+
+    if(value.nota1 === null || value.nota2 || value.nota3 === null) {
+      //logica aqui (status -> Incompleto)
+    }else if (media.value >= 5) {
+      //logica aqui (status -> Apto) 
+    }else{
+      //logica aqui (status -> Inapto)
+    }
+  });
+  console.log('Chegou aqui');  
+
+};
 </script>
 <style>
 
