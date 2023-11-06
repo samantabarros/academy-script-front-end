@@ -30,7 +30,7 @@
               <q-btn color="negative" label="Cancelar" v-close-popup />
             </div>
           </q-card-section>
-        </q-form>I
+        </q-form>
       </div>
     </div>
   </q-card>

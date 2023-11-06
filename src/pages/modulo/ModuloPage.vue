@@ -21,11 +21,11 @@
           class="bg-positive text-white"
           icon="add"
           label="Adicionar"
-          @click="showModalCadastroModulo= true">
+          @click="showModalCadastroMatricula= true">
         </q-btn>
     </div>
-    <q-dialog v-model="showModalCadastroModulo" persistent>
-      <modal-cadastro-modulo />
+    <q-dialog v-model="showModalCadastroMatricula" persistent>
+      <modal-cadastro-matricula />
     </q-dialog>
     <q-table 
       class="q-mt-lg" 
@@ -60,7 +60,7 @@
 <script setup>
 import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
-import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
+import ModalCadastroMatricula from "src/components/modals/ModalCadastroMatricula.vue";
 import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
 import MensagemDeletarModulo from "src/components/modals/MensagemDeletarModulo.vue";
 import { useRoute } from "vue-router";
@@ -73,7 +73,7 @@ const rows_matriculas = ref([]);
 const moduloAtual = ref({});
 const idAluno = route.params.id;
 const nomeAlunoSelecionado = ref("");
-const showModalCadastroModulo = ref(false);
+const showModalCadastroMatricula = ref(false);
 const showModalEditarModulo = ref(false);
 const showMensagemDeletarModulo = ref(false)
 
@@ -133,7 +133,7 @@ const columns = [
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  calcularMediaEStatus();
+  calcularMediaEStatus(rows_matriculas);
 });
 
 // Abre o modal componente para deletar o módulo
@@ -157,7 +157,7 @@ const buscarAlunoSelecionado = async () => {
 const getModulos = async(idAluno) => {
   try{
     const resp = await api.get(`alunos/${idAluno}`);
-    // console.log(resp);
+    console.log(resp);
     
     resp.data.Matricula.map((modulo) => {
       rows_matriculas.value.push(modulo);
@@ -171,22 +171,27 @@ const getModulos = async(idAluno) => {
 
 //Função para ver o status do aluno
 
- const calcularMediaEStatus = async () => {
+ const calcularMediaEStatus = async (rows_matriculas) => {
   console.log('Entrou em calcularMediaEStatus')
-  rows_matriculas.value.forEach((value, index) => {
-    console.log("Testando")
-    const media = ref(0);
+  let matriculas = rows_matriculas.value
+  console.log(matriculas)
+  matriculas.map((matricula) => {
+    console.log('matricula')
+  })
+  // rows_matriculas.value.forEach((value, index) => {
+  //   console.log("Testando")
+  //   const media = ref(0);
   
-    media.value = (Number(value.nota1) + Number(value.nota2) + Number(value.nota3)) / 3;
+  //   media.value = (Number(value.nota1) + Number(value.nota2) + Number(value.nota3)) / 3;
 
-    if(value.nota1 === null || value.nota2 || value.nota3 === null) {
-      //logica aqui (status -> Incompleto)
-    }else if (media.value >= 5) {
-      //logica aqui (status -> Apto) 
-    }else{
-      //logica aqui (status -> Inapto)
-    }
-  });
+  //   if(value.nota1 === null || value.nota2 || value.nota3 === null) {
+  //     //logica aqui (status -> Incompleto)
+  //   }else if (media.value >= 5) {
+  //     //logica aqui (status -> Apto) 
+  //   }else{
+  //     //logica aqui (status -> Inapto)
+  //   }
+  // });
   console.log('Chegou aqui');  
 
 };

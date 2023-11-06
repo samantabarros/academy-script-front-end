@@ -14,7 +14,7 @@
         <q-form color="primary">
           <q-card-section class="q-pt-xs">
             <div class="q-mb-md">
-              <q-input outlined v-model="formularioEditar.nome_aluno" label="Nome" />
+              <q-input outlined v-model="formularioEditar.nome_aluno" label="Nome"/>
             </div>
             <div class="q-mb-md">
               <q-input outlined v-model="formularioEditar.cpf" mask="###.###.###-##" unmasked-value disable label="CPF" />

@@ -5,7 +5,7 @@
         <q-btn round color="negative" icon="close" size="10px" v-close-popup />
       </div>
       <div class="text-h4 q-ml-xs row justify-center" style="font-family: lucyda-caligraphy">
-        Cadastrar Módulo
+        Criar Matrícula
       </div>
     </q-card-section>
     <q-separator />
@@ -46,11 +46,12 @@ import { ref } from "vue";
 
 const cadastro = ref({
   nome_modulo: "",
-  //nota1: "",
-  //nota2: "",
-  //nota3: ""
+  nota1: "",
+  nota2: "",
+  nota3: ""
 });
 
+//Função para cadastrar  módulo
 const submitForm = async () => {
   const {data} = await api.post(`matricula`, cadastro.value)
   console.log(data)
