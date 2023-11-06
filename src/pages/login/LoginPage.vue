@@ -13,7 +13,7 @@
             ">
           <q-card-section>
             <div class="col-12 col-md-6 flex flex-center q-pt-md">
-              <q-img src="/img/logo/logo_sgma_02.png" style="max-height: 200px; max-width: 200px" />
+              <q-img src="/img/logo/logo_sgma003.png" style="max-height: 200px; max-width: 200px" />
             </div>
            
           </q-card-section>
@@ -139,8 +139,11 @@ const senhaRules = [
 .card-login {
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
+  /* border: 2px solid rgba(79, 22, 252, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); */
 
 </style>

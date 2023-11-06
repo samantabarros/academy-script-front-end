@@ -1,0 +1,33 @@
+<template>
+    <div class="q-pa-md">
+        <div class="bg-grey-2 row justify-center card-modulo" style="width: 320px; height: 180px;">
+            <div class="col-4 q-pl-md q-py-md">
+                <q-img src="/img/brain.png" alt="imagem cérebro animado" size="10px" />
+            </div>
+            <div class="col-8 flex flex-center">
+                <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
+            </div>
+            <div class="justify-between">
+                <q-btn class="q-mr-xs" icon="edit" color="info" dense size="sm" />
+
+                <q-btn class="q-mr-xs" icon="delete" color="negative" dense size="sm"
+                    />
+                <q-btn class="q-mr-xs" icon="group" color="purple" dense size="sm"/>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+
+const props = defineProps(["modulo"])
+</script>
+
+<style>
+.card-modulo {
+    border: 2px solid rgba(79, 22, 252, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+
+}
+</style>

@@ -3,7 +3,7 @@
     class="q-pa-md text-body-1"
     :style="`min-height: ${$q.screen.height - 130}px`"
   >
-    <div class="row justify-end">
+    <div class="row justify-end q-pb-md">
       <q-input
         filled
         borderless
@@ -27,6 +27,11 @@
         @click="showModalCadastrar = true"
       ></q-btn>
     </div>
+    <div class="row">
+      <div v-for="modulo in modulos" :key="modulo.id">
+        <card-modulo :modulo="modulo"></card-modulo>
+      </div>
+    </div>
   </div>
   <router-link to="/home" style="text-decoration: none">
     <div class="justify-end-left q-pa-xs q-mb-xs">
@@ -36,4 +41,25 @@
 </template>
   
 <script setup>
+import { api } from "src/boot/axios";
+import CardModulo from "src/components/commons/CardModulo.vue";
+import { onMounted, ref } from "vue";
+
+const modulos = ref([]);
+
+onMounted( () => {
+  getModulos();
+});
+
+const getModulos = async () => {
+  try{
+    const {data} = await api.get("modulos");
+    console.log(data);
+    modulos.value = data;
+  }catch{
+    console.log(error);
+  }
+
+
+}
 </script>

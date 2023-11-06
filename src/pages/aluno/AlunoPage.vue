@@ -84,7 +84,7 @@
 <script setup>
 import { useQuasar} from "quasar";
 import { api } from "src/boot/axios";
-import { computed, onMounted, ref } from "vue";
+import {onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
@@ -131,17 +131,6 @@ const columns = [
 onMounted(() => {
   getAlunos();
 });
-
-// async function openModulo(id) {
-//   console.log("Entrou na função openModulo");
-//   console.log(id);
-//   router.push(`modulos/${id}`);
-// }
-
-// const openModulo = async (id) => {
-//   //router.push(`/modulos/${id}`);
-//   console.log(id);
-// };
 
 // Abre o modal componente para deletar  o aluno
 const iniciarModalDeletar = async (aluno) => {
