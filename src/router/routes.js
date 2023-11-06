@@ -19,8 +19,13 @@ const routes = [
         component: () => import("pages/aluno/AlunoPage.vue")
       },
       {
-        path: "/modulos/:id",
-        name: "modulo",
+        path: "/matriculas/:id",
+        name: "matricula",
+        component: () => import("pages/matricula/MatriculaPage.vue")
+      },
+      {
+        path: "/modulos",
+        name: "modulos",
         component: () => import("pages/modulo/ModuloPage.vue")
       }
     ],

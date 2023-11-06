@@ -49,11 +49,25 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const isOpen = ref(false);
 const linksList = [
+
+   {
+    title: "Home",
+    caption: "",
+    icon: "home",
+    route: "/home",
+  },
   {
     title: "Alunos",
     caption: "",
     icon: "group",
-    route: "/home",
+    route: "/alunos",
+  },
+
+  {
+    title: "Módulos",
+    caption: "",
+    icon: "auto_stories",
+    route: "/modulos",
   },
 
   {

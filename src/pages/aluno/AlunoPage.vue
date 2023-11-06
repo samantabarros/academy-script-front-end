@@ -68,12 +68,17 @@
             color="orange"
             dense
             size="sm"
-            :to="`/modulos/${props.row.id}`"
+            :to="`/matriculas/${props.row.id}`"
           />
         </q-td>
       </template>
     </q-table>
   </div>
+  <router-link to="/home" style="text-decoration: none">
+    <div class="justify-end-left q-pa-xs q-mb-xs">
+      <q-btn outline class="text-orange-10 ">Voltar</q-btn>
+    </div>
+  </router-link>
 </template>
 
 <script setup>
