@@ -5,7 +5,7 @@
   >
     <div class="row justify-end q-pb-md">
       <q-input
-        filled
+        outlined
         borderless
         dense
         debounce="300"
@@ -21,7 +21,7 @@
       </q-input>
       <q-btn
         dense
-        class="bg-positive text-white"
+        class="bg-positive text-white q-px-md"
         icon="add"
         label="Adicionar"
         @click="showModalCadastrarModulo = true"

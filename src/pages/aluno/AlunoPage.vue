@@ -2,7 +2,7 @@
   <div class="q-pa-md text-body1"  :style="`min-height: ${$q.screen.height - 130}px`">
     <div class="row justify-end">
       <q-input
-        filled
+        outlined
         borderless
         dense
         debounce="300"
@@ -18,7 +18,7 @@
       </q-input>
       <q-btn
         dense
-        class="bg-positive text-white"
+        class="bg-positive text-white q-px-md justify-betwen"
         icon="person_add"
         label="Adicionar"
         @click="showModalCadastrar = true"

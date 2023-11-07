@@ -25,7 +25,7 @@ const props = defineProps(["modulo"])
 
 <style>
 .card-modulo {
-    border: 2px solid rgba(79, 22, 252, 0.5);
+    border: 2px solid rgba(31, 61, 195, 0.5);
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 

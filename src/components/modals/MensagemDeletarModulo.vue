@@ -8,8 +8,8 @@
             </div>
             <div class="col-sm-12">
                 <q-card-actions align="center">
-                    <q-btn flat label="Cancelar" color="negative" v-close-popup />
                     <q-btn flat label="Sim, excluir" color="positive" @click="deletarModulo(id)" />
+                    <q-btn flat label="Cancelar" color="negative" v-close-popup />
                 </q-card-actions>
             </div>
         </div>

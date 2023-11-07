@@ -1,13 +1,13 @@
 <template>
-  <q-card>
+  <q-card >
     <div class="row q-pt-lg q-pb-sm justify-center">
       <q-avatar icon="info" color="orange" text-color="white" />
       <span class="text-h6 q-ml-sm text-center">Tem certeza que deseja excluir esse aluno? Ao confirmar essa ação, você
         não poderá desfazê-la!</span>
     </div>
     <q-card-actions align="center" class="">
-      <q-btn flat label="Cancelar" color="negative" v-close-popup />
       <q-btn flat label="Sim, excluir" color="positive" v-close-popup @click="deletarAluno(id)" />
+      <q-btn flat label="Cancelar" color="negative" v-close-popup />
     </q-card-actions>
 
   </q-card>
@@ -51,3 +51,10 @@ const deletarAluno = async (id) => {
 };
 
 </script>
+
+.card-deletar {
+    border: 2px solid rgba(31, 61, 195, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+
+}

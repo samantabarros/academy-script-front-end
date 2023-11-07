@@ -13,7 +13,7 @@
 
         <q-toolbar-title> SGMA </q-toolbar-title>
 
-        <q-btn flat dense round label="Sair" icon="logout" to="/" />
+        <q-btn flat label="Sair" icon="logout" to="/" />
       </q-toolbar>
     </q-header>
 

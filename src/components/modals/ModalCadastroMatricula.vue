@@ -4,7 +4,7 @@
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
           <div>
-            <q-select outlined v-model="moduloSelecionado" :options="modulos" label="Selecione um módulo" :rules="[
+            <q-select outlined v-model="label" :options="modulos" label="Selecione o módulo" :rules="[
               (val) => (val && val.length > 0) || 'Campo obrigatório'
             ]"> 
             </q-select>
@@ -44,8 +44,14 @@ const cadastro = ref({
 
 const getModulos = async () =>{
   const {data} = await api.get("modulos");
-  modulos.value = data;
-  console.log(modulos);
+  // modulos.value = data;
+  // console.log(modulos);
+  data.map((value) => {
+    modulos.value.push({
+      value: value.id,
+      label: value.nome_modulo,
+    });  
+  });
 
 }
 //Função para cadastrar  módulo
