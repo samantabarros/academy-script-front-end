@@ -166,17 +166,17 @@ async function calcularMedia(rows_matriculas){
   let matriculas = rows_matriculas.value
   console.log(rows_matriculas.value)
   rows_matriculas.value.forEach((value, index) => {
-    console.log("Testando")
+    console.log("Testando");
     const media = ref(0);
  
     media.value = (Number(value.nota1) + Number(value.nota2) + Number(value.nota3)) / 3;
 
-    if(value.nota1 === null || value.nota2 || value.nota3 === null) {
-      //logica aqui (status -> Incompleto)
+    if(value.nota1 === null || value.nota2 === null || value.nota3 === null) {
+      //rows_matriculas.value[index] = { ...rows_matriculas.value[index], status: "Incompleto"};
     }else if (media.value >= 5) {
-      //logica aqui (status -> Apto) 
+      //rows_matriculas.value[index] = { ...rows_matriculas.value.[index], status: "Apto"};
     }else{
-      //logica aqui (status -> Inapto)
+      //rows_matriculas.value[index] = { ...rows_matriculas.value.[index], status: "Inapto"};
     }
   }); 
 }

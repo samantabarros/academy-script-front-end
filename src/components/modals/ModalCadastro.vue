@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { defineComponent, onMounted, ref, computed } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { Notify, useQuasar } from "quasar";
 import { api } from "src/boot/axios";
@@ -61,14 +61,7 @@ const submitForm = async () => {
       icon: "check_circle_outline",
       position: "top",
     });
-    // const { data } = await api.post("alunos", cadastro.value).then((res) => {
-    //   console.log(data);
-    //   $q.notify({
-    //     message: "Aluno cadastrado com sucesso!",
-    //     color: "positive",
-    //     icon: "check_circle_outline",
-    //   });
-    // });
+
   } catch (error) {
     if (error.response) {
       $q.notify({
@@ -86,12 +79,13 @@ const submitForm = async () => {
       });
     }
   }
-
   setTimeout(() => {
     location.reload();
   }, 2000);
 
-  // Regras para a data de nascimento
+};
+
+// Regras para a data de nascimento
 
   // const maximumDate = today();
   // const date = ref(null);
@@ -109,7 +103,7 @@ const submitForm = async () => {
   //   const day = String(currentDate.getDate()).padStart(2, '0');        // Adiciona um zero à esquerda se necessário
   //   return `${year}-${month}-${day}`;
   // }
-};
+
 </script>
 
 <style scoped>

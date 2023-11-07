@@ -30,4 +30,8 @@ const props = defineProps(["modulo"])
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 
 }
+
+.card-modulo:hover {
+  transform: scale(1.05);
+}
 </style>

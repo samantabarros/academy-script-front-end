@@ -4,9 +4,10 @@
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
           <div>
-            <q-input outlined v-model="cadastro.nome_modulo" label="Nome" :rules="[
+            <q-select outlined v-model="moduloSelecionado" :options="modulos" label="Selecione um módulo" :rules="[
               (val) => (val && val.length > 0) || 'Campo obrigatório'
-            ]" />
+            ]"> 
+            </q-select>
           </div>
           <div class="q-mb-md">
             <q-input outlined v-model="cadastro.nota1" label="Nota 1" />
@@ -29,10 +30,11 @@
 
 <script setup>
 import { api } from "src/boot/axios";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import CardBase from "../commons/CardBase.vue";
 
-
+const modulos = ref([]);
+const moduloSelecionado = ref();
 const cadastro = ref({
   nome_modulo: "",
   nota1: "",
@@ -40,6 +42,12 @@ const cadastro = ref({
   nota3: ""
 });
 
+const getModulos = async () =>{
+  const {data} = await api.get("modulos");
+  modulos.value = data;
+  console.log(modulos);
+
+}
 //Função para cadastrar  módulo
 const submitForm = async () => {
   const { data } = await api.post(`matricula`, cadastro.value)
@@ -47,6 +55,9 @@ const submitForm = async () => {
 
 }
 
+onMounted(() => {
+  getModulos()
+});
 </script>
 
 <style scoped>

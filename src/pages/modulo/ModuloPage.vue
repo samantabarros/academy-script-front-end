@@ -24,9 +24,12 @@
         class="bg-positive text-white"
         icon="add"
         label="Adicionar"
-        @click="showModalCadastrar = true"
+        @click="showModalCadastrarModulo = true"
       ></q-btn>
     </div>
+    <q-dialog v-model="showModalCadastrarModulo">
+      <modal-cadastro-modulo />
+    </q-dialog>
     <div class="row">
       <div v-for="modulo in modulos" :key="modulo.id">
         <card-modulo :modulo="modulo"></card-modulo>
@@ -43,9 +46,11 @@
 <script setup>
 import { api } from "src/boot/axios";
 import CardModulo from "src/components/commons/CardModulo.vue";
+import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
 import { onMounted, ref } from "vue";
 
 const modulos = ref([]);
+const showModalCadastrarModulo = ref(false);
 
 onMounted( () => {
   getModulos();
