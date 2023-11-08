@@ -18,7 +18,7 @@
       </q-input>
       <q-btn
         dense
-        class="bg-positive text-white q-px-md justify-betwen"
+        class="bg-positive text-white q-px-md"
         icon="person_add"
         label="Adicionar"
         @click="showModalCadastrar = true"
@@ -40,8 +40,8 @@
           <modal-editar :dados_aluno="alunoAtual" />
         </q-dialog>
 
-        <q-dialog v-model="showMensagemDeletar" persistent>
-          <mensagem-deletar :id="alunoAtual.id" />
+        <q-dialog v-model="showMensagemDeletarAluno" persistent>
+          <mensagem-deletar-aluno :id="alunoAtual.id" />
         </q-dialog>
 
         <q-td :props="props">
@@ -88,7 +88,7 @@ import {onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
-import MensagemDeletar from "src/components/MensagemDeletar.vue";
+import MensagemDeletarAluno from "src/components/MensagemDeletarAluno.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -98,7 +98,7 @@ const $q = useQuasar();
 const showModalEditar = ref(false);
 //const showModal = ref(false);
 const showModalCadastrar = ref(false);
-const showMensagemDeletar = ref(false);
+const showMensagemDeletarAluno = ref(false);
 const alunoAtual = ref({});
 
 const columns = [
@@ -135,7 +135,7 @@ onMounted(() => {
 // Abre o modal componente para deletar  o aluno
 const iniciarModalDeletar = async (aluno) => {
   alunoAtual.value = aluno;
-  showMensagemDeletar.value = true;
+  showMensagemDeletarAluno.value = true;
 }
 
 // Abre o modal para editar o aluno

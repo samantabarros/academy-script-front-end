@@ -1,5 +1,5 @@
 <template>
-  <card-base titulo="Cadastrar Aluno">
+  <card-base titulo="Cadastrar Aluno" tamanho="medio">
     <div class="col-12 col-4-md">
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
@@ -18,11 +18,11 @@
               label="Data de Nascimento" rules="[dateRules]">
             </q-input>
           </div>
-          <div class="row q-pa-md q-gutter-lg justify-center">
-            <q-btn color="positive" type="submit" label="Cadastrar" />
-            <q-btn color="negative" label="Cancelar" v-close-popup />
-          </div>
         </q-card-section>
+        <div class="row q-pa-md q-gutter-lg flex justify-end">
+          <q-btn color="positive" type="submit" size="13px" label="Cadastrar" />
+          <q-btn color="negative" size="13px" label="Cancelar" v-close-popup />
+        </div>
       </q-form>
     </div>
   </card-base>
@@ -87,25 +87,23 @@ const submitForm = async () => {
 
 // Regras para a data de nascimento
 
-  // const maximumDate = today();
-  // const date = ref(null);
+// const maximumDate = today();
+// const date = ref(null);
 
-  // function dateRules(val) {
-  //   if (!val) {
-  //     return "Data de nascimento é obrigatória";
-  //   }
-  //   return true;
-  // }
-  // function today() {
-  //   const currentDate = new Date();
-  //   const year = currentDate.getFullYear();
-  //   const month = String(currentDate.getMonth() + 1).padStart(2, '0');  // Adiciona um zero à esquerda se necessário
-  //   const day = String(currentDate.getDate()).padStart(2, '0');        // Adiciona um zero à esquerda se necessário
-  //   return `${year}-${month}-${day}`;
-  // }
+// function dateRules(val) {
+//   if (!val) {
+//     return "Data de nascimento é obrigatória";
+//   }
+//   return true;
+// }
+// function today() {
+//   const currentDate = new Date();
+//   const year = currentDate.getFullYear();
+//   const month = String(currentDate.getMonth() + 1).padStart(2, '0');  // Adiciona um zero à esquerda se necessário
+//   const day = String(currentDate.getDate()).padStart(2, '0');        // Adiciona um zero à esquerda se necessário
+//   return `${year}-${month}-${day}`;
+// }
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

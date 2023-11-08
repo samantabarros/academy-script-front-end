@@ -1,11 +1,10 @@
 <template>
     <q-card
-      class="card-estilo"
-      :style="`min-height:${$q.screen.height - 120}px`"
+      :class= "`card-${tamanho}`"
     >
       <q-card-section>
         <div class="row justify-end">
-          <q-btn round color="negative" icon="close"  size="10px"  v-close-popup />
+          <q-btn square dense color="grey" icon="close"  size="10px"  v-close-popup />
         </div>
         <div class="text-h4 q-ml-xs row justify-center"> {{ titulo }}</div>
       </q-card-section>
@@ -17,15 +16,34 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 
-const props = defineProps(["titulo"])
+
+const props = defineProps({"titulo": String, "tamanho": String})
+
+// const modalClass = () => {
+//   return `card-${tamanho.value}`
+// }
 </script>
 
 <style>
-.card-estilo {
+.card-pequeno{
   max-width: 100%;
   max-height: 100%;
-  height: 550px;
+  height: 350px;
+  width: 550px;
+}
+
+.card-medio{
+  max-width: 100%;
+  max-height: 100%;
+  height: 500px;
+  width: 550px;
+}
+.card-grande{
+  max-width: 100%;
+  max-height: 100%;
+  height: 600px;
   width: 550px;
 }
 </style>

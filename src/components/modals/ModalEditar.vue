@@ -1,25 +1,25 @@
 <template>
-  <card-base titulo="Editar aluno">
-      <div class="col-12 col-4-md">
-        <q-form color="primary">
-          <q-card-section class="q-pt-xs">
-            <div class="q-mb-md">
-              <q-input outlined v-model="formularioEditar.nome_aluno" label="Nome"/>
-            </div>
-            <div class="q-mb-md">
-              <q-input outlined v-model="formularioEditar.cpf" mask="###.###.###-##" unmasked-value disable label="CPF" />
-            </div>
-            <div>
-              <q-input outlined v-model="formularioEditar.data_nascimento" type="date" label="Data de Nascimento" />
-            </div>
-            <div class="row q-pa-md q-gutter-lg justify-center">
-              <q-btn color="positive" label="Atualizar" @click="onSubmit(id, dados_aluno)" />
-              <q-btn color="negative" label="Cancelar" v-close-popup />
-            </div>
-          </q-card-section>
-        </q-form>
-      </div>
-    </card-base>
+  <card-base titulo="Editar aluno" tamanho="medio">
+    <div class="col-12 col-4-md">
+      <q-form color="primary">
+        <q-card-section class="q-pt-xs">
+          <div class="q-mb-md">
+            <q-input outlined v-model="formularioEditar.nome_aluno" label="Nome" />
+          </div>
+          <div class="q-mb-md">
+            <q-input outlined v-model="formularioEditar.cpf" mask="###.###.###-##" unmasked-value disable label="CPF" />
+          </div>
+          <div>
+            <q-input outlined v-model="formularioEditar.data_nascimento" type="date" label="Data de Nascimento" />
+          </div>
+        </q-card-section>
+        <div class="row q-pa-md q-gutter-lg flex justify-end">
+          <q-btn color="positive" size="13px" label="Atualizar"  @click="onSubmit(id, dados_aluno)" />
+          <q-btn color="negative" size="13px" label="Cancelar" v-close-popup />
+        </div>
+      </q-form>
+    </div>
+  </card-base>
 </template>
 
 <script setup>
@@ -87,11 +87,3 @@ const atualizarDados = async (id) => {
 }
 </script>
 
-<style scoped>
-.modal-editar {
-  max-width: 100%;
-  max-height: 100%;
-  height: 550px;
-  width: 550px;
-}
-</style>

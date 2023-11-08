@@ -46,11 +46,11 @@
         </q-td>
       </template>
       <template v-slot:body-cell-acoes="props">
-        <q-dialog v-model="showModalEditarModulo" persistent>
-          <modal-editar-modulo />
+        <q-dialog v-model="showModalEditarMatricula" persistent>
+          <modal-editar-matricula />
         </q-dialog>
-        <q-dialog v-model="showMensagemDeletarModulo" persistent>
-          <mensagem-deletar-modulo :id="moduloAtual.id" />
+        <q-dialog v-model="showMensagemDeletarMatricula" persistent>
+          <mensagem-deletar-matricula :id="moduloAtual.id" />
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
@@ -58,14 +58,14 @@
             color="info"
             dense
             size="sm"
-            @click="showModalEditarModulo = true"
+            @click="showModalEditarMatricula = true"
           />
           <q-btn
             icon="delete"
             color="negative"
             dense
             size="sm"
-            @click="iniciarDeletarModulo(props.row)"
+            @click="iniciarDeletarMatricula(props.row)"
           />
         </q-td>
       </template>
@@ -82,8 +82,8 @@
 import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroMatricula from "src/components/modals/ModalCadastroMatricula.vue";
-import ModalEditarModulo from "src/components/modals/ModalEditarModulo.vue";
-import MensagemDeletarModulo from "src/components/modals/MensagemDeletarModulo.vue";
+import ModalEditarMatricula from "src/components/modals/ModalEditarMatricula.vue";
+import MensagemDeletarMatricula from "src/components/modals/MensagemDeletarMatricula.vue";
 import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 
@@ -95,8 +95,8 @@ const moduloAtual = ref({});
 const idAluno = route.params.id;
 const nomeAlunoSelecionado = ref("");
 const showModalCadastroMatricula = ref(false);
-const showModalEditarModulo = ref(false);
-const showMensagemDeletarModulo = ref(false);
+const showModalEditarMatricula = ref(false);
+const showMensagemDeletarMatricula = ref(false);
 
 const columns = [
   {
@@ -146,9 +146,9 @@ onMounted(() => {
 });
 
 // Abre o modal componente para deletar o módulo
-const iniciarDeletarModulo = async (modulo) => {
+const iniciarDeletarMatricula = async (modulo) => {
   moduloAtual.value = modulo;
-  showMensagemDeletarModulo.value = true;
+  showMensagemDeletarMatricula.value = true;
 };
 
 const buscarAlunoSelecionado = async () => {

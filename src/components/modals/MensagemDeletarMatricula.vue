@@ -1,10 +1,12 @@
 <template>
     <q-card>
-        <div class="row q-pt-lg q-pb-sm row justify-center">
+        <div class="row q-pt-lg q-pb-sx row justify-center">
             <q-avatar icon="info" color="orange" text-color="white" />
             <div class="row">
-                <span class="text-h6 q-ml-sm text-center"> Tem certeza que deseja excluir esse módulo? Ao confirmar essa
-                    ação vocẽ não poderá desfazê-lá.</span>
+                <span class="text-h6 q-px-sm text-center">
+                    <p>Tem certeza que deseja excluir a matrícula desse aluno? </p> 
+                    <p>Ao confirmar essaação vocẽ não poderá desfazê-lá.</p>
+                </span>
             </div>
             <div class="col-sm-12">
                 <q-card-actions align="center">

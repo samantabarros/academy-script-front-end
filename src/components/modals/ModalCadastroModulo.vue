@@ -1,22 +1,17 @@
 <template>
-  <card-base titulo="Cadastrar Módulo">
+  <card-base titulo="Cadastrar Módulo" tamanho="pequeno">
     <div class="col-12 col-4-md">
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
           <div>
-            <q-input
-              outlined
-              class="q-mb-xs"
-              v-model="cadastro.nome_modulo"
-              label="Nome"
-              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
-            />
-          </div>
-          <div class="row q-pa-md q-gutter-lg">
-            <q-btn color="positive" type="submit" label="Cadastrar" />
-            <q-btn color="negative" label="Cancelar" v-close-popup />
+            <q-input outlined class="q-mb-xs" v-model="cadastro.nome_modulo" label="Nome"
+              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']" />
           </div>
         </q-card-section>
+        <div class="row q-pa-md q-gutter-lg flex justify-end">
+          <q-btn color="positive" type="submit" label="Cadastrar" />
+          <q-btn color="negative" label="Cancelar" v-close-popup />
+        </div>
       </q-form>
     </div>
   </card-base>

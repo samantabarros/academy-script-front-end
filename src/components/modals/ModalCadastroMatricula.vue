@@ -1,12 +1,13 @@
 <template>
-  <card-base titulo="Criar Matrícula">
+  <card-base titulo="Criar Matrícula" tamanho="grande">
     <div class="col-12 col-4-md">
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
-          <div>
-            <q-select outlined v-model="label" :options="modulos" label="Selecione o módulo" :rules="[
+          <div class="q-pb-md">
+            <q-select outlined v-model="cadastro.nome_modulo" :options="modulos" label="Selecione o módulo">
+              <!-- :rules="[
               (val) => (val && val.length > 0) || 'Campo obrigatório'
-            ]"> 
+            ]"  -->
             </q-select>
           </div>
           <div class="q-mb-md">
@@ -18,11 +19,11 @@
           <div class="q-mb-md">
             <q-input outlined v-model="cadastro.nota3" label="Nota 3" />
           </div>
-          <div class="row q-pa-md q-gutter-lg justify-center">
-            <q-btn color="positive" type=submit label="Cadastrar" />
-            <q-btn color="negative" label="Cancelar" v-close-popup />
-          </div>
         </q-card-section>
+        <div class="row q-pa-md q-gutter-lg flex justify-end">
+          <q-btn color="positive" type=submit size="13px" label="Cadastrar" />
+          <q-btn color="negative" size="13px" label="Cancelar" v-close-popup />
+        </div>
       </q-form>
     </div>
   </card-base>
@@ -34,26 +35,25 @@ import { onMounted, ref } from "vue";
 import CardBase from "../commons/CardBase.vue";
 
 const modulos = ref([]);
-const moduloSelecionado = ref();
 const cadastro = ref({
-  nome_modulo: "",
+  id_aluno: "",
+  id_modulo: 'nome_modulo.valor',
   nota1: "",
   nota2: "",
   nota3: ""
 });
 
-const getModulos = async () =>{
-  const {data} = await api.get("modulos");
-  // modulos.value = data;
-  // console.log(modulos);
-  data.map((value) => {
+//Pega todos os módulos que estão cadastrados
+const getModulos = async () => {
+  const { data } = await api.get("modulos");
+  data.map((valor) => {
     modulos.value.push({
-      value: value.id,
-      label: value.nome_modulo,
-    });  
+      valor: valor.id,
+      label: valor.nome_modulo,
+    });
   });
-
 }
+
 //Função para cadastrar  módulo
 const submitForm = async () => {
   const { data } = await api.post(`matricula`, cadastro.value)
