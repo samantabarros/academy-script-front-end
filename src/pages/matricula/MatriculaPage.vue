@@ -57,14 +57,14 @@
             icon="edit"
             color="info"
             dense
-            size="sm"
+            size="md"
             @click="showModalEditarMatricula = true"
           />
           <q-btn
             icon="delete"
             color="negative"
             dense
-            size="sm"
+            size="md"
             @click="iniciarDeletarMatricula(props.row)"
           />
         </q-td>

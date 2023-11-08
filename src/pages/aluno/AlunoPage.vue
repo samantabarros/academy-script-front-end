@@ -50,7 +50,7 @@
             icon="edit"
             color="info"
             dense
-            size="sm"
+            size="md"
             @click="iniciarModalEditar(props.row)"
           />
 
@@ -59,7 +59,7 @@
             icon="delete"
             color="negative"
             dense
-            size="sm"
+            size="md"
             @click="iniciarModalDeletar(props.row)"
           />
           <q-btn
@@ -67,7 +67,7 @@
             icon="folder"
             color="orange"
             dense
-            size="sm"
+            size="md"
             :to="`/matriculas/${props.row.id}`"
           />
         </q-td>
