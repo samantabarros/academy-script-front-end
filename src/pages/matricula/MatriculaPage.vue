@@ -40,14 +40,14 @@
       row-key="id"
     >
       <template v-slot:body-cell-status="props">
-        <q-td  class="flex justify-center items-center" >
+        <q-td  class="flex justify-center items-center">
           <q-badge :color="corStatus(props.row.status)">
           {{ props.row.status }}</q-badge>
         </q-td>
       </template>
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditarMatricula" persistent>
-          <modal-editar-matricula />
+          <modal-editar-matricula :dados_modulo="moduloAtual" />
         </q-dialog>
         <q-dialog v-model="showMensagemDeletarMatricula" persistent>
           <mensagem-deletar-matricula :id="moduloAtual.id" />
@@ -58,7 +58,7 @@
             color="info"
             dense
             size="md"
-            @click="showModalEditarMatricula = true"
+            @click="iniciarEditarMatricula(props.row)"
           />
           <q-btn
             icon="delete"
@@ -141,8 +141,8 @@ const columns = [
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  //calcularMediaEStatus(rows_matriculas);
-  //calcularMedia(rows_matriculas)
+  //calcularMediaStatusEStatus(rows_matriculas);
+  //calcularMediaStatus(rows_matriculas)
 });
 
 // Abre o modal componente para deletar o módulo
@@ -150,6 +150,13 @@ const iniciarDeletarMatricula = async (modulo) => {
   moduloAtual.value = modulo;
   showMensagemDeletarMatricula.value = true;
 };
+
+// Abre o modal para editar o módulo
+const iniciarEditarMatricula = async (modulo) => {
+  moduloAtual.value = modulo;
+  showModalEditarMatricula.value = true;
+}
+
 
 const buscarAlunoSelecionado = async () => {
   // console.log(idAluno)
@@ -171,16 +178,15 @@ const getModulos = async (idAluno) => {
     resp.data.Matricula.map((modulo) => {
       rows_matriculas.value.push(modulo);
     });
-    calcularMedia(rows_matriculas);
+    calcularMediaStatus(rows_matriculas);
   } catch (error) {
     console.error(error);
   }
 };
 
 //Função para ver o status do aluno
-
-async function calcularMedia(rows_matriculas) {
-  console.log("Entrou em calcularMediaEStatus");
+async function calcularMediaStatus(rows_matriculas) {
+  console.log("Entrou em calcularMediaStatusEStatus");
   let matriculas = rows_matriculas.value;
   console.log(rows_matriculas.value);
   rows_matriculas.value.forEach((value, index) => {

@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr hFf">
-    <q-header elevated class="bg-primary">
+    <q-header elevated class="bg-blue-10" >
       <q-toolbar>
         <q-btn
           flat
@@ -33,8 +33,8 @@
       </q-list>
     </q-drawer>
 
-    <q-footer elevated class="q-pa-xs text-center bg-primary">
-      <span>Samanta Barros &copy; 2023</span>
+    <q-footer elevated class="q-pa-xs text-center bg-blue-10 flex flex-center" style="height: 5em;">
+      <span> Samanta Barros &copy; 2023</span>
     </q-footer>
 
     <q-page-container>
@@ -49,8 +49,7 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const isOpen = ref(false);
 const linksList = [
-
-   {
+  {
     title: "Home",
     caption: "",
     icon: "home",

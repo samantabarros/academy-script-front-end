@@ -4,18 +4,35 @@
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
           <div>
-            <q-input outlined class="q-mb-xs" v-model="cadastro.nome_aluno" label="Nome" :rules="[
-              (val) => (val && val.length > 0) || 'Campo obrigatório',
-            ]" />
+            <q-input
+              outlined
+              class="q-mb-xs"
+              v-model="cadastro.nome_aluno"
+              label="Nome"
+              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+            />
           </div>
           <div>
-            <q-input outlined ref="cpfRef" v-model="cadastro.cpf" mask="###.###.###-##" unmasked-value label="CPF" :rules="[
-              (val) => (val && val.length > 0) || 'Campo obrigatório',
-            ]" />
+            <q-input
+              outlined
+              ref="cpfRef"
+              v-model="cadastro.cpf"
+              mask="###.###.###-##"
+              unmasked-value
+              label="CPF"
+              :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']"
+            />
           </div>
           <div>
-            <q-input outlined class="q-mb-lg" v-model="cadastro.data_nascimento" type="date" :max="maximumDate"
-              label="Data de Nascimento" rules="[dateRules]">
+            <q-input
+              outlined
+              class="q-mb-lg"
+              v-model="cadastro.data_nascimento"
+              type="date"
+              :max="maximumDate"
+              label="Data de Nascimento"
+              rules="[dateRules]"
+            >
             </q-input>
           </div>
         </q-card-section>
@@ -34,7 +51,6 @@ import { useRouter } from "vue-router";
 import { Notify, useQuasar } from "quasar";
 import { api } from "src/boot/axios";
 import CardBase from "../commons/CardBase.vue";
-
 
 const $q = useQuasar();
 const router = useRouter();
@@ -61,7 +77,9 @@ const submitForm = async () => {
       icon: "check_circle_outline",
       position: "top",
     });
-
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   } catch (error) {
     if (error.response) {
       $q.notify({
@@ -79,30 +97,7 @@ const submitForm = async () => {
       });
     }
   }
-  setTimeout(() => {
-    location.reload();
-  }, 2000);
-
 };
-
-// Regras para a data de nascimento
-
-// const maximumDate = today();
-// const date = ref(null);
-
-// function dateRules(val) {
-//   if (!val) {
-//     return "Data de nascimento é obrigatória";
-//   }
-//   return true;
-// }
-// function today() {
-//   const currentDate = new Date();
-//   const year = currentDate.getFullYear();
-//   const month = String(currentDate.getMonth() + 1).padStart(2, '0');  // Adiciona um zero à esquerda se necessário
-//   const day = String(currentDate.getDate()).padStart(2, '0');        // Adiciona um zero à esquerda se necessário
-//   return `${year}-${month}-${day}`;
-// }
 
 </script>
 

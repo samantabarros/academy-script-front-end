@@ -33,7 +33,6 @@ import CardBase from "../commons/CardBase.vue";
 const $q = useQuasar();
 const router = useRouter;
 const props = defineProps(["dados_aluno"]);
-const text = ref("");
 const id = props.dados_aluno.id;
 
 const formularioEditar = ref({
@@ -45,7 +44,7 @@ const formularioEditar = ref({
 })
 
 onMounted(() => {
-  formularioEditar
+  //formularioEditar
 })
 
 
@@ -55,9 +54,9 @@ function onSubmit(id) {
 }
 const atualizarDados = async (id) => {
   try {
-    console.log("Antes da função formatar " + formularioEditar.value.data_nascimento);
+    //console.log("Antes da função formatar data" + formularioEditar.value.data_nascimento);
     formularioEditar.value.data_nascimento = new Date(formularioEditar.value.data_nascimento).toISOString();
-    console.log("Depois da função formatar " + formularioEditar.value.data_nascimento);
+    //console.log("Depois da função formatar data" + formularioEditar.value.data_nascimento);
     const { data } = await api.put(`alunos/${id}`, formularioEditar.value)
     console.log("Depois da requisição put " + formularioEditar.value.data_nascimento);
     $q.notify({

@@ -54,5 +54,10 @@ const deletarAluno = async (id) => {
 };
 </script>
 
-.card-deletar { border: 2px solid rgba(31, 61, 195, 0.5); border-radius: 20px;
-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
+<style>
+.card-deletar {
+  border: 2px solid rgba(31, 61, 195, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+</style>

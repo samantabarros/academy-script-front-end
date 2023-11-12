@@ -1,19 +1,17 @@
 <template>
   <card-base titulo="Criar Matrícula" tamanho="grande">
     <div class="col-12 col-4-md">
-    
       <q-form @submit.prevent="submitForm">
         <q-card-section class="q-pt-xs">
-          <div class="q-pb-md">
+          <div class="q-pb-xs q-pt-md">
             <q-select
               outlined
               v-model="cadastro.modulo"
               :options="modulos"
               label="Selecione o módulo"
+              :rules="[(val) => (val && val.length !== null) || 'Campo obrigatório']"
+    
             >
-              <!-- :rules="[
-              (val) => (val && val.length > 0) || 'Campo obrigatório'
-            ]"  -->
             </q-select>
           </div>
           <div class="q-mb-md">
@@ -38,9 +36,11 @@
 <script setup>
 import { api } from "src/boot/axios";
 import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
+import { useQuasar } from "quasar";
 import CardBase from "../commons/CardBase.vue";
 
+const $q = useQuasar();
 const route = useRoute();
 
 const { id } = route.params;
@@ -67,19 +67,43 @@ const getModulos = async () => {
 
 //Função para cadastrar  módulo
 const submitForm = async () => {
-  cadastro.value.id_modulo = cadastro.value.modulo.valor;
-  cadastro.value.nota1 =  Number(cadastro.value.nota1);
-  cadastro.value.nota2 =  Number(cadastro.value.nota2);
-  cadastro.value.nota3 =  Number(cadastro.value.nota3);
+  try {
+    cadastro.value.id_modulo = cadastro.value.modulo.valor;
+    cadastro.value.nota1 = Number(cadastro.value.nota1);
+    cadastro.value.nota2 = Number(cadastro.value.nota2);
+    cadastro.value.nota3 = Number(cadastro.value.nota3);
 
-  delete cadastro.value.modulo;
-  console.log(cadastro.value);
-  const { data } = await api.post(`matricula`, cadastro.value);
-  console.log(data);
-
-  setTimeout(() =>{
-    location.reload();
-  }, 2000);
+    delete cadastro.value.modulo;
+    console.log(cadastro.value);
+    const { data } = await api.post(`matricula`, cadastro.value);
+    console.log(data);
+    $q.notify({
+      message: "Matrícula realizada com sucesso!",
+      color: "positive",
+      icon: "check_circle_outline",
+      position: "top",
+    });
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+    
+  } catch (error) {
+    if (error.response) {
+      $q.notify({
+        message: error.response.data.message,
+        color: "negative",
+        icon: "error",
+        position: "top",
+      });
+    } else {
+      $q.notify({
+        message: "Erro ao cadastrar a matrícula!",
+        color: "negative",
+        icon: "error",
+        position: "top",
+      });
+    }
+  }
 };
 
 onMounted(() => {
@@ -87,12 +111,3 @@ onMounted(() => {
   cadastro.value.id_aluno = id;
 });
 </script>
-
-<style scoped>
-.modal-cadastro-modulo {
-  max-width: 100%;
-  max-height: 100%;
-  height: 550px;
-  width: 550px;
-}
-</style>
