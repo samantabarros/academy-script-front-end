@@ -27,7 +27,13 @@ const routes = [
         path: "/modulos",
         name: "modulos",
         component: () => import("pages/modulo/ModuloPage.vue")
-      }
+      },
+      {
+        path: "/alunosPorCurso/:id",
+        name: "alunosPorCurso",
+        component: () => import("pages/aluno/AlunosPorCurso.vue")
+      },
+      
     ],
   },
 ];

@@ -31,6 +31,7 @@
       <modal-cadastro-modulo />
     </q-dialog>
     <div class="row">
+      
       <div v-for="modulo in modulos" :key="modulo.id">
         <card-modulo :modulo="modulo"></card-modulo>
       </div>
@@ -38,11 +39,11 @@
   </div>
   <router-link to="/home" style="text-decoration: none">
     <div class="justify-end-left q-pa-xs q-mb-xs">
-      <q-btn outline class="text-orange-10 ">Voltar</q-btn>
+      <q-btn outline class="text-orange-10">Voltar</q-btn>
     </div>
   </router-link>
 </template>
-  
+
 <script setup>
 import { api } from "src/boot/axios";
 import CardModulo from "src/components/commons/CardModulo.vue";
@@ -52,19 +53,17 @@ import { onMounted, ref } from "vue";
 const modulos = ref([]);
 const showModalCadastrarModulo = ref(false);
 
-onMounted( () => {
+onMounted(() => {
   getModulos();
 });
 
 const getModulos = async () => {
-  try{
-    const {data} = await api.get("modulos");
+  try {
+    const { data } = await api.get("modulos");
     console.log(data);
     modulos.value = data;
-  }catch{
+  } catch {
     console.log(error);
   }
-
-
-}
+};
 </script>

@@ -9,10 +9,8 @@
             </div>
             <div class="justify-between">
                 <q-btn class="q-mr-xs" icon="edit" color="info" dense size="sm" />
-
-                <q-btn class="q-mr-xs" icon="delete" color="negative" dense size="sm"
-                    />
-                <q-btn class="q-mr-xs" icon="group" color="purple" dense size="sm"/>
+                <q-btn class="q-mr-xs" icon="delete" color="negative" dense size="sm"/>
+                <q-btn class="q-mr-xs" icon="group" color="purple" dense size="sm" :to="`/alunosPorCurso/${modulo.id}`" />
             </div>
         </div>
     </div>

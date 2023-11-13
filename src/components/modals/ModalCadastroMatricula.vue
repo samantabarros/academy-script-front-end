@@ -9,8 +9,9 @@
               v-model="cadastro.modulo"
               :options="modulos"
               label="Selecione o módulo"
-              :rules="[(val) => (val && val.length !== null) || 'Campo obrigatório']"
-    
+              :rules="[
+                (val) => (val && val.length !== null) || 'Campo obrigatório',
+              ]"
             >
             </q-select>
           </div>
@@ -86,7 +87,6 @@ const submitForm = async () => {
     setTimeout(() => {
       location.reload();
     }, 1000);
-    
   } catch (error) {
     if (error.response) {
       $q.notify({
@@ -110,4 +110,5 @@ onMounted(() => {
   getModulos();
   cadastro.value.id_aluno = id;
 });
+
 </script>
