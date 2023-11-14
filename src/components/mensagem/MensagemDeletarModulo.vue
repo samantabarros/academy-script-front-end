@@ -5,14 +5,13 @@
           Tem certeza que deseja excluir esse módulo? Ao confirmar essa ação, você
           não poderá desfazê-la! 
       </span>
-  
      </div>
           <q-card-actions align="center">
             <q-btn
               flat
               label="Sim, excluir"
               color="positive"
-              @click="deletarModulo(id)"
+              @click="deletarModulo(props.id)"
             />
             <q-btn flat label="Cancelar" color="negative" v-close-popup />
           </q-card-actions>
@@ -28,10 +27,12 @@
   const props = defineProps({
     id: { type: String },
   });
+
   
-  const deletarModulo = async (id) => {
+  
+  const deletarModulo = async (id_modulo) => {
     try {
-      const { data } = await api.delete(`modulos/${id}`);
+      const { data } = await api.delete(`modulos/${id_modulo}`);
       $q.notify({
         message: "Módulo excluido com sucesso!",
         color: "positive",
