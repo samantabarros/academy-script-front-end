@@ -33,7 +33,8 @@
     <div class="row">
       
       <div v-for="modulo in modulos" :key="modulo.id">
-        <card-modulo :modulo="modulo"></card-modulo>
+        <card-modulo :modulo="modulo">
+        </card-modulo>
       </div>
     </div>
   </div>
@@ -52,6 +53,7 @@ import { onMounted, ref } from "vue";
 
 const modulos = ref([]);
 const showModalCadastrarModulo = ref(false);
+const filter = ref("");
 
 onMounted(() => {
   getModulos();

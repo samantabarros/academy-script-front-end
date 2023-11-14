@@ -88,7 +88,7 @@ import {onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
-import MensagemDeletarAluno from "src/components/MensagemDeletarAluno.vue";
+import MensagemDeletarAluno from "src/components/mensagem/MensagemDeletarAluno.vue";
 
 const router = useRouter();
 const route = useRoute();

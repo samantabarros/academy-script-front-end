@@ -29,6 +29,12 @@
       :filter="filter"
       row-key="id"
     >
+      <template v-slot:body-cell-status="props">
+        <q-td class="flex justify-center items-center">
+          <q-badge :color="corStatus(props.row.status)">{{ props.row.status }}</q-badge>
+        </q-td>
+
+      </template>
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
           <modal-editar :dados_aluno="alunoAtual" />
@@ -68,6 +74,7 @@ const nomeModuloSelecionado = ref("");
 const route = useRoute();
 const rows_alunos = ref([]);
 const idModulo = route.params.id;
+const filter = ref("");
 
 const columns = [
   {
@@ -101,12 +108,6 @@ const columns = [
     label: "Status",
     align: "center",
   },
-  {
-    name: "acoes",
-    field: "nota3",
-    label: "Ações",
-    align: "center",
-  },
 ];
 
 onMounted(() => {
@@ -122,10 +123,55 @@ const getAlunos = async (idModulo) => {
             rows_alunos.value.push(aluno);
         });
         nomeModuloSelecionado.value = resp.data.nome_modulo
+        calcularMediaStatus(rows_alunos)
 
     }catch(error){
         console.log(error);
     }
+}
+
+async function calcularMediaStatus(rows_alunos) {
+  console.log("Entrou em calcularMediaStatusEStatus");
+  let matriculas = rows_alunos.value;
+  console.log(rows_alunos.value);
+  rows_alunos.value.forEach((value, index) => {
+    console.log("Testando");
+    const media = ref(0);
+
+    media.value =
+      (Number(value.nota1) + Number(value.nota2) + Number(value.nota3)) / 3;
+
+    if (value.nota1 === null || value.nota2 === null || value.nota3 === null) {
+      rows_alunos.value[index] = {
+        ...rows_alunos.value[index],
+        status: "Incompleto",
+      };
+    } else if (media.value >= 5) {
+      rows_alunos.value[index] = {
+        ...rows_alunos.value[index],
+        status: "Apto",
+      };
+    } else {
+      rows_alunos.value[index] = {
+        ...rows_alunos.value[index],
+        status: "Inapto",
+      };
+    }
+  });
+}
+
+function corStatus(status) {
+  if (status == "Apto") {
+    return "positive";
+  }
+  if (status == "Inapto") {
+    return "negative";
+  }
+  if (status == "Incompleto") {
+    return "purple";
+  }
+
+  console.log(status);
 }
 
 

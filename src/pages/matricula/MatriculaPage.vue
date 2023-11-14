@@ -40,7 +40,7 @@
       row-key="id"
     >
       <template v-slot:body-cell-status="props">
-        <q-td  class="flex justify-center items-center">
+        <q-td  class=" flex justify-center items-center">
           <q-badge :color="corStatus(props.row.status)">
           {{ props.row.status }}</q-badge>
         </q-td>
@@ -83,7 +83,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroMatricula from "src/components/modals/ModalCadastroMatricula.vue";
 import ModalEditarMatricula from "src/components/modals/ModalEditarMatricula.vue";
-import MensagemDeletarMatricula from "src/components/modals/MensagemDeletarMatricula.vue";
+import MensagemDeletarMatricula from "src/components/mensagem/MensagemDeletarMatricula.vue";
 import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 
