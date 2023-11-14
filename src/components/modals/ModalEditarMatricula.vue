@@ -58,9 +58,10 @@ function onSubmit(id) {
 const atualizarDados  = async (id) => {
   try{
     delete formularioEditar.value.nome_modulo;
-    formularioEditar.value.nota1 = Number(formularioEditar.value.nota1);
-    formularioEditar.value.nota2 = Number(formularioEditar.value.nota2);
-    formularioEditar.value.nota3 = Number(formularioEditar.value.nota3);
+    formularioEditar.value.nota1 = formularioEditar.value.nota1 ? Number(formularioEditar.value.nota1) : null;
+    formularioEditar.value.nota2 = formularioEditar.value.nota2 ? Number(formularioEditar.value.nota2) : null;
+    formularioEditar.value.nota3 = formularioEditar.value.nota3 ? Number(formularioEditar.value.nota3) : null;
+    
     const {data} = await api.put(`matricula/${id}`, formularioEditar.value);
     $q.notify({
       message: "Matrícula atualizada com sucesso!",

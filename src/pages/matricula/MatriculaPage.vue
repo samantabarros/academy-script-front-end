@@ -39,8 +39,8 @@
       :filter="filter"
       row-key="id"
     >
-      <template v-slot:body-cell-status="props">
-        <q-td  class=" flex justify-center items-center">
+      <template v-slot:body-cell-status="props" >
+        <q-td class="text-center">
           <q-badge :color="corStatus(props.row.status)">
           {{ props.row.status }}</q-badge>
         </q-td>

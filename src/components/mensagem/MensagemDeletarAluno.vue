@@ -22,7 +22,8 @@
 <script setup>
 import { api } from "src/boot/axios";
 import { useQuasar } from "quasar";
-import CardMensagem from "./commons/CardMensagem.vue";
+import CardMensagem from "src/components/commons/CardMensagem.vue";
+
 
 const $q = useQuasar();
 const props = defineProps({

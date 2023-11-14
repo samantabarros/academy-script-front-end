@@ -2,14 +2,14 @@
 <template>
   <div class="container">
     <q-img src="/img/fundo-1200.jpg" alt="banner da tela inicial de login" class="q-ma-none fixed no-repeat banner-login"
-      style="width: 100%; max-width: 1900px; height: 100%; max-height: 1200px; min-height: 100vh; min-width: 100vh" />
+      style="width: 100%; max-width: 2500px; height: 100%; max-height: 1500px; min-height: 100vh; min-width: 100vh" />
     <div class="row">
-      <div class="col-12 flex flex-center">
+      <div class="col-12 flex flex-center">7
         <q-card class="q-ma-md q-px-lg transparent card-login"
           style="max-width: 500px; max-height: 800px; min-height: 95vh; min-width: 70vh" 
           :style="$q.screen.lt.md
             ? { width: '50%', height: '95%' }
-            : { width: '70%', height: '90%' }
+            : { width: '70%', height: '95%' }
             ">
           <q-card-section>
             <div class="col-12 col-md-6 flex flex-center q-pt-md">

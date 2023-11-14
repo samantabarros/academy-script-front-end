@@ -31,7 +31,6 @@
       <modal-cadastro-modulo />
     </q-dialog>
     <div class="row">
-      
       <div v-for="modulo in modulos" :key="modulo.id">
         <card-modulo :modulo="modulo">
         </card-modulo>
