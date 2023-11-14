@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div
       class="bg-grey-2 row justify-center card-modulo"
-      style="width: 320px; height: 180px"
+      style="width: 300px; height: 180px"
     >
       <div class="col-4 q-pl-md q-py-md">
         <q-img src="/img/brain.png" alt="imagem cérebro animado" size="10px" />

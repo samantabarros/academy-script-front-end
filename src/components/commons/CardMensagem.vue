@@ -1,7 +1,7 @@
 <template>
   <q-card
     class="bg-grey-2 card-mensagem"
-    style="width: 620px; height: 350px"
+    style="width: 620px; height: 320px"
     persistent
   >
     <q-card-section>
@@ -48,8 +48,7 @@ const props = defineProps(["titulo"]);
 
 <style>
 .card-mensagem {
-  border: 2px solid rgba(204, 26, 29, 0.5);
-  border-radius: 30px;
+  border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
