@@ -9,8 +9,8 @@
           </div>
         </q-card-section>
         <div class="row q-pa-md q-gutter-lg flex justify-end">
-          <q-btn color="positive" type="submit" label="Cadastrar" />
-          <q-btn color="negative" label="Cancelar" v-close-popup />
+          <q-btn color="positive" type="submit" label="Cadastrar" size="12px" icon="save"/>
+          <q-btn color="negative" label="Cancelar" v-close-popup size="12px" icon="close" />
         </div>
       </q-form>
     </div>

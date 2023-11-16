@@ -51,7 +51,7 @@ import { computed, onMounted, ref } from "vue";
 
 const modulos = ref([]);
 const showModalCadastrarModulo = ref(false);
-const filtro = ref("");
+const filtro = ref([]);
 
 onMounted(() => {
   getModulos();
@@ -62,22 +62,22 @@ const getModulos = async () => {
     const { data } = await api.get("modulos");
     console.log(data);
     modulos.value = data;
-  } catch {
+  } catch (error) {
     console.log(error);
   }
-
 };
 
-// const filtroDeModulos = computed(() => {
-//     let moduloPesquisado = [];
-//     console.log(modulos);
-//     moduloPesquisado.value= modulos.value.filter((modulo) => {
-//       return (
-//         modulo.value.Array.nome_modulo.toLowerCase().indexOf(this.filtro.toLowerCase() > -1)
-//       )
-//     });
-//     return moduloPesquisado;
-  
-// })
+const filtroDeModulos = computed((modulos) => {
+    let moduloPesquisado = [];
+    console.log(modulos);
+    moduloPesquisado.value= modulos.filter((modulo) => {
+      return (
+        modulo.nome_modulo.toLowerCase().indexOf(this.filtro.toLowerCase() > -1)
+      )
+      console.log("Teste");
+    });
+    return moduloPesquisado;
+})
+
 
 </script>

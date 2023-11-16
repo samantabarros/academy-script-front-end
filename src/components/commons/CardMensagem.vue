@@ -1,7 +1,7 @@
 <template>
   <q-card
     class="bg-grey-2 card-mensagem"
-    style="width: 620px; height: 320px"
+    style="width: 620px; height: 350px"
     persistent
   >
     <q-card-section>

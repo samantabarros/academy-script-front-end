@@ -14,8 +14,8 @@
           </div>
         </q-card-section>
         <div class="row q-pa-md q-gutter-lg flex justify-end">
-          <q-btn color="positive" size="13px" label="Atualizar"  @click="onSubmit(id, dados_aluno)" />
-          <q-btn color="negative" size="13px" label="Cancelar" v-close-popup />
+          <q-btn color="positive" size="12px" label="Atualizar"  @click="onSubmit(id, dados_aluno)" icon="save"/>
+          <q-btn color="negative" size="12px" label="Cancelar" icon="close" v-close-popup/>
         </div>
       </q-form>
     </div>
