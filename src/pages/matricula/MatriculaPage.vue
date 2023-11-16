@@ -185,7 +185,8 @@ const getModulos = async (idAluno) => {
 };
 
 //Função para ver o status do aluno
-async function calcularMediaStatus(rows_matriculas) {
+const calcularMediaStatus = async (rows_matriculas) => {
+//async function calcularMediaStatus(rows_matriculas) {
   console.log("Entrou em calcularMediaStatusEStatus");
   let matriculas = rows_matriculas.value;
   console.log(rows_matriculas.value);

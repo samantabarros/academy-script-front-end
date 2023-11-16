@@ -11,7 +11,7 @@
         debounce="300"
         type="search"
         class="q-pr-md col-6"
-        v-model="filter"
+        v-model="filtro"
         color="primary"
         label="Pesquisar módulo"
       >
@@ -32,8 +32,7 @@
     </q-dialog>
     <div class="row justify-center">
       <div v-for="modulo in modulos" :key="modulo.id">
-        <card-modulo :modulo="modulo">
-        </card-modulo>
+        <card-modulo :modulo="modulo"> </card-modulo>
       </div>
     </div>
   </div>
@@ -48,11 +47,11 @@
 import { api } from "src/boot/axios";
 import CardModulo from "src/components/commons/CardModulo.vue";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 const modulos = ref([]);
 const showModalCadastrarModulo = ref(false);
-const filter = ref("");
+const filtro = ref("");
 
 onMounted(() => {
   getModulos();
@@ -66,5 +65,19 @@ const getModulos = async () => {
   } catch {
     console.log(error);
   }
+
 };
+
+// const filtroDeModulos = computed(() => {
+//     let moduloPesquisado = [];
+//     console.log(modulos);
+//     moduloPesquisado.value= modulos.value.filter((modulo) => {
+//       return (
+//         modulo.value.Array.nome_modulo.toLowerCase().indexOf(this.filtro.toLowerCase() > -1)
+//       )
+//     });
+//     return moduloPesquisado;
+  
+// })
+
 </script>
