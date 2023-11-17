@@ -16,7 +16,9 @@
         label="Pesquisar módulo"
       >
         <template v-slot:append>
-          <q-icon name="search" />
+          <a href="">
+            <q-icon name="search" @click="getModulos(filtro)" />
+          </a>
         </template>
       </q-input>
       <q-btn
@@ -51,33 +53,33 @@ import { computed, onMounted, ref } from "vue";
 
 const modulos = ref([]);
 const showModalCadastrarModulo = ref(false);
-const filtro = ref([]);
+const filtro = ref("");
 
 onMounted(() => {
   getModulos();
 });
 
-const getModulos = async () => {
+
+async function getModulos(filtro = "") {
   try {
     const { data } = await api.get("modulos");
     console.log(data);
     modulos.value = data;
+    if (filtro != "") {
+      let moduloPesquisado = [];
+      moduloPesquisado.value = modulos.value.filter((modulo) => {
+        return (
+          modulo.nome_modulo.toLowerCase().indexOf(filtro.toLowerCase()) > -1
+        );
+      });
+      modulos.value = moduloPesquisado.value;
+      return;
+    }
+    return
   } catch (error) {
     console.log(error);
   }
-};
-
-const filtroDeModulos = computed((modulos) => {
-    let moduloPesquisado = [];
-    console.log(modulos);
-    moduloPesquisado.value= modulos.filter((modulo) => {
-      return (
-        modulo.nome_modulo.toLowerCase().indexOf(this.filtro.toLowerCase() > -1)
-      )
-      console.log("Teste");
-    });
-    return moduloPesquisado;
-})
+}
 
 
 </script>

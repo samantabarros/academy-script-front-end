@@ -18,14 +18,14 @@
         <q-card 
           class="q-ma-md q-px-lg transparent card-login"
           style="
-            max-width: 500px;
+            max-width: 600px;
             max-height: 800px;
             min-height: 95vh;
             min-width: 20vh;
           "
           :style="
             $q.screen.lt.md
-              ? { width: '70%', height: '95%' }
+              ? { width: '100%', height: '95%' }
               : { width: '100%', height:'95%' }
           "
         >
