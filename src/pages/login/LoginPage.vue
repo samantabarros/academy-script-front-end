@@ -116,8 +116,8 @@ const $q = useQuasar();
 const router = useRouter();
 
 const usuario = ref({
-  email: "",
-  senha: "",
+  email: "admin@gmail.com",
+  senha: "admin",
 });
 
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
