@@ -15,7 +15,7 @@
     />
     <div class="row">
       <div class="col-12 flex flex-center">
-        <q-card 
+        <q-card
           class="q-ma-md q-px-lg transparent card-login"
           style="
             max-width: 600px;
@@ -26,7 +26,7 @@
           :style="
             $q.screen.lt.md
               ? { width: '100%', height: '95%' }
-              : { width: '100%', height:'95%' }
+              : { width: '100%', height: '95%' }
           "
         >
           <q-card-section>
@@ -48,7 +48,7 @@
                   ref="nameRef"
                   color="primary"
                   bg-color="white"
-                  v-model="login.email"
+                  v-model="usuario.email"
                   label="Insira seu nome de usuário*"
                   lazy-rules
                   :rules="usuarioRules"
@@ -64,7 +64,7 @@
                   color="primary"
                   bg-color="white"
                   label="Insira sua senha*"
-                  v-model="login.senha"
+                  v-model="usuario.senha"
                   :type="isPwd ? 'password' : 'text'"
                   lazy-rules
                   :rules="senhaRules"
@@ -115,36 +115,41 @@ const isPwd = ref(true);
 const $q = useQuasar();
 const router = useRouter();
 
-const login = ref({
+const usuario = ref({
   email: "",
   senha: "",
 });
 
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
- * da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
- * usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
+* da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
+* usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
 const onSubmit = async () => {
-  const { email, senha } = login.value;
-  const { data } = await api.get("usuarios", { params: { email, senha } });
-  console.log(data);
+  try {
+    //const { data } = await api.get("usuarios", { params: { email, senha } });
+    const {data} = await api.post('login', usuario.value);
+    //const { email, senha } = login.value;
+    console.log(data);
 
-  if (data.length > 0) {
-    $q.notify({
-      color: "positive",
-      textColor: "white",
-      icon: "check_circle_outline",
-      message: "Login realizado com sucesso!",
-      position: "top",
-    });
-    router.push("/home");
-  } else {
-    $q.notify({
-      color: "red-5",
-      textColor: "white",
-      icon: "warning",
-      message: "Usuário ou senha inválidos",
-      position: "top",
-    });
+    if (data.length > 0) {
+      $q.notify({
+        color: "positive",
+        textColor: "white",
+        icon: "check_circle_outline",
+        message: "Login realizado com sucesso!",
+        position: "top",
+      });
+      router.push("/home");
+    } else {
+      $q.notify({
+        color: "red-5",
+        textColor: "white",
+        icon: "warning",
+        message: "Usuário ou senha inválidos",
+        position: "top",
+      });
+    }
+  }catch(error){
+    console.log(error.response.data.message);
   }
 };
 
@@ -168,6 +173,7 @@ const senhaRules = [
   backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
+
 /* border: 2px solid rgba(79, 22, 252, 0.5);
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); */
