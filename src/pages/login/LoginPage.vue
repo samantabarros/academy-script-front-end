@@ -64,7 +64,7 @@
                   color="primary"
                   bg-color="white"
                   label="Insira sua senha*"
-                  v-model="usuario.senha"
+                  v-model="usuario.password"
                   :type="isPwd ? 'password' : 'text'"
                   lazy-rules
                   :rules="senhaRules"
@@ -110,15 +110,20 @@ import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { Notify, useQuasar } from "quasar";
+import {useAuthStore} from "src/stores/auth.js";
 
+
+const auth = useAuthStore();
 const isPwd = ref(true);
 const $q = useQuasar();
 const router = useRouter();
 
 const usuario = ref({
-  email: "admin@gmail.com",
-  senha: "admin",
+  email: 'admin@gmail.com',
+  password: 'admin',
 });
+
+
 
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
 * da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
@@ -126,8 +131,10 @@ const usuario = ref({
 const onSubmit = async () => {
   try {
     //const { data } = await api.get("usuarios", { params: { email, senha } });
-    const {data} = await api.post('login', usuario.value);
-    //const { email, senha } = login.value;
+    const {data} = await api.post('auth', usuario.value);
+    auth.setToken(data.acess_token);
+    auth.setUserEmail(data.email_user);
+    auth.setUserId(data.id_user);
     console.log(data);
 
     if (data.length > 0) {
@@ -149,7 +156,15 @@ const onSubmit = async () => {
       });
     }
   }catch(error){
-    console.log(error.response.data.message);
+    //console.log(error.response.data.message);
+    if (error.response) {
+      $q.notify({
+        message: error.response.data.message,
+        color: "negative",
+        icon: "error",
+        position: "top",
+      });
+    }
   }
 };
 
@@ -173,8 +188,4 @@ const senhaRules = [
   backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-
-/* border: 2px solid rgba(79, 22, 252, 0.5);
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); */
 </style>
