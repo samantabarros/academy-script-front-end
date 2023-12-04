@@ -13,7 +13,7 @@
 
         <q-toolbar-title> SGMA </q-toolbar-title>
 
-        <q-btn flat label="Sair" icon="logout" to="/" />
+        <q-btn flat label="Sair" icon="logout" to="/" @click="authStore.logout()"/>
       </q-toolbar>
     </q-header>
 
@@ -44,9 +44,11 @@
 </template>
 
 <script setup>
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, useAttrs } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import { useAuthStore } from "src/stores/auth";
 
+const authStore = useAuthStore();
 const isOpen = ref(false);
 const linksList = [
   {
@@ -68,14 +70,8 @@ const linksList = [
     icon: "auto_stories",
     route: "/modulos",
   },
-
-  {
-    title: "Logout",
-    caption: "",
-    icon: "exit_to_app",
-    route: "/",
-  },
 ];
+
 </script>
 
 <style scoped></style>

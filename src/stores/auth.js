@@ -21,20 +21,18 @@ export const useAuthStore = defineStore('auth', () => {
     user_id.value = userIdValue;
   }
 
-  //Verificar se o token existe
-  async function checkToken(){
-    try{
-      const tokenAuth = 'Bearer' + token.value;
-      const { data } = await axios.get("/auth/verify", {
-        Headers: {
-          Authorization: tokenAuth,
-        },
-      });
-      return data;
-    }catch(error){
-      console.log(error.response.data);
-    }
+
+  async function logout(){
+    localStorage.removeItem('acess_token');
+    localStorage.removeItem('email_user');
+    localStorage.removeItem('id_user');
+    token.value = undefined;
+    user_email.value = undefined;
+    user_id.value = undefined; 
   }
+
+  //Ao recarregar a página precisa verificar se tem alguma informação no Local Storage
+  //Se tiver seta as informações.
 
   return {
     token,
@@ -42,6 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
     user_id,
     setToken,
     setUserEmail,
-    setUserId
+    setUserId,
+    logout
   }
 })

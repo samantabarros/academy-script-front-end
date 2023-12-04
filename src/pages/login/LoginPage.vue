@@ -123,8 +123,6 @@ const usuario = ref({
   password: 'admin',
 });
 
-
-
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
 * da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
 * usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
@@ -137,7 +135,7 @@ const onSubmit = async () => {
     auth.setUserId(data.id_user);
     console.log(data);
 
-    if (data.length > 0) {
+    if (data.acess_token) {
       $q.notify({
         color: "positive",
         textColor: "white",
