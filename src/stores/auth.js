@@ -21,7 +21,25 @@ export const useAuthStore = defineStore('auth', () => {
     user_id.value = userIdValue;
   }
 
+  //Verificar se o token existe
+  async function checkToken(){
+    try{
+      const tokenAuth = 'Bearer' + token.value;
+      const { data } = await axios.get("/auth/verify", {
+        Headers: {
+          Authorization: tokenAuth,
+        },
+      });
+      return data;
+    }catch(error){
+      console.log(error.response.data);
+    }
+  }
+
   return {
+    token,
+    user_email,
+    user_id,
     setToken,
     setUserEmail,
     setUserId
