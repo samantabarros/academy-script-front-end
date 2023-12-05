@@ -21,6 +21,29 @@ export const useAuthStore = defineStore('auth', () => {
     user_id.value = userIdValue;
   }
 
+  function setItems(item, key, dado){
+    localStorage.setItem(key, item);
+    dado.value = item;
+  }
+
+  //Para verificar a autenticação
+  const login = async () =>{
+    if(localStorage.getItem() === null){
+      logout();
+      router.push("/");
+    }else{
+      //Seta os dados no Pinia
+      const token = ref(localStorage.getItem('acess_token'));
+      const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
+      const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
+
+      //Seta o auth no axios
+
+    
+    }
+
+    return login;
+  }
 
   async function logout(){
     localStorage.removeItem('acess_token');
@@ -29,6 +52,7 @@ export const useAuthStore = defineStore('auth', () => {
     token.value = undefined;
     user_email.value = undefined;
     user_id.value = undefined; 
+
   }
 
   //Ao recarregar a página precisa verificar se tem alguma informação no Local Storage
