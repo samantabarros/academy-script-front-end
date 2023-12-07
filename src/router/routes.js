@@ -1,7 +1,7 @@
 const routes = [
   {
     path: "",
-    name:"login",
+    name: "login",
     component: () => import("pages/login/LoginPage.vue"),
   },
 
@@ -43,4 +43,30 @@ const routes = [
   },
 ];
 
+
 export default routes;
+
+// const router = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes,
+// });
+// router.beforeEach(async (to, from, next) => {
+//   console.log("Entrou aqui!")
+//   if (to.matched.some(record => record.meta.requiredLogin)) {
+//     const auth = useAuthStore();
+//     //const token = localStorage.getItem('token');
+//     if (auth.token && auth.user_email) {
+//       const isAuthenticated = auth.checkToken();
+//       console.log(isAuthenticated);
+//       if (isAuthenticated) {
+//         next();
+//       } else {
+//         next({ name: 'login' });
+//       }
+//     } else {
+//       next({ name: 'login' })
+//     }
+//   } else {
+//     next();
+//   }
+// });

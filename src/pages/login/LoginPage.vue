@@ -131,7 +131,6 @@ const onSubmit = async () => {
     //const { data } = await api.get("usuarios", { params: { email, senha } });
     const {data} = await api.post('auth', usuario.value);
     auth.setToken(data.acess_token);
-    auth.setItems(data.acess_token, key, dado);
     auth.setUserEmail(data.email_user);
     auth.setUserId(data.id_user);
     console.log(data);
