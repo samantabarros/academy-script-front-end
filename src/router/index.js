@@ -16,20 +16,17 @@ export default route(function ({ store, ssrContext }) {
   Router.beforeEach(async (to, from, next) => {
     const auth = store.state.auth;
 
-    if (to.meta.requiredLogin) {
+    if (to.meta.requiredLogin && !auth.isAuthenticated) {
       next({ name: 'login' });
-
-      return
+      return;
     }
+
     if (to.path != '/login') {
-      const id = localStorage.getItem('id_user');
-      const token = localStorage.getItem('acess_token');
+      const id = window.localStorage.getItem('id_user');
+      const token = window.localStorage.getItem('acess_token');
 
     }
     next();
-
-
-
     //     if(auth.token && auth.user_email){
     //       const isAuthenticated = auth.checkToken();
     //       console.log(isAuthenticated);
@@ -46,5 +43,5 @@ export default route(function ({ store, ssrContext }) {
     //   }
   });
 
-  return Router
+  return Router;
 })

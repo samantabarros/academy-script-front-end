@@ -98,22 +98,28 @@ export const useAuthStore = defineStore('auth', () => {
   
     const actions = {
       async doLogin(payload) {
-        const response = await api.post('auth', payload);
+        const response = await api.post('/auth', payload);
         console.log(response.data);
-        const { acess_token, user_id } = response.data;
+        const { acess_token, id_user} = response.data;
   
         setToken(acess_token);
-        setUserid(user_id);
-        api.defaults.headers.common.Authorizathion = "Bearer " + acess_token;
+        setUserId(id_user);
+        api.defaults.headers.common.Authorization = "Bearer " + acess_token;
       },
 
       async init() {
-        const storedToken = localStorage.getItem('token');
-        if(storedToken) {
-          setToken(JSON.parse(storedToken));
+        const token = localStorage.getItem('token');
+        if(token) {
+          setToken(JSON.parse(token));
         }else{
           removeToken();
         } 
+      },
+
+      async logout(){
+        api.defaults.headers.common.Authorization = "";
+        removeToken;
+        removeMe
       },
   
     };
@@ -134,26 +140,34 @@ export const useAuthStore = defineStore('auth', () => {
 
       setMe(me){
         state.me.id = me;
-        window.localStorage.setItem("user_id", JSON_stringify(me));
+        window.localStorage.setItem("id_user", JSON_stringify(me));
       },
 
       removeMe(me){
         state.me = {},
-        window.localStorage.removeItem("user_id");
+        window.localStorage.removeItem("id_user");
 
       
       },
+    };
 
-      setUserId(userId){{
-        state.userId = user_id;
-        //state.me.id = user_id;
-      }}
+    const getters = {
+      getMe(state){
+        return state.me;
+      },
+      getToken(state){
+        return state.token;
+      },
+      isAuthenticated(state){
+        return state.isAuthenticated;
+      },
     };
   
     return  {
       state,
       actions,
-      mutations
+      mutations,
+      getters
     };
   };
   return createAuthStore; 
