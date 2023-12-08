@@ -108,52 +108,67 @@
 <script setup>
 import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 import { Notify, useQuasar } from "quasar";
-import {useAuthStore} from "src/stores/auth.js";
+import { useAuthStore } from "src/stores/auth.js";
 
-
-const auth = useAuthStore();
+const authStore = useAuthStore();
 const isPwd = ref(true);
 const $q = useQuasar();
 const router = useRouter();
 
 const usuario = ref({
-  email: 'admin@gmail.com',
-  password: 'admin',
+  email: "admin@gmail.com",
+  password: "admin",
+});
+
+onBeforeMount(() => {
+  console.log("Entrou aqui");
+
+  if (authStore.isAuthenticated) {
+    console.log("Entrou no if")
+    router.push("/home");
+  }
 });
 
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
-* da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
-* usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
+ * da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
+ * usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
 const onSubmit = async () => {
+  console.log("Entrou aqui em OnSubmit");
   try {
     //const { data } = await api.get("usuarios", { params: { email, senha } });
-    const {data} = await api.post('auth', usuario.value);
-    auth.setToken(data.acess_token);
-    auth.setUserEmail(data.email_user);
-    auth.setUserId(data.id_user);
-    console.log(data);
+    const { data } = await api.post("auth", usuario.value);
+    data.email.validate();
+    data.password.validate();
 
-    if (data.acess_token) {
-      $q.notify({
-        color: "positive",
-        textColor: "white",
-        icon: "check_circle_outline",
-        message: "Login realizado com sucesso!",
-        position: "top",
-      });
-      router.push("/home");
-    } else {
-      $q.notify({
-        color: "red-5",
-        textColor: "white",
-        icon: "warning",
-        message: "Usuário ou senha inválidos",
-        position: "top",
-      });
-    }
-  }catch(error){
+    await doLogin(usuario);
+    const toPath = $route.query.to || "/";
+    $router.push(toPath);
+    // authStore.setToken(data.acess_token);
+    // authStore.setUserEmail(data.email_user);
+    // authStore.setUserId(data.id_user);
+    // console.log(data);
+
+    // if (data.acess_token) {
+    //   $q.notify({
+    //     color: "positive",
+    //     textColor: "white",
+    //     icon: "check_circle_outline",
+    //     message: "Login realizado com sucesso!",
+    //     position: "top",
+    //   });
+    //   router.push("/home");
+    // } else {
+    //   $q.notify({
+    //     color: "red-5",
+    //     textColor: "white",
+    //     icon: "warning",
+    //     message: "Usuário ou senha inválidos",
+    //     position: "top",
+    //   });
+    // }
+  } catch (error) {
     //console.log(error.response.data.message);
     if (error.response) {
       $q.notify({

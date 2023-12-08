@@ -27,6 +27,7 @@ export default route(function ({ store, ssrContext }) {
 
     }
     next();
+
     //     if(auth.token && auth.user_email){
     //       const isAuthenticated = auth.checkToken();
     //       console.log(isAuthenticated);
