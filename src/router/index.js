@@ -28,6 +28,7 @@ export default route(function ({ store, ssrContext }) {
     }
     next();
 
+    
     //     if(auth.token && auth.user_email){
     //       const isAuthenticated = auth.checkToken();
     //       console.log(isAuthenticated);
@@ -42,6 +43,25 @@ export default route(function ({ store, ssrContext }) {
     //   }else{
     //     next();
     //   }
+  });
+
+  Router.beforeEach((to, from, next) => {
+    if(to.meta?.requiredLogin){
+      const auth = useAuthStore();
+      if(auth.token && auth.user_email){
+        const isAuthenticated = auth.checkToken();
+        console.log(isAuthenticated);
+        if(isAuthenticated) {
+          next();
+        }else{
+          next({name: 'login'});
+        }
+      }else {
+        next({name:'login'})
+      }
+    }else{
+      next();
+    }
   });
 
   return Router;
