@@ -1,11 +1,14 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from 'pinia';
+import { api } from 'src/boot/axios';
+import { computed, ref} from "vue";
+
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('acess_token'));
   const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
   const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
 
+  //Para atualizar os dados do localStorage
   function setToken(tokenValue) {
     localStorage.setItem('acess_token', tokenValue);
     token.value = tokenValue;
@@ -20,6 +23,10 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.setItem('id_user', JSON.stringify(userIdValue));
     user_id.value = userIdValue;
   }
+
+  const isAuthenticated = computed(() => {
+    return token.value && id_user.value;
+  })
 
   // function setItems(item, key, dado){
   //   localStorage.setItem(key, item);
@@ -46,13 +53,14 @@ export const useAuthStore = defineStore('auth', () => {
 
 
   //Verificar se o token existe
+  //Token do localStorage
   async function checkToken(){
     try{
       const tokenAuth = 'Bearer' + token.value;
-      const { data } = await axios.get("/auth/validate", {
+      const { data } = await api.get("usuarios", {
         headers: {
           Authorization: tokenAuth,
-        },
+        }
       });
       return data;
     }catch(error){
@@ -60,6 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  //Função para limpar os dados do localStorage
   async function logout(){
     localStorage.removeItem('acess_token');
     localStorage.removeItem('email_user');
@@ -67,6 +76,8 @@ export const useAuthStore = defineStore('auth', () => {
     token.value = undefined;
     user_email.value = undefined;
     user_id.value = undefined; 
+
+    localStorage.logout();
   }
   //Ao recarregar a página precisa verificar se tem alguma informação no Local Storage
   //Se tiver seta as informações.
@@ -79,7 +90,8 @@ export const useAuthStore = defineStore('auth', () => {
     setUserEmail,
     setUserId,
     logout,
-    checkToken
+    checkToken,
+    isAuthenticated,
   }
 })
 
