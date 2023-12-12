@@ -1,26 +1,27 @@
 import { defineStore } from 'pinia';
 import { api } from 'src/boot/axios';
-import { computed, ref} from "vue";
+import { computed, ref } from "vue";
 
 
 export const useAuthStore = defineStore('auth', () => {
-  const token = ref(localStorage.getItem('acess_token'));
-  const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
-  const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
+  const token = ref(sessionStorage.getItem('acess_token'));
+  const user_email = ref(JSON.parse(sessionStorage.getItem('email_user')));
+  const user_id = ref(JSON.parse(sessionStorage.getItem('id_user')));
+  //const isAuth = ref(false);
 
-  //Para atualizar os dados do localStorage
+  //Para atualizar os dados do sessionStorage
   function setToken(tokenValue) {
-    localStorage.setItem('acess_token', tokenValue);
+    sessionStorage.setItem('acess_token', tokenValue);
     token.value = tokenValue;
   }
 
   function setUserEmail(userEmailValue) {
-    localStorage.setItem('email_user', userEmailValue);
+    sessionStorage.setItem('email_user', userEmailValue);
     user_email.value = userEmailValue;
   }
 
   function setUserId(userIdValue) {
-    localStorage.setItem('id_user', JSON.stringify(userIdValue));
+    sessionStorage.setItem('id_user', JSON.stringify(userIdValue));
     user_id.value = userIdValue;
   }
 
@@ -29,55 +30,51 @@ export const useAuthStore = defineStore('auth', () => {
   })
 
   // function setItems(item, key, dado){
-  //   localStorage.setItem(key, item);
+  //   sessionStorage.setItem(key, item);
   //   dado.value = item;
   // }
 
-  // //Para verificar a autenticação
-  // const login = async () =>{
-  //   if(localStorage.getItem() === null){
-  //     logout();
-  //     router.push("/");
-  //   }else{
-  //     //Seta os dados no Pinia
-  //     const token = ref(localStorage.getItem('acess_token'));
-  //     const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
-  //     const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
+  //Para verificar a autenticação
+  const login = async (usuario) => {
+    //const { data } = await api.get("usuarios", { params: { email, senha } });
+    const { data } = await api.post("auth", usuario);
 
-  //     //Seta o auth no axios
+    //Armazena o token, o email e o id no sessionStorage
+    setToken(data.acess_token);
+    setUserEmail(data.email_user);
+    setUserId(data.id_user);
+    api.defaults.headers.common.Authorization = "Bearer " + data.acess_token;
+    
 
-  //   }
+    return data;
 
-  //   return login;
-  // }
-
+  }
 
   //Verificar se o token existe
-  //Token do localStorage
-  async function checkToken(){
-    try{
-      const tokenAuth = 'Bearer' + token.value;
+  //Token do sessionStorage
+  async function checkToken() {
+    try {
+      const tokenAuth = 'Bearer ' + token.value;
       const { data } = await api.get("usuarios", {
         headers: {
           Authorization: tokenAuth,
         }
       });
       return data;
-    }catch(error){
+    } catch (error) {
       console.log(error.response.data);
     }
   }
 
-  //Função para limpar os dados do localStorage
-  async function logout(){
-    localStorage.removeItem('acess_token');
-    localStorage.removeItem('email_user');
-    localStorage.removeItem('id_user');
+  //Função para limpar os dados do sessionStorage
+  async function logout() {
+    sessionStorage.removeItem('acess_token');
+    sessionStorage.removeItem('email_user');
+    sessionStorage.removeItem('id_user');
     token.value = undefined;
     user_email.value = undefined;
-    user_id.value = undefined; 
-
-    localStorage.logout();
+    user_id.value = undefined;
+    api.defaults.headers.common.Authorization = "";
   }
   //Ao recarregar a página precisa verificar se tem alguma informação no Local Storage
   //Se tiver seta as informações.
@@ -92,7 +89,10 @@ export const useAuthStore = defineStore('auth', () => {
     logout,
     checkToken,
     isAuthenticated,
+    login,
   }
+
+
 })
 
 // export const useAuthStore = defineStore('auth', () => {
@@ -115,7 +115,7 @@ export const useAuthStore = defineStore('auth', () => {
 //     };
 
 //     const init = async () => {
-//       const token = localStorage.getItem('token');
+//       const token = sessionStorage.getItem('token');
 //       if (token) {
 //         setToken(JSON.parse(token));
 //       } else {
@@ -134,24 +134,24 @@ export const useAuthStore = defineStore('auth', () => {
 //     const setToken = async (token) => {
 //       state.token = token;
 //       state.isAuthenticated = true;
-//       window.localStorage.setitem("token", JSON.stringify(token));
+//       window.sessionStorage.setitem("token", JSON.stringify(token));
 //     };
 
 //     const removeToken = async (token) => {
 //       state.token = "",
 //         state.isAuthenticated = false;
-//       window.localStorage.removeItem("token");
+//       window.sessionStorage.removeItem("token");
 
 //     };
 
 //     const setMe = async (me) => {
 //       state.me.id = me;
-//       window.localStorage.setItem("id_user", JSON_stringify(me));
+//       window.sessionStorage.setItem("id_user", JSON_stringify(me));
 //     }
 
 //     const removeMe = async (me) => {
 //       state.me = {},
-//         window.localStorage.removeItem("id_user");
+//         window.sessionStorage.removeItem("id_user");
 
 
 //     };

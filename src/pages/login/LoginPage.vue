@@ -13,7 +13,7 @@
         min-width: 100vh;
       "
     />
-    
+
     <div class="row">
       <div class="col-12 flex flex-center">
         <q-card
@@ -114,6 +114,7 @@ import { Notify, useQuasar } from "quasar";
 import { useAuthStore } from "src/stores/auth.js";
 
 const auth = useAuthStore();
+const {login} = auth;
 const isPwd = ref(true);
 const $q = useQuasar();
 const router = useRouter();
@@ -124,27 +125,11 @@ const usuario = ref({
 });
 
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
-* da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
-* usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
+ * da função, ou seja, ela não vai poder ser acessada fora da função. Tudo o que precisa ser manipulado
+ * usando essa constante deverá ser manipulado dentro da função(escopo) onde ela foi definida */
 const onSubmit = async () => {
   try {
-    if(!usuario.value.email || !usuario.value.password){
-      $q.notify({
-        color: "red-5",
-        textColor: "white",
-        icon: "warning",
-        message: "Preencha os campos corretamente!",
-        position: "top",
-      });
-    }
-    //const { data } = await api.get("usuarios", { params: { email, senha } });
-    const {data} = await api.post('auth', usuario.value);
-    
-    //Armazena o token, o email e o id no localStorage
-    auth.setToken(data.acess_token);
-    auth.setUserEmail(data.email_user);
-    auth.setUserId(data.id_user);
-    
+    const data = await login(usuario.value);
     if (data.acess_token) {
       $q.notify({
         color: "positive",
@@ -164,16 +149,16 @@ const onSubmit = async () => {
         position: "top",
       });
     }
-  }catch(error){
+  } catch (error) {
     //console.log(error.response.data.message);
-     if (error.response) {
+    if (error.response) {
       $q.notify({
         message: error.response.data.message,
         color: "negative",
         icon: "error",
         position: "top",
       });
-     }
+    }
   }
 };
 
