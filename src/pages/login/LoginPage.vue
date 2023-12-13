@@ -150,7 +150,6 @@ const onSubmit = async () => {
       });
     }
   } catch (error) {
-    //console.log(error.response.data.message);
     if (error.response) {
       $q.notify({
         message: error.response.data.message,

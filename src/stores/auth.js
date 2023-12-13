@@ -4,24 +4,23 @@ import { computed, ref } from "vue";
 
 
 export const useAuthStore = defineStore('auth', () => {
-  const token = ref(sessionStorage.getItem('acess_token'));
-  const user_email = ref(JSON.parse(sessionStorage.getItem('email_user')));
-  const user_id = ref(JSON.parse(sessionStorage.getItem('id_user')));
-  //const isAuth = ref(false);
+  const token = ref(localStorage.getItem('acess_token'));
+  const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
+  const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
 
-  //Para atualizar os dados do sessionStorage
+  //Para atualizar os dados do localStorage
   function setToken(tokenValue) {
-    sessionStorage.setItem('acess_token', tokenValue);
+    localStorage.setItem('acess_token', tokenValue);
     token.value = tokenValue;
   }
 
   function setUserEmail(userEmailValue) {
-    sessionStorage.setItem('email_user', userEmailValue);
+    localStorage.setItem('email_user', userEmailValue);
     user_email.value = userEmailValue;
   }
 
   function setUserId(userIdValue) {
-    sessionStorage.setItem('id_user', JSON.stringify(userIdValue));
+    localStorage.setItem('id_user', JSON.stringify(userIdValue));
     user_id.value = userIdValue;
   }
 
@@ -29,48 +28,26 @@ export const useAuthStore = defineStore('auth', () => {
     return token.value && id_user.value;
   })
 
-  // function setItems(item, key, dado){
-  //   sessionStorage.setItem(key, item);
-  //   dado.value = item;
-  // }
-
   //Para verificar a autenticação
   const login = async (usuario) => {
-    //const { data } = await api.get("usuarios", { params: { email, senha } });
     const { data } = await api.post("auth", usuario);
 
-    //Armazena o token, o email e o id no sessionStorage
+    //Armazena o token, o email e o id no localStorage
     setToken(data.acess_token);
     setUserEmail(data.email_user);
     setUserId(data.id_user);
+
+    //Passa o token para cada requisição
     api.defaults.headers.common.Authorization = "Bearer " + data.acess_token;
-    
 
     return data;
-
   }
 
-  //Verificar se o token existe
-  //Token do sessionStorage
-  async function checkToken() {
-    try {
-      const tokenAuth = 'Bearer ' + token.value;
-      const { data } = await api.get("usuarios", {
-        headers: {
-          Authorization: tokenAuth,
-        }
-      });
-      return data;
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  }
-
-  //Função para limpar os dados do sessionStorage
+  //Função para limpar os dados do localStorage
   async function logout() {
-    sessionStorage.removeItem('acess_token');
-    sessionStorage.removeItem('email_user');
-    sessionStorage.removeItem('id_user');
+    localStorage.removeItem('acess_token');
+    localStorage.removeItem('email_user');
+    localStorage.removeItem('id_user');
     token.value = undefined;
     user_email.value = undefined;
     user_id.value = undefined;
@@ -87,12 +64,9 @@ export const useAuthStore = defineStore('auth', () => {
     setUserEmail,
     setUserId,
     logout,
-    checkToken,
     isAuthenticated,
     login,
   }
-
-
 })
 
 // export const useAuthStore = defineStore('auth', () => {
@@ -115,7 +89,7 @@ export const useAuthStore = defineStore('auth', () => {
 //     };
 
 //     const init = async () => {
-//       const token = sessionStorage.getItem('token');
+//       const token = localStorage.getItem('token');
 //       if (token) {
 //         setToken(JSON.parse(token));
 //       } else {
@@ -134,24 +108,24 @@ export const useAuthStore = defineStore('auth', () => {
 //     const setToken = async (token) => {
 //       state.token = token;
 //       state.isAuthenticated = true;
-//       window.sessionStorage.setitem("token", JSON.stringify(token));
+//       window.localStorage.setitem("token", JSON.stringify(token));
 //     };
 
 //     const removeToken = async (token) => {
 //       state.token = "",
 //         state.isAuthenticated = false;
-//       window.sessionStorage.removeItem("token");
+//       window.localStorage.removeItem("token");
 
 //     };
 
 //     const setMe = async (me) => {
 //       state.me.id = me;
-//       window.sessionStorage.setItem("id_user", JSON_stringify(me));
+//       window.localStorage.setItem("id_user", JSON_stringify(me));
 //     }
 
 //     const removeMe = async (me) => {
 //       state.me = {},
-//         window.sessionStorage.removeItem("id_user");
+//         window.localStorage.removeItem("id_user");
 
 
 //     };
