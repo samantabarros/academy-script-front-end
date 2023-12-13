@@ -93,10 +93,13 @@
               <div class="q-mb-md flex flex-center">
                 <router-link
                   class="text-white text-subtitle1 text-weight-regular"
-                  to="/"
+                  to="/" @click="showMensagemServicoIndisponivel = true"
                 >
                   Esqueceu a senha?
                 </router-link>
+                <q-dialog v-model="showMensagemServicoIndisponivel" persistent>
+                  <mensagem-servico-indisponivel></mensagem-servico-indisponivel>
+                </q-dialog>
               </div>
             </q-form>
           </div>
@@ -112,12 +115,14 @@ import { useRouter } from "vue-router";
 import { onBeforeMount, onMounted, ref } from "vue";
 import { Notify, useQuasar } from "quasar";
 import { useAuthStore } from "src/stores/auth.js";
+import MensagemServicoIndisponivel from "src/components/mensagem/MensagemServicoIndisponivel.vue";
 
 const auth = useAuthStore();
 const {login} = auth;
 const isPwd = ref(true);
 const $q = useQuasar();
 const router = useRouter();
+const showMensagemServicoIndisponivel = ref(false);
 
 const usuario = ref({
   email: "admin@gmail.com",

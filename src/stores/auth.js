@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia';
 import { api } from 'src/boot/axios';
 import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('acess_token'));
@@ -24,9 +26,14 @@ export const useAuthStore = defineStore('auth', () => {
     user_id.value = userIdValue;
   }
 
-  const isAuthenticated = computed(() => {
-    return token.value && id_user.value;
-  })
+  const isAuthenticated = async () => {
+    if (token.value) {
+      isAuthenticated.value = true;
+    } else {
+      isAuthenticated.value = false;
+    }
+    return isAuthenticated;
+  }
 
   //Para verificar a autenticação
   const login = async (usuario) => {
@@ -53,8 +60,33 @@ export const useAuthStore = defineStore('auth', () => {
     user_id.value = undefined;
     api.defaults.headers.common.Authorization = "";
   }
-  //Ao recarregar a página precisa verificar se tem alguma informação no Local Storage
-  //Se tiver seta as informações.
+
+  const init = async () => {
+    console.log("Entrou em  init");
+    //Arrumar essa parte
+    const token = ref(localStorage.getItem('acess_token'));
+    console.log(token.value);
+    console.log(isAuthenticated);
+    if (token.value) {
+      console.log(token);
+      //Armazena o token, o email e o id no localStorage
+      setToken(data.acess_token);
+      setUserEmail(data.email_user);
+      setUserId(data.id_user);
+      isAuthenticated.value = true;
+      //Passa o token para cada requisição
+      api.defaults.headers.common.Authorization = "Bearer " + data.acess_token;
+    } else {
+      token.value = undefined;
+      user_email.value = undefined;
+      user_id.value = undefined;
+      api.defaults.headers.common.Authorization = "";
+      isAuthenticated.value = false;
+
+      //router.push("/");
+    }
+    return isAuthenticated;
+  };
 
   return {
     token,
@@ -66,96 +98,6 @@ export const useAuthStore = defineStore('auth', () => {
     logout,
     isAuthenticated,
     login,
+    init
   }
 })
-
-// export const useAuthStore = defineStore('auth', () => {
-//   const createAuthStore = () => {
-//     const me = ref({
-//       id: "",
-//     });
-//     const token = ref('');
-//     const isAuthenticated = ref(false);
-
-//     const doLogin = async (payload) => {
-//       console.log("Entrou em doLogin")
-//       const response = await api.post('auth', payload);
-//       console.log(response.data);
-//       const { acess_token, id_user } = response.data;
-
-//       setToken(acess_token);
-//       setUserId(id_user);
-//       api.defaults.headers.common.Authorization = "Bearer " + acess_token;
-//     };
-
-//     const init = async () => {
-//       const token = localStorage.getItem('token');
-//       if (token) {
-//         setToken(JSON.parse(token));
-//       } else {
-//         removeToken();
-//       }
-//     };
-
-//     const logout = async () => {
-//       api.defaults.headers.common.Authorization = "";
-//       removeToken;
-//       removeMe
-//     };
-
-
-
-//     const setToken = async (token) => {
-//       state.token = token;
-//       state.isAuthenticated = true;
-//       window.localStorage.setitem("token", JSON.stringify(token));
-//     };
-
-//     const removeToken = async (token) => {
-//       state.token = "",
-//         state.isAuthenticated = false;
-//       window.localStorage.removeItem("token");
-
-//     };
-
-//     const setMe = async (me) => {
-//       state.me.id = me;
-//       window.localStorage.setItem("id_user", JSON_stringify(me));
-//     }
-
-//     const removeMe = async (me) => {
-//       state.me = {},
-//         window.localStorage.removeItem("id_user");
-
-
-//     };
-//   };//fim de doLogin
-
-//   const getMe = async (me) => {
-//     return me;
-//   };
-//   const getToken = async (token) => {
-//     return token;
-//   };
-
-//   const isAuthenticated = async (isAuthenticated) => {
-//     return isAuthenticated;
-//   };
-
-
-//   return {
-//     doLogin,
-//     init,
-//     logout,
-//     setToken,
-//     removeToken,
-//     setMe,
-//     removeMe,
-//     getToken,
-//     getMe,
-//     isAuthenticated
-
-//   };
-
-//   return createAuthStore; 
-// })
