@@ -20,7 +20,7 @@ export default route(function ({ store, ssrContext }) {
     if(to.meta?.requiredLogin){
       const auth = useAuthStore();
       if(auth.token && auth.user_email){     
-        if(auth.isAuthenticated) {
+        if(auth.isAuth) {
           next();
         }else{
           next({name: 'login'});

@@ -1,14 +1,16 @@
+import { data } from 'autoprefixer';
 import { defineStore } from 'pinia';
 import { api } from 'src/boot/axios';
 import { computed, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 
-const router = useRouter();
+
 
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('acess_token'));
   const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
   const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
+  const isAuthenticated = ref(false);
 
   //Para atualizar os dados do localStorage
   function setToken(tokenValue) {
@@ -17,7 +19,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function setUserEmail(userEmailValue) {
-    localStorage.setItem('email_user', userEmailValue);
+    localStorage.setItem('email_user', JSON.stringify(userEmailValue));
     user_email.value = userEmailValue;
   }
 
@@ -26,13 +28,12 @@ export const useAuthStore = defineStore('auth', () => {
     user_id.value = userIdValue;
   }
 
-  const isAuthenticated = async () => {
+  const isAuth = async () => {
     if (token.value) {
       isAuthenticated.value = true;
     } else {
       isAuthenticated.value = false;
     }
-    return isAuthenticated;
   }
 
   //Para verificar a autenticação
@@ -62,18 +63,19 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const init = async () => {
+    const router = useRouter();
+    const token = ref(localStorage.getItem('acess_token'));
     console.log("Entrou em  init");
     //Arrumar essa parte
-    const token = ref(localStorage.getItem('acess_token'));
     console.log(token.value);
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated.value);
     if (token.value) {
       console.log(token);
       //Armazena o token, o email e o id no localStorage
-      setToken(data.acess_token);
-      setUserEmail(data.email_user);
-      setUserId(data.id_user);
-      isAuthenticated.value = true;
+      setToken(acess_token);
+      setUserEmail(email_user);
+      setUserId(id_user);
+      //isAuthenticated.value = true;
       //Passa o token para cada requisição
       api.defaults.headers.common.Authorization = "Bearer " + data.acess_token;
     } else {
@@ -81,11 +83,11 @@ export const useAuthStore = defineStore('auth', () => {
       user_email.value = undefined;
       user_id.value = undefined;
       api.defaults.headers.common.Authorization = "";
-      isAuthenticated.value = false;
+      //isAuthenticated.value = false;
 
-      //router.push("/");
+      router.push("/");
     }
-    return isAuthenticated;
+    await isAuth();
   };
 
   return {
@@ -96,7 +98,7 @@ export const useAuthStore = defineStore('auth', () => {
     setUserEmail,
     setUserId,
     logout,
-    isAuthenticated,
+    isAuth,
     login,
     init
   }
