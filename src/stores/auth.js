@@ -7,10 +7,11 @@ import { useRouter } from 'vue-router';
 
 
 export const useAuthStore = defineStore('auth', () => {
-  const token = ref(localStorage.getItem('acess_token'));
+  const token =  ref(localStorage.getItem('acess_token'));
   const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
-  const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
+  const user_id =  ref(JSON.parse(localStorage.getItem('id_user')));
   const isAuthenticated = ref(false);
+  
 
   //Para atualizar os dados do localStorage
   function setToken(tokenValue) {
@@ -29,11 +30,15 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const isAuth = async () => {
+    console.log("Entrou em isAuth");
+    console.log(token);
     if (token.value) {
       isAuthenticated.value = true;
     } else {
       isAuthenticated.value = false;
     }
+    console.log('O valor de isAuthenticated em isAuth é ', isAuthenticated.value);
+
   }
 
   //Para verificar a autenticação
@@ -64,27 +69,17 @@ export const useAuthStore = defineStore('auth', () => {
 
   const init = async () => {
     const router = useRouter();
-    const token = ref(localStorage.getItem('acess_token'));
-    console.log("Entrou em  init");
+    //const token = ref(localStorage.getItem('acess_token'));
+    //console.log("Entrou em  init");
     //Arrumar essa parte
-    console.log(token.value);
-    // console.log(isAuthenticated.value);
-    if (token.value) {
-      console.log(token);
-      //Armazena o token, o email e o id no localStorage
-      setToken(acess_token);
-      setUserEmail(email_user);
-      setUserId(id_user);
-      //isAuthenticated.value = true;
+    if ((token.value),
+      (user_email.value),
+      (user_id.value)) {
+      
       //Passa o token para cada requisição
-      api.defaults.headers.common.Authorization = "Bearer " + data.acess_token;
+      api.defaults.headers.common.Authorization = "Bearer " + token.value;
     } else {
-      token.value = undefined;
-      user_email.value = undefined;
-      user_id.value = undefined;
-      api.defaults.headers.common.Authorization = "";
-      //isAuthenticated.value = false;
-
+      logout();
       router.push("/");
     }
     await isAuth();

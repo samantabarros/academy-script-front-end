@@ -1,4 +1,3 @@
-
 <template>
   <q-card
     class="bg-grey-2 card-mensagem"
@@ -37,20 +36,18 @@
       </div>
       <q-separator />
       <div class="q-pa-md">
-         <div>
-      <span
-        >No momento essa solicitação está indisponível. Tente novamente mais
-        tarde!
-      </span>
-      <div class="q-mb-md flex flex-center items-end">
-        <router-link
-          class="text-primary text-subtitle1 text-weight-regular"
-          to="/"
-        >
-          Voltar para a página de login
-        </router-link>
-      </div>
-    </div>
+        <div>
+          <span
+            >No momento essa solicitação está indisponível. Tente novamente mais
+            tarde!
+          </span>
+          <div class="q-mb-md flex flex-center items-end">
+            <p class="text-primary text-subtitle1 text-weight-regular cursor-pointer" v-close-popup>
+               Voltar para a página de login
+            </p>
+              
+          </div>
+        </div>
       </div>
     </q-card-section>
   </q-card>

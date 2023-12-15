@@ -47,12 +47,12 @@ const props = defineProps(["titulo"]);
 </script>
 
 <style>
-.card-mensagem {
+/* .card-mensagem {
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
+} */
 
-.card-mensagem:hover {
+/* .card-mensagem:hover {
   transform: scale(1.05);
-}
+} */
 </style>
