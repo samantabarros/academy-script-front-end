@@ -23,7 +23,7 @@
         </q-card-section>
         <div class="row q-pa-md q-gutter-lg justify-end">
           <q-btn color="positive" label="Atualizar" size="12px" @click="onSubmit(id)" icon="save" />
-          <q-btn color="negative" label="Cancelar" size="12px" v-close-popup icon="close"/> 
+          <q-btn color="negative" label="Cancelar" size="12px" v-close-popup icon="close" @click="atualizaPagina"/> 
         </div>
       </q-form>
     </div>
@@ -69,10 +69,6 @@ const atualizarDados  = async (id) => {
       icon: "check_circle_outline",
       position: "top",
     });
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-  
   }catch(error){
     if (error.response) {
       $q.notify({
@@ -91,6 +87,12 @@ const atualizarDados  = async (id) => {
     }
   }
 }
+
+const atualizaPagina = async () => {
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
+};
 
 
 </script>

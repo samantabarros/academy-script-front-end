@@ -4,7 +4,7 @@
     >
       <q-card-section>
         <div class="row justify-end">
-          <q-btn square dense color="grey" icon="close"  size="10px"  v-close-popup />
+          <q-btn square dense color="grey" icon="close"  size="10px"  @click="atualizaPagina" v-close-popup />
         </div>
         <div class="text-h4 q-ml-xs row justify-center"> {{ titulo }}</div>
       </q-card-section>
@@ -21,6 +21,11 @@ import { computed } from 'vue';
 
 const props = defineProps({"titulo": String, "tamanho": String})
 
+const atualizaPagina = async () => {
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
+};
 // const modalClass = () => {
 //   return `card-${tamanho.value}`
 // }
