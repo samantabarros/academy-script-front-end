@@ -4,14 +4,11 @@ import { api } from 'src/boot/axios';
 import { computed, ref } from "vue";
 import { useRouter } from 'vue-router';
 
-
-
 export const useAuthStore = defineStore('auth', () => {
-  const token =  ref(localStorage.getItem('acess_token'));
+  const token = ref(localStorage.getItem('acess_token'));
   const user_email = ref(JSON.parse(localStorage.getItem('email_user')));
-  const user_id =  ref(JSON.parse(localStorage.getItem('id_user')));
+  const user_id = ref(JSON.parse(localStorage.getItem('id_user')));
   const isAuthenticated = ref(false);
-  
 
   //Para atualizar os dados do localStorage
   function setToken(tokenValue) {
@@ -72,10 +69,8 @@ export const useAuthStore = defineStore('auth', () => {
     //const token = ref(localStorage.getItem('acess_token'));
     //console.log("Entrou em  init");
     //Arrumar essa parte
-    if ((token.value),
-      (user_email.value),
-      (user_id.value)) {
-      
+    if ((token.value), (user_email.value), (user_id.value)) {
+
       //Passa o token para cada requisição
       api.defaults.headers.common.Authorization = "Bearer " + token.value;
     } else {

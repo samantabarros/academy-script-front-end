@@ -1,10 +1,34 @@
 <template>
   <q-card
-    class="bg-grey-2 card-mensagem"
-    style="width: 500px; height: 300px"
+    class="bg-white card-mensagem bordered"
+    style="width: 400px; height: 250px"
     persistent
   >
-    <q-card-section>
+    <div class="flex justify-between q-pb-sm q-py-md q-px-sm">
+      <q-img
+        class="q-ml-xs"
+        src="/img/alerta.png"
+        alt="imagem cérebro animado"
+        style="height: 30px; max-width: 30px"
+      />
+      <span class="title text-h5"> Serviço Indisponível</span>
+      <q-btn square dense color="grey" icon="close" size="10px" v-close-popup />
+    </div>
+    <q-separator />
+    <p class="text-subtitle1 q-pt-lg q-px-md">
+      No momento essa solicitação está indisponível. Tente novamente mais tarde!
+    </p>
+    <div class="q-px-md text-center">
+
+      <p
+        class="descricao absolute-bottom text-primary text-subtitle1 text-weight-regular cursor-pointer text-decoration"
+        v-close-popup
+      >
+        Voltar para a página de login
+      </p>
+    </div>
+
+    <!-- <q-card-section>
       <div class="row justify-end">
         <q-btn
           square
@@ -20,27 +44,21 @@
           <q-img
             src="/img/alerta.png"
             alt="imagem cérebro animado"
-            style="height: 50px; max-width: 60px"
+            style="height: 30px; max-width: 30px"
           />
         </div>
-        <div class="text-h4 q-ml-xs flex items-center">
-          <h5>Serviço Indisponível</h5>
+        <div class="text-h5 q-ml-xs flex items-center">
+          <p>Serviço Indisponível</p>
         </div>
-        <div class="col-2">
-          <q-img
-            src="/img/atencao.png"
-            alt="imagem cérebro animado"
-            style="height: 50px; max-width: 60px"
-          />
-        </div>
+       
       </div>
       <q-separator />
       <div class="q-pa-md">
         <div>
-          <span
-            >No momento essa solicitação está indisponível. Tente novamente mais
+          <p class="text-h6">
+            No momento essa solicitação está indisponível. Tente novamente mais
             tarde!
-          </span>
+          </p>
           <div class="q-mb-md flex flex-center items-end">
             <p class="text-primary text-subtitle1 text-weight-regular cursor-pointer" v-close-popup>
                Voltar para a página de login
@@ -49,7 +67,7 @@
           </div>
         </div>
       </div>
-    </q-card-section>
+    </q-card-section> -->
   </q-card>
 </template>
 
@@ -58,12 +76,7 @@ const props = defineProps(["titulo"]);
 </script>
 
 <style>
-.card-mensagem {
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.card-mensagem:hover {
-  transform: scale(1.05);
+.descricao{
+  text-decoration: underline
 }
 </style>

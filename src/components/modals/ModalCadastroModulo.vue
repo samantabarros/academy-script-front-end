@@ -8,7 +8,7 @@
               :rules="[(val) => (val && val.length > 0) || 'Campo obrigatório']" />
           </div>
         </q-card-section>
-        <div class="row q-pa-md q-gutter-lg flex justify-end">
+        <div class="q-pa-md q-gutter-lg flex justify-end">
           <q-btn color="positive" type="submit" label="Cadastrar" size="12px" icon="save"/>
           <q-btn color="negative" label="Cancelar" v-close-popup size="12px" icon="close" />
         </div>
