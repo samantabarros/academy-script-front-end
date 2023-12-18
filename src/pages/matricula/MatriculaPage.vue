@@ -39,10 +39,11 @@
       :filter="filter"
       row-key="id"
     >
-      <template v-slot:body-cell-status="props" >
+      <template v-slot:body-cell-status="props">
         <q-td class="text-center">
           <q-badge :color="corStatus(props.row.status)">
-          {{ props.row.status }}</q-badge>
+            {{ props.row.status }}</q-badge
+          >
         </q-td>
       </template>
       <template v-slot:body-cell-acoes="props">
@@ -155,8 +156,7 @@ const iniciarDeletarMatricula = async (modulo) => {
 const iniciarEditarMatricula = async (modulo) => {
   moduloAtual.value = modulo;
   showModalEditarMatricula.value = true;
-}
-
+};
 
 const buscarAlunoSelecionado = async () => {
   // console.log(idAluno)
@@ -186,8 +186,7 @@ const getModulos = async (idAluno) => {
 
 //Função para ver o status do aluno
 const calcularMediaStatus = async (rows_matriculas) => {
-//async function calcularMediaStatus(rows_matriculas) {
-  console.log("Entrou em calcularMediaStatusEStatus");
+  //async function calcularMediaStatus(rows_matriculas) {
   let matriculas = rows_matriculas.value;
   console.log(rows_matriculas.value);
   rows_matriculas.value.forEach((value, index) => {
@@ -214,7 +213,7 @@ const calcularMediaStatus = async (rows_matriculas) => {
       };
     }
   });
-}
+};
 
 function corStatus(status) {
   if (status == "Apto") {
@@ -230,5 +229,4 @@ function corStatus(status) {
   console.log(status);
 }
 </script>
-<style>
-</style>
+<style></style>
