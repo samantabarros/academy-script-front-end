@@ -6,16 +6,16 @@
         não poderá desfazê-la!</span
       >
     </div>
-    <q-card-actions align="center">
+    <div class="row q-pa-md q-gutter-md flex justify-end">
       <q-btn
-        flat
-        label="Sim, excluir"
+        label="Confirmar"
         color="positive"
         v-close-popup
+        size="12px"
         @click="deletarAluno(id)"
       />
-      <q-btn flat label="Cancelar" color="negative" v-close-popup />
-    </q-card-actions>
+      <q-btn label="Cancelar" color="negative" size="12px" v-close-popup />
+    </div>
   </card-mensagem>
 </template>
 
@@ -23,7 +23,6 @@
 import { api } from "src/boot/axios";
 import { useQuasar } from "quasar";
 import CardMensagem from "src/components/commons/CardMensagem.vue";
-
 
 const $q = useQuasar();
 const props = defineProps({

@@ -16,20 +16,49 @@
             </q-select>
           </div>
           <div class="q-mb-md">
-            <q-input outlined v-model="cadastro.nota1" label="Nota 1" type="number" />
+            <q-input
+              outlined
+              v-model="cadastro.nota1"
+              label="Nota 1"
+              type="number"
+            />
           </div>
           <div class="q-mb-md">
-            <q-input outlined v-model="cadastro.nota2" label="Nota 2" type="number" />
+            <q-input
+              outlined
+              v-model="cadastro.nota2"
+              label="Nota 2"
+              type="number"
+            />
           </div>
           <div class="q-mb-md">
-            <q-input outlined v-model="cadastro.nota3" label="Nota 3" type="number" />
+            <q-input
+              outlined
+              v-model="cadastro.nota3"
+              label="Nota 3"
+              type="number"
+            />
           </div>
         </q-card-section>
-        <div class="row q-pa-md q-gutter-lg flex justify-end">
-          <q-btn color="positive" type="submit" size="12px" label="Cadastrar" icon="save"/>
-          <q-btn color="negative" size="12px" label="Cancelar" v-close-popup icon="close"/>
-        </div>
       </q-form>
+      <div class="botoes-cadastro row q-pa-md q-gutter-lg flex justify-end">
+        <q-btn
+          color="positive"
+          type="submit"
+          size="12px"
+          label="Cadastrar"
+          icon="save"
+          @click="submitForm"
+          
+        />
+        <q-btn
+          color="negative"
+          size="12px"
+          label="Cancelar"
+          v-close-popup
+          icon="close"
+        />
+      </div>
     </div>
   </card-base>
 </template>
@@ -70,9 +99,15 @@ const getModulos = async () => {
 const submitForm = async () => {
   try {
     cadastro.value.id_modulo = cadastro.value.modulo.valor;
-    cadastro.value.nota1 = cadastro.value.nota1 ? Number(cadastro.value.nota1) : null;
-    cadastro.value.nota2 = cadastro.value.nota2 ? Number(cadastro.value.nota2) : null;
-    cadastro.value.nota3 = cadastro.value.nota3 ? Number(cadastro.value.nota3) : null;
+    cadastro.value.nota1 = cadastro.value.nota1
+      ? Number(cadastro.value.nota1)
+      : null;
+    cadastro.value.nota2 = cadastro.value.nota2
+      ? Number(cadastro.value.nota2)
+      : null;
+    cadastro.value.nota3 = cadastro.value.nota3
+      ? Number(cadastro.value.nota3)
+      : null;
 
     delete cadastro.value.modulo;
     console.log(cadastro.value);
@@ -110,6 +145,10 @@ onMounted(() => {
   getModulos();
   cadastro.value.id_aluno = id;
 });
-
 </script>
 
+<style scoped>
+.botoes-cadastro{
+  margin-top: 50px !important; 
+}
+</style>

@@ -1,9 +1,12 @@
 <template>
   <card-base titulo="Cadastrar Módulo" tamanho="pequeno">
     <div class="col-12 col-4-md">
-      <q-form @submit.prevent="submitForm" style="height: 100%; display: flex; flex-direction: column;">
-        <q-card-section class="q-pt-xs" style="flex: 1;">
-          <div  style="height: 100%;" >
+      <q-form
+        @submit.prevent="submitForm"
+        style="height: 100%; display: flex; flex-direction: column"
+      >
+        <q-card-section class="q-pt-xs" style="flex: 1">
+          <div style="height: 100%">
             <q-input
               outlined
               class="q-mb-xs"
@@ -13,23 +16,26 @@
             />
           </div>
         </q-card-section>
-      
-          <div class="q-pa-md q-gutter-md flex justify-end">
-            <q-btn
-              color="positive"
-              type="submit"
-              label="Cadastrar"
-              size="12px"
-              icon="save"
-            />
-            <q-btn
-              color="negative"
-              label="Cancelar"
-              v-close-popup
-              size="12px"
-              icon="close"
-            />
+        <div class="row">
+          <div class="col-12 botoes-cadastro">
+            <div class="q-pa-md q-gutter-md flex justify-end">
+              <q-btn
+                color="positive"
+                type="submit"
+                label="Cadastrar"
+                size="12px"
+                icon="save"
+              />
+              <q-btn
+                color="negative"
+                label="Cancelar"
+                v-close-popup
+                size="12px"
+                icon="close"
+              />
+            </div>
           </div>
+        </div>
       </q-form>
     </div>
   </card-base>
@@ -80,3 +86,8 @@ const submitForm = async () => {
   }
 };
 </script>
+<style scoped>
+.botoes-cadastro {
+  margin-top: 50px !important;
+}
+</style>

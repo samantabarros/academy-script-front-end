@@ -29,7 +29,7 @@
             />
           </div>
         </q-card-section>
-        <div class="row q-pa-md q-gutter-lg flex justify-end">
+        <div class="row q-pa-lg q-gutter-lg flex justify-end">
           <q-btn
             color="positive"
             size="12px"

@@ -1,21 +1,20 @@
 <template>
   <card-mensagem titulo="Excluir Matrícula?">
-   <div class="row q-pt-lg q-pb-sm justify-center">
-    <span class = "text-h6 q-ml-sm text-center">
-        Tem certeza que deseja excluir a matrícula desse aluno? Ao confirmar essa ação, você
-        não poderá desfazê-la! 
-    </span>
-
-   </div>
-        <q-card-actions align="center">
-          <q-btn
-            flat
-            label="Sim, excluir"
-            color="positive"
-            @click="deletarModulo(id)"
-          />
-          <q-btn flat label="Cancelar" color="negative" v-close-popup />
-        </q-card-actions>
+    <div class="row q-pt-lg q-pb-sm justify-center">
+      <span class="text-h6 q-ml-sm text-center">
+        Tem certeza que deseja excluir a matrícula desse aluno? Ao confirmar
+        essa ação, você não poderá desfazê-la!
+      </span>
+    </div>
+    <div class="row q-pa-md q-gutter-md flex justify-end">
+      <q-btn
+        label="Confirmar"
+        color="positive"
+        size="12px"
+        @click="deletarModulo(id)"
+      />
+      <q-btn label="Cancelar" color="negative" size="12px" v-close-popup />
+    </div>
   </card-mensagem>
 </template>
 

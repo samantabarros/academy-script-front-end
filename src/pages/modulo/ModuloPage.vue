@@ -29,7 +29,7 @@
         @click="showModalCadastrarModulo = true"
       ></q-btn>
     </div>
-    <q-dialog v-model="showModalCadastrarModulo">
+    <q-dialog v-model="showModalCadastrarModulo" persistent>
       <modal-cadastro-modulo />
     </q-dialog>
     <div class="row justify-center">

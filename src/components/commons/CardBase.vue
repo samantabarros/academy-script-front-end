@@ -24,7 +24,7 @@ const props = defineProps({"titulo": String, "tamanho": String})
 const atualizaPagina = async () => {
   setTimeout(() => {
     location.reload();
-  }, 1000);
+  });
 };
 // const modalClass = () => {
 //   return `card-${tamanho.value}`
