@@ -8,7 +8,7 @@
         <q-img src="/img/brain.png" alt="imagem cérebro animado" size="10px" />
       </div>
 
-      <div class="col-8 flex flex-center">
+      <div class="col-8 flex flex-center text-center">
         <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
       </div>
       <div class="justify-between">
