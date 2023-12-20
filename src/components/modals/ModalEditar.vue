@@ -29,22 +29,26 @@
             />
           </div>
         </q-card-section>
-        <div class="row q-pa-lg q-gutter-lg flex justify-end">
-          <q-btn
-            color="positive"
-            size="12px"
-            label="Atualizar"
-            @click="onSubmit(id, dados_aluno)"
-            icon="save"
-          />
-          <q-btn
-            color="negative"
-            size="12px"
-            label="Cancelar"
-            icon="close"
-            @click="atualizaPagina"
-            v-close-popup
-          />
+        <div class="row">
+          <div class="col-12 btn-cadastro">
+            <div class="q-pa-lg q-gutter-md flex justify-end">
+              <q-btn
+                color="positive"
+                size="12px"
+                label="Atualizar"
+                @click="onSubmit(id, dados_aluno)"
+                icon="save"
+              />
+              <q-btn
+                color="negative"
+                size="12px"
+                label="Cancelar"
+                icon="close"
+                @click="atualizaPagina"
+                v-close-popup
+              />
+            </div>
+          </div>
         </div>
       </q-form>
     </div>
@@ -124,3 +128,9 @@ const atualizaPagina = async () => {
   }, 1000);
 };
 </script>
+
+<style scoped>
+.btn-cadastro {
+  margin-top: 70px !important;
+}
+</style>

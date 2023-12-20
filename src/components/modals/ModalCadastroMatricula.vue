@@ -41,7 +41,7 @@
           </div>
         </q-card-section>
       </q-form>
-      <div class="botoes-cadastro row q-pa-md q-gutter-lg flex justify-end">
+      <div class="btn-cadastro row q-pa-md q-gutter-md flex justify-end">
         <q-btn
           color="positive"
           type="submit"
@@ -148,7 +148,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.botoes-cadastro{
+.btn-cadastro{
   margin-top: 50px !important; 
 }
 </style>

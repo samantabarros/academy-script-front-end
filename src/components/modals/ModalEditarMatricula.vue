@@ -21,9 +21,26 @@
             <q-input outlined v-model="formularioEditar.nota3" label="Nota 3" />
           </div>
         </q-card-section>
-        <div class="row q-pa-md q-gutter-lg justify-end">
-          <q-btn color="positive" label="Atualizar" size="12px" @click="onSubmit(id)" icon="save" />
-          <q-btn color="negative" label="Cancelar" size="12px" v-close-popup icon="close" @click="atualizaPagina"/> 
+        <div class="row">
+          <div class="col-12 btn-cadastro">
+            <div class="row q-pa-md q-gutter-md justify-end">
+              <q-btn
+                color="positive"
+                label="Atualizar"
+                size="12px"
+                @click="onSubmit(id)"
+                icon="save"
+              />
+              <q-btn
+                color="negative"
+                label="Cancelar"
+                size="12px"
+                v-close-popup
+                icon="close"
+                @click="atualizaPagina"
+              />
+            </div>
+          </div>
         </div>
       </q-form>
     </div>
@@ -47,7 +64,6 @@ const formularioEditar = ref({
   nota1: props.dados_modulo.nota1,
   nota2: props.dados_modulo.nota2,
   nota3: props.dados_modulo.nota3,
-  
 });
 
 function onSubmit(id) {
@@ -55,21 +71,27 @@ function onSubmit(id) {
   atualizarDados(id);
 }
 
-const atualizarDados  = async (id) => {
-  try{
+const atualizarDados = async (id) => {
+  try {
     delete formularioEditar.value.nome_modulo;
-    formularioEditar.value.nota1 = formularioEditar.value.nota1 ? Number(formularioEditar.value.nota1) : null;
-    formularioEditar.value.nota2 = formularioEditar.value.nota2 ? Number(formularioEditar.value.nota2) : null;
-    formularioEditar.value.nota3 = formularioEditar.value.nota3 ? Number(formularioEditar.value.nota3) : null;
-    
-    const {data} = await api.put(`matricula/${id}`, formularioEditar.value);
+    formularioEditar.value.nota1 = formularioEditar.value.nota1
+      ? Number(formularioEditar.value.nota1)
+      : null;
+    formularioEditar.value.nota2 = formularioEditar.value.nota2
+      ? Number(formularioEditar.value.nota2)
+      : null;
+    formularioEditar.value.nota3 = formularioEditar.value.nota3
+      ? Number(formularioEditar.value.nota3)
+      : null;
+
+    const { data } = await api.put(`matricula/${id}`, formularioEditar.value);
     $q.notify({
       message: "Matrícula atualizada com sucesso!",
       color: "positive",
       icon: "check_circle_outline",
       position: "top",
     });
-  }catch(error){
+  } catch (error) {
     if (error.response) {
       $q.notify({
         message: error.response.data.message,
@@ -86,13 +108,18 @@ const atualizarDados  = async (id) => {
       });
     }
   }
-}
+};
 
 const atualizaPagina = async () => {
   setTimeout(() => {
     location.reload();
   }, 1000);
 };
-
-
 </script>
+
+<style scoped>
+.btn-cadastro {
+  margin-top: 30px !important;
+}
+</style>
+

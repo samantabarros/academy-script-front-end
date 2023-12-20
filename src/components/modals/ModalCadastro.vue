@@ -36,9 +36,21 @@
             </q-input>
           </div>
         </q-card-section>
-        <div class="row q-pa-md q-gutter-lg flex justify-end">
-          <q-btn color="positive" type="submit" size="12px" label="Cadastrar" icon="save"/>
-          <q-btn color="negative" size="12px" label="Cancelar" v-close-popup  icon="close" />
+        <div class="btn-cadastro q-pa-xs q-gutter-md q-mr-md flex justify-end">
+          <q-btn
+            color="positive"
+            type="submit"
+            size="12px"
+            label="Cadastrar"
+            icon="save"
+          />
+          <q-btn
+            color="negative"
+            size="12px"
+            label="Cancelar"
+            v-close-popup
+            icon="close"
+          />
         </div>
       </q-form>
     </div>
@@ -64,7 +76,6 @@ const cadastro = ref({
 
 const submitForm = async () => {
   try {
-    //console.log(cadastro.value.data_nascimento);
     //Função para formatar a data
     cadastro.value.data_nascimento = new Date(
       cadastro.value.data_nascimento
@@ -98,7 +109,10 @@ const submitForm = async () => {
     }
   }
 };
-
 </script>
 
-<style scoped></style>
+<style scoped>
+.btn-cadastro {
+  margin-top: 40px !important;
+}
+</style>

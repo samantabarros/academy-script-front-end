@@ -16,25 +16,21 @@
             />
           </div>
         </q-card-section>
-        <div class="row">
-          <div class="col-12 botoes-cadastro">
-            <div class="q-pa-md q-gutter-md flex justify-end">
-              <q-btn
-                color="positive"
-                type="submit"
-                label="Cadastrar"
-                size="12px"
-                icon="save"
-              />
-              <q-btn
-                color="negative"
-                label="Cancelar"
-                v-close-popup
-                size="12px"
-                icon="close"
-              />
-            </div>
-          </div>
+        <div class="btn-cadastro q-pa-md q-gutter-md flex justify-end">
+          <q-btn
+            color="positive"
+            type="submit"
+            label="Cadastrar"
+            size="12px"
+            icon="save"
+          />
+          <q-btn
+            color="negative"
+            label="Cancelar"
+            v-close-popup
+            size="12px"
+            icon="close"
+          />
         </div>
       </q-form>
     </div>
@@ -87,7 +83,7 @@ const submitForm = async () => {
 };
 </script>
 <style scoped>
-.botoes-cadastro {
-  margin-top: 50px !important;
+.btn-cadastro {
+  margin-top: 40px !important;
 }
 </style>
