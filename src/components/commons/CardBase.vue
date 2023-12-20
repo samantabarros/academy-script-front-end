@@ -1,25 +1,36 @@
 <template>
-    <q-card
-      :class= "`card-${tamanho}`"
-    >
-      <q-card-section>
-        <div class="row justify-end">
-          <q-btn square dense color="grey" icon="close"  size="10px"  @click="atualizaPagina" v-close-popup />
-        </div>
-        <div class="text-h4 q-ml-xs row justify-center"> {{ titulo }}</div>
-      </q-card-section>
-      <q-separator />
-      <div class="q-pa-md">
-        <slot></slot>
+  <q-card :class="`card-${tamanho}`">
+    <q-card-section>
+      <div class="row justify-end">
+        <q-btn
+          square
+          dense
+          color="grey"
+          icon="close"
+          size="10px"
+          @click="atualizaPagina"
+          v-close-popup
+        />
       </div>
-    </q-card>
+      <q-img
+        class="fixed q-mt-xs"
+        src="/img/pencil.svg"
+        alt="imagem alerta"
+        style="height: 30px; max-width: 36px"
+      />
+      <div class="text-h4 q-ml-xs row justify-center">{{ titulo }}</div>
+    </q-card-section>
+    <q-separator />
+    <div class="q-pa-md">
+      <slot></slot>
+    </div>
+  </q-card>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
-
-const props = defineProps({"titulo": String, "tamanho": String})
+const props = defineProps({ titulo: String, tamanho: String });
 
 const atualizaPagina = async () => {
   setTimeout(() => {
@@ -32,20 +43,20 @@ const atualizaPagina = async () => {
 </script>
 
 <style>
-.card-pequeno{
+.card-pequeno {
   max-width: 100%;
   max-height: 100%;
   height: 350px;
   width: 550px;
 }
 
-.card-medio{
+.card-medio {
   max-width: 100%;
   max-height: 100%;
   height: 500px;
   width: 550px;
 }
-.card-grande{
+.card-grande {
   max-width: 100%;
   max-height: 100%;
   height: 600px;

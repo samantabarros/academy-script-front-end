@@ -6,15 +6,20 @@
         não poderá desfazê-la!
       </span>
     </div>
-      <div class="row q-pa-md q-gutter-md flex justify-end">
-        <q-btn
-          label="Confirmar"
-          color="positive"
-          size="12px"
-          @click="deletarModulo(props.id)"
-        />
-        <q-btn label="Cancelar" size="12px" color="negative" v-close-popup />
+    <div class="row">
+      <div class="col-12">
+        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-md flex justify-end">
+          <q-btn
+            label="Confirmar"
+            color="positive"
+            size="12px"
+             icon="check" 
+            @click="deletarModulo(props.id)"
+          />
+          <q-btn label="Cancelar" size="12px" color="negative" icon="close" v-close-popup/>
+        </div>
       </div>
+    </div>
   </card-mensagem>
 </template>
 
@@ -51,3 +56,9 @@ const deletarModulo = async (id_modulo) => {
   }
 };
 </script>
+
+<style scoped>
+.btn-mensagem {
+  margin-top: 50px !important;
+}
+</style>

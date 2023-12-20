@@ -6,6 +6,7 @@
         style="height: 100%; display: flex; flex-direction: column"
       >
         <q-card-section class="q-pt-xs" style="flex: 1">
+          
           <div style="height: 100%">
             <q-input
               outlined

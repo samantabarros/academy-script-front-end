@@ -4,22 +4,36 @@
     style="width: 400px; height: 250px"
     persistent
   >
-    <div class="flex justify-between q-pb-sm q-py-md q-px-sm">
-      <q-img
-        class="q-ml-xs"
-        src="/img/alerta.png"
-        alt="imagem cérebro animado"
-        style="height: 30px; max-width: 30px"
-      />
-      <span class="title text-h5"> Serviço Indisponível</span>
-      <q-btn square dense color="grey" icon="close" size="10px" v-close-popup />
+    <div class="row q-pl-md q-my-sm">
+      <div class="col-12">
+        <div class="q-pl-md">
+          <q-img
+            class="fixed q-mt-xs"
+            src="/img/warning.svg"
+            alt="imagem alerta"
+            style="height: 30px; max-width: 36px"
+          />
+          <div class="text-h5 text-center">
+            <span> Serviço Indisponível</span>
+          </div>
+          <div class="q-pa-xs justify-end absolute-top-right">
+            <q-btn
+              square
+              dense
+              color="grey"
+              icon="close"
+              size="10px"
+              v-close-popup
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <q-separator />
     <p class="text-subtitle1 q-pt-lg q-px-md">
       No momento essa solicitação está indisponível. Tente novamente mais tarde!
     </p>
     <div class="q-px-md text-center">
-
       <p
         class="descricao absolute-bottom text-primary text-subtitle1 text-weight-regular cursor-pointer text-decoration"
         v-close-popup
@@ -76,7 +90,7 @@ const props = defineProps(["titulo"]);
 </script>
 
 <style>
-.descricao{
-  text-decoration: underline
+.descricao {
+  text-decoration: underline;
 }
 </style>

@@ -4,20 +4,21 @@
     style="width: 620px; height: 330px"
     persistent
   >
-    <q-card-section>
-      <div class="row q-pl-md q-py-sm ">
-        <div class="col-2">
+    <div class="row q-pl-md q-mt-md">
+      <div class="col-12">
+        <div class="q-pl-md">
           <q-img
-            src="/img/alerta.png"
+            class="fixed q-mt-xs "
+            src="/img/warning.svg"
             alt="imagem de alerta"
-            style="height: 40px; max-width: 45px"
+            style="height: 35px; max-width: 40px"
           />
         </div>
-        <div class="col-7 text-h4 q-ml-xs text-center">
+        <div class="text-h4 text-center">
           <p>{{ titulo }}</p>
         </div>
 
-        <div class="col-2 justify-end">
+        <div class="q-pa-xs justify-end absolute-top-right">
           <q-btn
             square
             dense
@@ -28,11 +29,12 @@
           />
         </div>
       </div>
-      <q-separator />
-      <div class="q-pa-md">
-        <slot></slot>
-      </div>
-    </q-card-section>
+    </div>
+    <q-separator />
+    <div class="q-pa-md">
+      <slot></slot>
+    </div>
+    <!-- </q-card-section> -->
   </q-card>
 </template>
 
