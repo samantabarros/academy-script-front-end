@@ -20,7 +20,7 @@
           <q-btn
             dense
             class="q-pa-sm"
-            color="positive"
+            color="blue-7"
             type="submit"
             label="Cadastrar"
             size="12px"
@@ -29,7 +29,7 @@
           <q-btn
             dense
             class="q-pa-sm"
-            color="negative"
+            color="grey-7"
             label="Cancelar"
             v-close-popup
             size="12px"

@@ -35,7 +35,7 @@
               <q-btn
                 dense
                 class="q-pa-sm"
-                color="positive"
+                color="blue-7"
                 size="12px"
                 label="Atualizar"
                 @click="onSubmit(id, dados_aluno)"
@@ -44,7 +44,7 @@
               <q-btn
                 dense
                 class="q-pa-sm"
-                color="negative"
+                color="grey-7"
                 size="12px"
                 label="Cancelar"
                 icon="close"

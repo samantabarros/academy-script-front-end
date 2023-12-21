@@ -27,7 +27,7 @@
               <q-btn
                 dense
                 class="q-pa-sm"
-                color="positive"
+                color="blue-7"
                 label="Atualizar"
                 size="12px"
                 @click="onSubmit(id)"
@@ -36,7 +36,7 @@
               <q-btn
                 dense
                 class="q-pa-sm"
-                color="negative"
+                color="grey-7"
                 label="Cancelar"
                 size="12px"
                 v-close-popup

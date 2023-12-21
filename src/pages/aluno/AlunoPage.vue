@@ -1,5 +1,8 @@
 <template>
-  <div class="q-pa-md text-body1"  :style="`min-height: ${$q.screen.height - 130}px`">
+  <div
+    class="q-pa-md text-body1"
+    :style="`min-height: ${$q.screen.height - 130}px`"
+  >
     <div class="row justify-end">
       <q-input
         outlined
@@ -18,7 +21,7 @@
       </q-input>
       <q-btn
         dense
-        class="bg-positive text-white q-px-md"
+        class="bg-blue-7 text-white q-px-md"
         icon="person_add"
         label="Adicionar"
         @click="showModalCadastrar = true"
@@ -41,7 +44,10 @@
         </q-dialog>
 
         <q-dialog v-model="showMensagemDeletarAluno" persistent>
-          <mensagem-deletar-aluno :id="alunoAtual.id" :nome="alunoAtual.nome_aluno" />
+          <mensagem-deletar-aluno
+            :id="alunoAtual.id"
+            :nome="alunoAtual.nome_aluno"
+          />
         </q-dialog>
 
         <q-td :props="props">
@@ -75,16 +81,18 @@
     </q-table>
   </div>
   <router-link to="/home" style="text-decoration: none">
-    <div class="justify-end-left q-pa-xs q-mb-xs">
-      <q-btn outline class="text-orange-10 ">Voltar</q-btn>
+    <div class="row justify-end-left q-px-xs">
+      <div class="col-12 btn-voltar">
+        <q-btn outline class="text-orange-10">Voltar</q-btn>
+      </div>
     </div>
   </router-link>
 </template>
 
 <script setup>
-import { useQuasar} from "quasar";
+import { useQuasar } from "quasar";
 import { api } from "src/boot/axios";
-import {onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
@@ -110,13 +118,15 @@ const columns = [
   },
   {
     name: "cpf",
-    field: (row) => row.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'),
+    field: (row) =>
+      row.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"),
     label: "CPF",
     align: "center",
   },
   {
     name: "data",
-    field: (row) => row.data_nascimento.slice(0,10).split("-").reverse().join("/"),
+    field: (row) =>
+      row.data_nascimento.slice(0, 10).split("-").reverse().join("/"),
     label: "Data de nascimento",
     align: "center",
   },
@@ -136,13 +146,13 @@ onMounted(() => {
 const iniciarModalDeletar = async (aluno) => {
   alunoAtual.value = aluno;
   showMensagemDeletarAluno.value = true;
-}
+};
 
 // Abre o modal para editar o aluno
 const iniciarModalEditar = async (aluno) => {
   alunoAtual.value = aluno;
   showModalEditar.value = true;
-}
+};
 
 //Mostrar alunos
 const getAlunos = async () => {
@@ -156,4 +166,9 @@ const getAlunos = async () => {
 };
 </script>
 
-<style></style>
+<style>
+/* .btn-voltar{
+  margin-top: 150px !important;
+  position: fixed;
+} */
+</style>

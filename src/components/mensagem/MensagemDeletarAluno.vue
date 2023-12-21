@@ -13,13 +13,13 @@
             class="q-pa-sm"
             dense
             label="Confirmar"
-            color="positive"
+            color="blue-7"
             size="12px"
             @click="deletarAluno(id)"
             icon="check"
             v-close-popup
           />
-          <q-btn dense class="q-pa-sm" label="Cancelar" color="negative" size="12px" icon="close" v-close-popup />
+          <q-btn dense class="q-pa-sm" label="Cancelar" color="grey-7" size="12px" icon="close" v-close-popup />
         </div>
       </div>
     </div>
@@ -71,6 +71,6 @@ const deletarAluno = async (id) => {
 }
 
 .btn-mensagem {
-  margin-top: 110px !important;
+  margin-top: 80px !important;
 }
 </style>

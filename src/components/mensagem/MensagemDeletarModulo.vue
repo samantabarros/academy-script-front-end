@@ -14,7 +14,7 @@
             dense
             class="q-pa-sm"
             label="Confirmar"
-            color="positive"
+            color="blue-7"
             size="12px"
             icon="check"
             @click="deletarModulo(props.id)"
@@ -24,7 +24,7 @@
             class="q-pa-sm"
             label="Cancelar"
             size="12px"
-            color="negative"
+            color="grey-7"
             icon="close"
             v-close-popup
           />

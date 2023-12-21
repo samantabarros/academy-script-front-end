@@ -21,7 +21,7 @@
       </q-input>
       <q-btn
         dense
-        class="bg-positive text-white q-px-md"
+        class="bg-blue-7 text-white q-px-md"
         icon="add"
         label="Adicionar"
         @click="showModalCadastroMatricula = true"
@@ -73,7 +73,7 @@
     </q-table>
   </div>
   <router-link to="/alunos" style="text-decoration: none">
-    <div class="justify-end-left q-pa-xs q-mb-xs">
+    <div class="justify-end-left q-px-xs">
       <q-btn outline class="text-orange-10">Voltar</q-btn>
     </div>
   </router-link>

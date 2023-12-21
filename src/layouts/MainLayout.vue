@@ -33,7 +33,7 @@
       </q-list>
     </q-drawer>
 
-    <q-footer elevated class="q-pa-xs text-center bg-blue-10 flex flex-center" style="height: 5em;">
+    <q-footer elevated class="q-pa-xs text-center bg-blue-10 flex flex-center" style="height: 3em;">
       <span> Samanta Barros &copy; 2023</span>
     </q-footer>
 

@@ -86,7 +86,7 @@
                 <q-btn
                   class="full-width"
                   label="Entrar"
-                  color="primary"
+                  color="blue-7"
                   type="submit"
                 />
               </div>
