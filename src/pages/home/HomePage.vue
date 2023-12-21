@@ -1,9 +1,9 @@
 <template>
-  <div class="row justify-center">
+  <div class="row justify-center menu-cards">
     <div class="q-pa-md">
       <router-link to="/alunos" style="text-decoration: none">
         <div
-          class="bg-green row justify-center items-center card-aluno"
+          class="bg-blue-6 row justify-center items-center card-aluno"
           style="width: 400px; height: 400px"
         >
           <div class="column items-center">
@@ -13,7 +13,7 @@
         </div>
       </router-link>
     </div>
-    <div class="q-pa-md justify-center">
+    <div class="q-pa-md">
       <router-link to="/modulos" style="text-decoration: none">
         <div
           class="bg-deep-purple-6 row justify-center items-center card-aluno"
@@ -33,5 +33,9 @@
 <style scoped>
 .card-aluno:hover {
   transform: scale(1.05);
+}
+
+.menu-cards{
+  margin-top: 100px;
 }
 </style>
