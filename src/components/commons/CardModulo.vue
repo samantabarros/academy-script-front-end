@@ -5,7 +5,7 @@
       style="width: 300px; height: 180px"
     >
       <div class="col-4 q-pl-md q-py-md">
-        <q-img src="/img/brain.png" alt="imagem cérebro animado" size="10px" />
+        <q-img src="/img/books.png" alt="imagem cérebro animado" size="10px" />
       </div>
 
       <div class="col-8 flex flex-center text-center">
@@ -13,7 +13,7 @@
       </div>
       <div class="justify-between">
         <q-dialog v-model="showMensagemDeletarModulo" persistent>
-          <mensagem-deletar-modulo :id="modulo.id" />
+          <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
         </q-dialog>
         <q-btn class="q-mr-xs" icon="delete" color="negative" dense size="md" @click="iniciarModalDeletar(modulo.id)"/>
         <q-btn

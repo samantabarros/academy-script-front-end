@@ -1,8 +1,8 @@
 <template>
   <card-mensagem titulo="Excluir Matrícula?">
     <div class="row q-pt-lg q-pb-sm justify-center">
-      <span class="text-h6 q-ml-sm text-center">
-        Tem certeza que deseja excluir a matrícula desse aluno? Ao confirmar
+      <span class="text-h6 q-mx-md text-center">
+        Tem certeza que deseja excluir a matrícula de <span class="text-bold">{{nomeAluno}}</span> no módulo de <span class="text-bold">{{nomeDoModulo}}</span>? Ao confirmar
         essa ação, você não poderá desfazê-la!
       </span>
     </div>
@@ -37,6 +37,8 @@ import CardMensagem from "src/components/commons/CardMensagem.vue";
 const $q = useQuasar();
 const props = defineProps({
   id: { type: String },
+  nomeAluno: {type: String},
+  nomeDoModulo: {type: String}
 });
 
 const deletarModulo = async (id) => {
@@ -65,6 +67,6 @@ const deletarModulo = async (id) => {
 
 <style scoped>
 .btn-mensagem {
-  margin-top: 50px !important;
+  margin-top: 80px !important;
 }
 </style>

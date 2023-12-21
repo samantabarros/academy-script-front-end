@@ -27,15 +27,11 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const isAuth = async () => {
-    console.log("Entrou em isAuth");
-    console.log(token);
     if (token.value) {
       isAuthenticated.value = true;
     } else {
       isAuthenticated.value = false;
     }
-    console.log('O valor de isAuthenticated em isAuth é ', isAuthenticated.value);
-
   }
 
   //Para verificar a autenticação
@@ -66,11 +62,8 @@ export const useAuthStore = defineStore('auth', () => {
 
   const init = async () => {
     const router = useRouter();
-    //const token = ref(localStorage.getItem('acess_token'));
-    //console.log("Entrou em  init");
     //Arrumar essa parte
     if ((token.value), (user_email.value), (user_id.value)) {
-
       //Passa o token para cada requisição
       api.defaults.headers.common.Authorization = "Bearer " + token.value;
     } else {

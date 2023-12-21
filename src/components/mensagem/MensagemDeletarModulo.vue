@@ -1,14 +1,14 @@
 <template>
   <card-mensagem titulo="Excluir Módulo?">
-    <div class="row q-pt-lg q-pb-sm justify-center">
+    <div class="row q-pt-lg q-pb-sm q-mx-sm justify-center">
       <span class="text-h6 q-ml-sm text-center">
-        Tem certeza que deseja excluir esse módulo? Ao confirmar essa ação, você
+        Tem certeza que deseja excluir o módulo <span class="text-bold">{{nome}}</span>? Ao confirmar essa ação, você
         não poderá desfazê-la!
       </span>
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-md flex justify-end">
+        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-sm flex justify-end">
           <q-btn
             label="Confirmar"
             color="positive"
@@ -31,6 +31,7 @@ import CardMensagem from "src/components/commons/CardMensagem.vue";
 const $q = useQuasar();
 const props = defineProps({
   id: { type: String },
+  nome: {type: String}
 });
 
 const deletarModulo = async (id_modulo) => {
@@ -59,6 +60,6 @@ const deletarModulo = async (id_modulo) => {
 
 <style scoped>
 .btn-mensagem {
-  margin-top: 50px !important;
+  margin-top: 80px !important;
 }
 </style>

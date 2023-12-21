@@ -2,7 +2,7 @@
   <card-mensagem titulo="Excluir aluno?">
     <div class="row q-pt-lg q-pb-sm justify-center">
       <span class="text-h6 q-ml-sm text-center">
-        Tem certeza que deseja excluir esse aluno? Ao confirmar essa ação, você
+        Tem certeza que deseja excluir <span class="text-bold">{{nome}}</span>? Ao confirmar essa ação, você
         não poderá desfazê-la!</span
       >
     </div>
@@ -17,7 +17,7 @@
             icon="check"
             v-close-popup
           />
-          <q-btn label="Cancelar" color="negative" size="12px" icon="close" />
+          <q-btn label="Cancelar" color="negative" size="12px" icon="close" v-close-popup />
         </div>
       </div>
     </div>
@@ -32,12 +32,14 @@ import CardMensagem from "src/components/commons/CardMensagem.vue";
 const $q = useQuasar();
 const props = defineProps({
   id: { type: String },
+  nome: {type: String},
 });
 
 //Deletar o aluno
 const deletarAluno = async (id) => {
   try {
     const { data } = await api.delete(`alunos/${id}`);
+    console.log("O valor de data em DeletarAluno é " + data);
     $q.notify({
       message: "Aluno excluido com sucesso!",
       color: "positive",
@@ -67,6 +69,6 @@ const deletarAluno = async (id) => {
 }
 
 .btn-mensagem {
-  margin-top: 50px !important;
+  margin-top: 110px !important;
 }
 </style>

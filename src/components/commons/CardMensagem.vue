@@ -1,7 +1,7 @@
 <template>
   <q-card
     class="bg-grey-2 card-mensagem"
-    style="width: 620px; height: 330px"
+    style="width: 620px; height: 400px"
     persistent
   >
     <div class="row q-pl-md q-mt-md">

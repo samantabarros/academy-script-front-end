@@ -41,7 +41,7 @@
         </q-dialog>
 
         <q-dialog v-model="showMensagemDeletarAluno" persistent>
-          <mensagem-deletar-aluno :id="alunoAtual.id" />
+          <mensagem-deletar-aluno :id="alunoAtual.id" :nome="alunoAtual.nome_aluno" />
         </q-dialog>
 
         <q-td :props="props">

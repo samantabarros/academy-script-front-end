@@ -49,7 +49,7 @@
 import { api } from "src/boot/axios";
 import CardModulo from "src/components/commons/CardModulo.vue";
 import ModalCadastroModulo from "src/components/modals/ModalCadastroModulo.vue";
-import { computed, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const modulos = ref([]);
 const showModalCadastrarModulo = ref(false);

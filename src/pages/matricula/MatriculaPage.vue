@@ -51,7 +51,7 @@
           <modal-editar-matricula :dados_modulo="moduloAtual" />
         </q-dialog>
         <q-dialog v-model="showMensagemDeletarMatricula" persistent>
-          <mensagem-deletar-matricula :id="moduloAtual.id" />
+          <mensagem-deletar-matricula :id="moduloAtual.id" :nomeAluno="nomeAlunoSelecionado " :nomeDoModulo="nomeModulo"/>
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
@@ -93,6 +93,7 @@ const route = useRoute();
 const filter = ref("");
 const rows_matriculas = ref([]);
 const moduloAtual = ref({});
+const nomeModulo = ref({});
 const idAluno = route.params.id;
 const nomeAlunoSelecionado = ref("");
 const showModalCadastroMatricula = ref(false);
@@ -149,6 +150,7 @@ onMounted(() => {
 // Abre o modal componente para deletar o módulo
 const iniciarDeletarMatricula = async (modulo) => {
   moduloAtual.value = modulo;
+  nomeModulo.value = moduloAtual.value.moduloId.nome_modulo;
   showMensagemDeletarMatricula.value = true;
 };
 
