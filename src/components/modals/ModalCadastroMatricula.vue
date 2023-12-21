@@ -43,15 +43,18 @@
       </q-form>
       <div class="btn-cadastro row q-pa-md q-gutter-md flex justify-end">
         <q-btn
+          dense
+          class="q-pa-sm"
           color="positive"
           type="submit"
           size="12px"
           label="Cadastrar"
           icon="save"
           @click="submitForm"
-          
         />
         <q-btn
+          dense
+          class="q-pa-sm"
           color="negative"
           size="12px"
           label="Cancelar"
@@ -148,7 +151,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.btn-cadastro{
-  margin-top: 50px !important; 
+.btn-cadastro {
+  margin-top: 50px !important;
 }
 </style>

@@ -6,7 +6,6 @@
         style="height: 100%; display: flex; flex-direction: column"
       >
         <q-card-section class="q-pt-xs" style="flex: 1">
-          
           <div style="height: 100%">
             <q-input
               outlined
@@ -19,6 +18,8 @@
         </q-card-section>
         <div class="btn-cadastro q-pa-md q-gutter-md flex justify-end">
           <q-btn
+            dense
+            class="q-pa-sm"
             color="positive"
             type="submit"
             label="Cadastrar"
@@ -26,6 +27,8 @@
             icon="save"
           />
           <q-btn
+            dense
+            class="q-pa-sm"
             color="negative"
             label="Cancelar"
             v-close-popup
@@ -85,6 +88,6 @@ const submitForm = async () => {
 </script>
 <style scoped>
 .btn-cadastro {
-  margin-top: 40px !important;
+  margin-top: 30px !important;
 }
 </style>

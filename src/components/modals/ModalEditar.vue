@@ -33,6 +33,8 @@
           <div class="col-12 btn-cadastro">
             <div class="q-pa-lg q-gutter-md flex justify-end">
               <q-btn
+                dense
+                class="q-pa-sm"
                 color="positive"
                 size="12px"
                 label="Atualizar"
@@ -40,6 +42,8 @@
                 icon="save"
               />
               <q-btn
+                dense
+                class="q-pa-sm"
                 color="negative"
                 size="12px"
                 label="Cancelar"
@@ -131,6 +135,6 @@ const atualizaPagina = async () => {
 
 <style scoped>
 .btn-cadastro {
-  margin-top: 70px !important;
+  margin-top: 60px !important;
 }
 </style>

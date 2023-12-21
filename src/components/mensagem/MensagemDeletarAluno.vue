@@ -8,8 +8,10 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-md flex justify-end">
+        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-end">
           <q-btn
+            class="q-pa-sm"
+            dense
             label="Confirmar"
             color="positive"
             size="12px"
@@ -17,7 +19,7 @@
             icon="check"
             v-close-popup
           />
-          <q-btn label="Cancelar" color="negative" size="12px" icon="close" v-close-popup />
+          <q-btn dense class="q-pa-sm" label="Cancelar" color="negative" size="12px" icon="close" v-close-popup />
         </div>
       </div>
     </div>

@@ -38,6 +38,8 @@
         </q-card-section>
         <div class="btn-cadastro q-pa-xs q-gutter-md q-mr-md flex justify-end">
           <q-btn
+            dense
+            class="q-pa-sm"
             color="positive"
             type="submit"
             size="12px"
@@ -45,6 +47,8 @@
             icon="save"
           />
           <q-btn
+            dense
+            class="q-pa-sm"
             color="negative"
             size="12px"
             label="Cancelar"
@@ -113,6 +117,6 @@ const submitForm = async () => {
 
 <style scoped>
 .btn-cadastro {
-  margin-top: 40px !important;
+  margin-top: 30px !important;
 }
 </style>
