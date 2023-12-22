@@ -4,16 +4,8 @@
     style="width: 620px; height: 400px"
     persistent
   >
-    <div class="row q-pl-md">
+    <div class="row q-pl-md q-ma-sm">
       <div class="col-12">
-        <div class="q-pl-md q-mb-md">
-          <q-img
-            class="fixed q-mt-xs"
-            src="/img/warning-grey.png"
-            alt="imagem de alerta"
-            style="height: 60px; max-width: 60px"
-          />
-        </div>
         <div class="text-h4 text-center">
           <p>{{ titulo }}</p>
         </div>
@@ -31,7 +23,15 @@
       </div>
     </div>
     <q-separator />
-    <div class="q-pa-md">
+    <div class="q-pl-md q-py-sm flex flex-center">
+      <q-img
+        class="q-mt-xs"
+        src="/img/warning-grey.png"
+        alt="imagem de alerta"
+        style="height: 80px; max-width: 70px"
+      />
+    </div>
+    <div class="q-pa-xs">
       <slot></slot>
     </div>
     <!-- </q-card-section> -->

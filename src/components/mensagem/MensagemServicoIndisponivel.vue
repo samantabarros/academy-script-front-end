@@ -7,12 +7,6 @@
     <div class="row q-pl-md q-my-sm">
       <div class="col-12">
         <div class="q-pl-md">
-          <q-img
-            class="fixed q-mt-xs"
-            src="/img/warning.svg"
-            alt="imagem alerta"
-            style="height: 30px; max-width: 36px"
-          />
           <div class="text-h5 text-center">
             <span> Serviço Indisponível</span>
           </div>
@@ -30,7 +24,15 @@
       </div>
     </div>
     <q-separator />
-    <p class="text-subtitle1 q-pt-lg q-px-md">
+    <div class="q-pl-md q-py-sm flex flex-center">
+      <q-img
+        class="q-mt-xs"
+        src="/img/warning-grey.png"
+        alt="imagem de alerta"
+        style="height: 50px; max-width: 50px"
+      />
+    </div>
+    <p class="text-subtitle1 q-px-md text-center">
       No momento essa solicitação está indisponível. Tente novamente mais tarde!
     </p>
     <div class="q-px-md text-center">

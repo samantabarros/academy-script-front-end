@@ -56,7 +56,7 @@
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
             icon="edit"
-            color="info"
+            color="green"
             dense
             size="md"
             @click="iniciarEditarMatricula(props.row)"
@@ -74,7 +74,7 @@
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-px-xs">
-      <q-btn outline class="text-orange-10">Voltar</q-btn>
+      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
     </div>
   </router-link>
 </template>

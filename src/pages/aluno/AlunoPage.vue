@@ -50,11 +50,11 @@
           />
         </q-dialog>
 
-        <q-td :props="props">
+        <q-td :props="props">        
           <q-btn
             class="q-mr-xs"
             icon="edit"
-            color="info"
+            color="green"
             dense
             size="md"
             @click="iniciarModalEditar(props.row)"
@@ -62,19 +62,19 @@
 
           <q-btn
             class="q-mr-xs"
+            icon="folder"
+            color="blue"
+            dense
+            size="md"
+            :to="`/matriculas/${props.row.id}`"
+          />
+            <q-btn
+            class="q-mr-xs"
             icon="delete"
             color="negative"
             dense
             size="md"
             @click="iniciarModalDeletar(props.row)"
-          />
-          <q-btn
-            class="q-mr-xs"
-            icon="folder"
-            color="orange"
-            dense
-            size="md"
-            :to="`/matriculas/${props.row.id}`"
           />
         </q-td>
       </template>
@@ -83,7 +83,7 @@
   <router-link to="/home" style="text-decoration: none">
     <div class="row justify-end-left q-px-xs">
       <div class="col-12 btn-voltar">
-        <q-btn outline class="text-orange-10">Voltar</q-btn>
+        <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
       </div>
     </div>
   </router-link>

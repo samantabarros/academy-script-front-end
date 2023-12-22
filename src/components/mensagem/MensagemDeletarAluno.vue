@@ -1,9 +1,9 @@
 <template>
   <card-mensagem titulo="Excluir aluno?">
-    <div class="row q-pt-lg q-pb-sm justify-center">
-      <span class="text-h6 q-ml-sm text-center">
-        Tem certeza que deseja excluir <span class="text-bold">{{nome}}</span>? Ao confirmar essa ação, você
-        não poderá desfazê-la!</span
+    <div class="row">
+      <span class="text-h6 q-mxx-md text-center">
+        Tem certeza que deseja excluir <span class="text-bold">{{ nome }}</span
+        >? Ao confirmar essa ação, você não poderá desfazê-la!</span
       >
     </div>
     <div class="row">
@@ -19,7 +19,15 @@
             icon="check"
             v-close-popup
           />
-          <q-btn dense class="q-pa-sm" label="Cancelar" color="grey-7" size="12px" icon="close" v-close-popup />
+          <q-btn
+            dense
+            class="q-pa-sm"
+            label="Cancelar"
+            color="grey-7"
+            size="12px"
+            icon="close"
+            v-close-popup
+          />
         </div>
       </div>
     </div>
@@ -34,7 +42,7 @@ import CardMensagem from "src/components/commons/CardMensagem.vue";
 const $q = useQuasar();
 const props = defineProps({
   id: { type: String },
-  nome: {type: String},
+  nome: { type: String },
 });
 
 //Deletar o aluno
@@ -71,7 +79,6 @@ const deletarAluno = async (id) => {
 }
 
 .btn-mensagem {
-  margin-top: 80px !important;
+  margin-top: 50px !important;
 }
-
 </style>

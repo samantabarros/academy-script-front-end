@@ -1,6 +1,6 @@
 <template>
   <card-mensagem titulo="Excluir Matrícula?">
-    <div class="row q-pt-lg q-pb-sm justify-center">
+    <div class="row">
       <span class="text-h6 q-mx-md text-center">
         Tem certeza que deseja excluir a matrícula de
         <span class="text-bold">{{ nomeAluno }}</span> no módulo de
@@ -73,6 +73,6 @@ const deletarModulo = async (id) => {
 
 <style scoped>
 .btn-mensagem {
-  margin-top: 80px !important;
+  margin-top: 30px !important;
 }
 </style>

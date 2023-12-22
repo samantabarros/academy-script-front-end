@@ -1,6 +1,6 @@
 <template>
   <card-mensagem titulo="Excluir Módulo?">
-    <div class="row q-pt-md q-pb-xs q-mx-sm justify-center">
+    <div class="row">
       <span class="text-h6 q-ml-sm text-center">
         Tem certeza que deseja excluir o módulo
         <span class="text-bold">{{ nome }}</span
@@ -71,6 +71,6 @@ const deletarModulo = async (id_modulo) => {
 
 <style scoped>
 .btn-mensagem {
-  margin-top: 90px !important;
+  margin-top: 50px !important;
 }
 </style>
