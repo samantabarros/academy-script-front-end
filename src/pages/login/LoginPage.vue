@@ -14,8 +14,8 @@
       "
     />
 
-    <div class="row">
-      <div class="col-12 flex flex-center">
+    <div class="row flex justify-center items-center">
+      <div class="col-12 flex justify-center items-center">
         <q-card
           class="q-ma-md q-px-lg transparent card-login"
           style="

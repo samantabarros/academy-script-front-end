@@ -4,14 +4,14 @@
     style="width: 620px; height: 400px"
     persistent
   >
-    <div class="row q-pl-md q-mt-md">
+    <div class="row q-pl-md">
       <div class="col-12">
-        <div class="q-pl-md">
+        <div class="q-pl-md q-mb-md">
           <q-img
-            class="fixed q-mt-xs "
-            src="/img/warning.svg"
+            class="fixed q-mt-xs"
+            src="/img/warning-grey.png"
             alt="imagem de alerta"
-            style="height: 35px; max-width: 40px"
+            style="height: 60px; max-width: 60px"
           />
         </div>
         <div class="text-h4 text-center">

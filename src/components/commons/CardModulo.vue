@@ -5,7 +5,7 @@
       style="width: 300px; height: 180px"
     >
       <div class="col-4 q-pl-md q-py-md">
-        <q-img src="/img/books.png" alt="imagem cérebro animado" size="10px" />
+        <q-img src="/img/blue-books.png" alt="imagem cérebro animado" size="10px" />
       </div>
 
       <div class="col-8 flex flex-center text-center">
@@ -49,9 +49,12 @@ const iniciarModalDeletar = async (id_modulo) => {
   border: 2px solid rgba(31, 61, 195, 0.5);
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform .4s;
+
 }
 
 .card-modulo:hover {
   transform: scale(1.05);
 }
+
 </style>

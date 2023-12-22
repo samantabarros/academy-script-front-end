@@ -7,7 +7,7 @@
       >
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 btn-container">
         <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-end">
           <q-btn
             class="q-pa-sm"
@@ -73,4 +73,5 @@ const deletarAluno = async (id) => {
 .btn-mensagem {
   margin-top: 80px !important;
 }
+
 </style>

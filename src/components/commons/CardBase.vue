@@ -1,25 +1,6 @@
 <template>
   <q-card :class="`card-${tamanho}`">
     <q-card-section>
-      <!-- <div class="row justify-end">
-        <q-btn
-          square
-          dense
-          color="grey"
-          icon="close"
-          size="10px"
-          @click="atualizaPagina"
-          v-close-popup
-        />
-      </div>
-      <q-img
-        class="fixed q-mt-xs"
-        src="/img/pencil-grey.png"
-        alt="imagem alerta"
-        style="height: 30px; max-width: 36px"
-      />
-
-      <div class="text-h4 q-ml-xs row justify-center">{{ titulo }}</div> -->
       <div class="row q-pl-md ">
         <div class="col-12">
           <div class="q-pl-md">
