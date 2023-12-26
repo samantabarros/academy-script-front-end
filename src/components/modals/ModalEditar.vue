@@ -30,7 +30,7 @@
           </div>
         </q-card-section>
         <div class="row">
-          <div class="col-12 btn-cadastro">
+          <div class="col-12 btn-modal">
             <div class="q-pa-lg q-gutter-md flex justify-end">
               <q-btn
                 dense
@@ -133,8 +133,3 @@ const atualizaPagina = async () => {
 };
 </script>
 
-<style scoped>
-.btn-cadastro {
-  margin-top: 60px !important;
-}
-</style>

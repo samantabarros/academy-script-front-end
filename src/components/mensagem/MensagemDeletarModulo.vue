@@ -9,7 +9,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-end">
+        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-end self-end">
           <q-btn
             dense
             class="q-pa-sm"
@@ -68,9 +68,3 @@ const deletarModulo = async (id_modulo) => {
   }
 };
 </script>
-
-<style scoped>
-.btn-mensagem {
-  margin-top: 50px !important;
-}
-</style>

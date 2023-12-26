@@ -4,7 +4,7 @@
     style="width: 620px; height: 400px"
     persistent
   >
-    <div class="row q-pl-md q-ma-sm">
+    <div class="ro q-ma-md">
       <div class="col-12">
         <div class="text-h4 text-center">
           <p>{{ titulo }}</p>
@@ -23,18 +23,17 @@
       </div>
     </div>
     <q-separator />
-    <div class="q-pl-md q-py-sm flex flex-center">
-      <q-img
-        class="q-mt-xs"
-        src="/img/warning-grey.png"
-        alt="imagem de alerta"
-        style="height: 80px; max-width: 70px"
-      />
-    </div>
-    <div class="q-pa-xs">
+    <div class="q-pa-xs card-container">
+      <div class="q-pl-md q-py-sm flex flex-center">
+        <q-img
+          class="q-mt-xs"
+          src="/img/warning-grey.png"
+          alt="imagem de alerta"
+          style="height: 80px; max-width: 70px"
+        />
+      </div>
       <slot></slot>
     </div>
-    <!-- </q-card-section> -->
   </q-card>
 </template>
 
@@ -42,4 +41,12 @@
 const props = defineProps(["titulo"]);
 </script>
 
-<style></style>
+<style>
+.card-container {
+  min-height: calc(400px - 80px);
+}
+
+.btn-mensagem {
+  margin-top: 5% !important;
+}
+</style>

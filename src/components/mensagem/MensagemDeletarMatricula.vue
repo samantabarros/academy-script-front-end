@@ -70,9 +70,3 @@ const deletarModulo = async (id) => {
   }
 };
 </script>
-
-<style scoped>
-.btn-mensagem {
-  margin-top: 30px !important;
-}
-</style>

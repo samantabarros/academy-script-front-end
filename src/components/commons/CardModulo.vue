@@ -1,25 +1,35 @@
 <template>
   <div class="q-pa-md">
     <div
-      class="bg-grey-2 row justify-center card-modulo"
+      class="row justify-center card-modulo"
       style="width: 300px; height: 180px"
     >
       <div class="col-4 q-pl-md q-py-md">
-        <q-img src="/img/blue-books.png" alt="imagem cérebro animado" size="10px" />
+        <div class="column items-center">
+          <q-icon name="auto_stories" size="100px" color="blue-5" />
+        </div>
       </div>
 
-      <div class="col-8 flex flex-center text-center">
+      <div class="col-8 flex flex-center text-center text-blue-5">
         <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
       </div>
       <div class="justify-between">
         <q-dialog v-model="showMensagemDeletarModulo" persistent>
           <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
         </q-dialog>
-        <q-btn class="q-mr-xs" icon="delete" color="negative" dense size="md" @click="iniciarModalDeletar(modulo.id)"/>
+        <q-btn
+          class="q-mr-xs"
+          icon="delete"
+          color="negative"
+          border=""
+          dense
+          size="md"
+          @click="iniciarModalDeletar(modulo.id)"
+        />
         <q-btn
           class="q-mr-xs"
           icon="group"
-          color="purple"
+          color="amber-10"
           dense
           size="md"
           :to="`/alunosPorCurso/${modulo.id}`"
@@ -38,23 +48,19 @@ const showMensagemDeletarModulo = ref(false);
 const moduloAtual = ref({});
 
 const iniciarModalDeletar = async (id_modulo) => {
-    moduloAtual.value = id_modulo;
-    showMensagemDeletarModulo.value = true;
-
-}
+  moduloAtual.value = id_modulo;
+  showMensagemDeletarModulo.value = true;
+};
 </script>
 
 <style>
 .card-modulo {
-  border: 2px solid rgba(31, 61, 195, 0.5);
+  border: 2px solid #24afff;
   border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  transition: transform .4s;
-
+  transition: transform 0.4s;
 }
 
 .card-modulo:hover {
   transform: scale(1.05);
 }
-
 </style>

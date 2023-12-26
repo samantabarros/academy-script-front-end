@@ -81,7 +81,7 @@
     </q-table>
   </div>
   <router-link to="/home" style="text-decoration: none">
-    <div class="row justify-end-left q-px-xs">
+    <div class="row justify-end-left q-px-xs q-ml-sm">
       <div class="col-12 btn-voltar">
         <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
       </div>

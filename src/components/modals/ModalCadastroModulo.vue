@@ -16,7 +16,7 @@
             />
           </div>
         </q-card-section>
-        <div class="btn-cadastro q-pa-md q-gutter-md flex justify-end">
+        <div class="btn-modal q-pa-md q-gutter-md flex justify-end">
           <q-btn
             dense
             class="q-pa-sm"
@@ -86,8 +86,4 @@ const submitForm = async () => {
   }
 };
 </script>
-<style scoped>
-.btn-cadastro {
-  margin-top: 30px !important;
-}
-</style>
+

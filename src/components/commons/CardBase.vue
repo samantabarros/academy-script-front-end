@@ -4,11 +4,11 @@
       <div class="row q-pl-md ">
         <div class="col-12">
           <div class="q-pl-md">
-            <q-img
+            <q-icon
               class="fixed q-mt-xs"
-              src="/img/pencil-grey.png"
-              alt="lápis"
-              style="height: 35px; max-width: 40px"
+              name="edit_document"
+              size="35px"
+              color="grey"
             />
           </div>
           <div class="text-h4 text-center">
@@ -70,5 +70,9 @@ const atualizaPagina = async () => {
   max-height: 100%;
   height: 600px;
   width: 550px;
+}
+
+.btn-modal {
+  margin-top: 5% !important;
 }
 </style>

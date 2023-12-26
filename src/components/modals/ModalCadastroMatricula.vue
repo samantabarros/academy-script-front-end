@@ -41,7 +41,7 @@
           </div>
         </q-card-section>
       </q-form>
-      <div class="btn-cadastro row q-pa-md q-gutter-md flex justify-end">
+      <div class="btn-modal row q-pa-md q-gutter-md flex justify-end">
         <q-btn
           dense
           class="q-pa-sm"
@@ -150,8 +150,3 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.btn-cadastro {
-  margin-top: 50px !important;
-}
-</style>

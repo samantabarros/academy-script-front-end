@@ -77,8 +77,4 @@ const deletarAluno = async (id) => {
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
-
-.btn-mensagem {
-  margin-top: 50px !important;
-}
 </style>
