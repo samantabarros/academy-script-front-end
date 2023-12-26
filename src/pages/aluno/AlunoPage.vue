@@ -167,8 +167,7 @@ const getAlunos = async () => {
 </script>
 
 <style>
-/* .btn-voltar{
-  margin-top: 150px !important;
-  position: fixed;
+/* .card-container {
+  min-height: calc(100vh - 50px - 42px);
 } */
 </style>
