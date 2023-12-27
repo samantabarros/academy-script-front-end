@@ -16,7 +16,7 @@
         class="q-pr-md col-6"
       >
         <template v-slot:append>
-          <q-icon name="search" />
+          <q-icon name="search" color="primary"/>
         </template>
       </q-input>
       <q-btn

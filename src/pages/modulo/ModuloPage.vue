@@ -16,9 +16,7 @@
         label="Pesquisar módulo"
       >
         <template v-slot:append>
-          <a href="">
-            <q-icon name="search" @click="getModulos(filtro)" />
-          </a>
+          <q-icon name="search" @click="getModulos(filtro)" color="primary" />
         </template>
       </q-input>
       <q-btn
@@ -40,7 +38,9 @@
   </div>
   <router-link to="/home" style="text-decoration: none">
     <div class="justify-end-left q-px-xs">
-      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
+      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new"
+        >Voltar</q-btn
+      >
     </div>
   </router-link>
 </template>
@@ -59,11 +59,9 @@ onMounted(() => {
   getModulos();
 });
 
-
 async function getModulos(filtro = "") {
   try {
     const { data } = await api.get("modulos");
-    console.log(data);
     modulos.value = data;
     if (filtro != "") {
       let moduloPesquisado = [];
@@ -75,11 +73,9 @@ async function getModulos(filtro = "") {
       modulos.value = moduloPesquisado.value;
       return;
     }
-    return
+    return;
   } catch (error) {
     console.log(error);
   }
 }
-
-
 </script>
