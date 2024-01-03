@@ -20,7 +20,7 @@
           class="q-ma-md q-px-lg transparent card-login"
           style="
             max-width: 700px;
-            max-height: 800px;
+            max-height: 600px;
             min-height: 95vh;
             min-width: 20vh;
           "
@@ -185,6 +185,7 @@ const senhaRules = [
 
 <style>
 .card-login {
+  min-height: calc(100vh - 50px - 42px);
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(10px);
