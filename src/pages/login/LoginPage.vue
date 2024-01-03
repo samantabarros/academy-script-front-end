@@ -19,7 +19,7 @@
         <q-card
           class="q-ma-md q-px-lg transparent card-login"
           style="
-            max-width: 600px;
+            max-width: 700px;
             max-height: 800px;
             min-height: 95vh;
             min-width: 20vh;
@@ -30,78 +30,82 @@
               : { width: '100%', height: '95%' }
           "
         >
-          <q-card-section>
-            <div class="col-12 col-md-6 flex flex-center q-pt-md">
-              <q-img
-                src="/img/logo/logo_sgma003.png"
-                style="max-height: 200px; max-width: 200px"
-              />
-            </div>
-          </q-card-section>
-          <div class="q-mb-md q-px-md">
-            <div class="flex flex-center q-pt-lg q-pb-md">
-              <p class="text-h6 text-white">Entre para continuar</p>
-            </div>
-            <q-form @submit="onSubmit" ref="myForm">
-              <div class="col-12 col-sm-4 q-mb-md">
-                <q-input
-                  filled
-                  ref="nameRef"
-                  color="primary"
-                  bg-color="white"
-                  v-model="usuario.email"
-                  label="Insira seu nome de usuário*"
-                  lazy-rules
-                  :rules="usuarioRules"
-                >
-                  <template v-slot:prepend>
-                    <q-icon name="person" />
-                  </template>
-                </q-input>
-              </div>
-              <div class="col-12 col-sm-4 q-mb-md">
-                <q-input
-                  filled
-                  color="primary"
-                  bg-color="white"
-                  label="Insira sua senha*"
-                  v-model="usuario.password"
-                  :type="isPwd ? 'password' : 'text'"
-                  lazy-rules
-                  :rules="senhaRules"
-                >
-                  <template v-slot:prepend>
-                    <q-icon name="lock" />
-                  </template>
-                  <template v-slot:append>
-                    <q-icon
-                      :name="isPwd ? 'visibility_off' : 'visibility'"
-                      class="cursor-pointer"
-                      @click="isPwd = !isPwd"
-                    />
-                  </template>
-                </q-input>
-              </div>
-              <div class="col-12 col-sm-4 q-mb-md">
-                <q-btn
-                  class="full-width"
-                  label="Entrar"
-                  color="blue-7"
-                  type="submit"
+          <div class="row justify-center items-center container-login">
+            <div class=" col-12 q-mb-md q-px-md">
+              <div class="flex flex-center q-pt-md">
+                <q-img
+                  src="/img/logo/logo_sgma003.png"
+                  style="max-height: 200px; max-width: 300px"
                 />
               </div>
-              <div class="q-mb-md flex flex-center">
-                <router-link
-                  class="text-white text-subtitle1 text-weight-regular"
-                  to="/" @click="showMensagemServicoIndisponivel = true"
-                >
-                  Esqueceu a senha?
-                </router-link>
-                <q-dialog v-model="showMensagemServicoIndisponivel" persistent>
-                  <mensagem-servico-indisponivel></mensagem-servico-indisponivel>
-                </q-dialog>
+              <div class="flex flex-center q-pt-lg q-pb-md">
+                <p class="text-h6 text-white">Entre para continuar</p>
               </div>
-            </q-form>
+              <q-form @submit="onSubmit" ref="myForm">
+                <div class="col-12 col-sm-4 q-mb-md">
+                  <q-input
+                    filled
+                    ref="nameRef"
+                    color="primary"
+                    bg-color="white"
+                    v-model="usuario.email"
+                    label="Insira seu nome de usuário*"
+                    lazy-rules
+                    :rules="usuarioRules"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="person" />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="col-12 col-sm-4 q-mb-md">
+                  <q-input
+                    filled
+                    color="primary"
+                    bg-color="white"
+                    label="Insira sua senha*"
+                    v-model="usuario.password"
+                    :type="isPwd ? 'password' : 'text'"
+                    lazy-rules
+                    :rules="senhaRules"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="lock" />
+                    </template>
+                    <template v-slot:append>
+                      <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"
+                        @click="isPwd = !isPwd"
+                      />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="col-12 col-sm-4 q-mb-md">
+                  <q-btn
+                    class="full-width"
+                    label="Entrar"
+                    color="blue-7"
+                    type="submit"
+                  />
+                </div>
+                <div class="q-mb-md flex flex-center">
+                  <router-link
+                    class="text-white text-subtitle1 text-weight-regular"
+                    to="/"
+                    @click="showMensagemServicoIndisponivel = true"
+                  >
+                    Esqueceu a senha?
+                  </router-link>
+                  <q-dialog
+                    v-model="showMensagemServicoIndisponivel"
+                    persistent
+                  >
+                    <mensagem-servico-indisponivel></mensagem-servico-indisponivel>
+                  </q-dialog>
+                </div>
+              </q-form>
+            </div>
           </div>
         </q-card>
       </div>
@@ -118,7 +122,7 @@ import { useAuthStore } from "src/stores/auth.js";
 import MensagemServicoIndisponivel from "src/components/mensagem/MensagemServicoIndisponivel.vue";
 
 const auth = useAuthStore();
-const {login} = auth;
+const { login } = auth;
 const isPwd = ref(true);
 const $q = useQuasar();
 const router = useRouter();
@@ -177,7 +181,6 @@ const senhaRules = [
     (val && val !== null && val !== "") ||
     "Você precisa preencher os campos em vermelho",
 ];
-
 </script>
 
 <style>
@@ -186,5 +189,9 @@ const senhaRules = [
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.container-login {
+  min-height: calc(100vh - 50px - 42px);
 }
 </style>
