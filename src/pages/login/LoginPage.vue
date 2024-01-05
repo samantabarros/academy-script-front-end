@@ -13,15 +13,13 @@
         min-width: 100vh;
       "
     />
-
+    
     <div class="row flex justify-center items-center">
       <div class="col-12 flex justify-center items-center">
         <q-card
           class="q-ma-md q-px-lg transparent card-login"
           style="
             max-width: 700px;
-            max-height: 600px;
-            min-height: 95vh;
             min-width: 20vh;
           "
           :style="
@@ -31,7 +29,7 @@
           "
         >
           <div class="row justify-center items-center container-login">
-            <div class=" col-12 q-mb-md q-px-md">
+            <div class="col-12 q-mb-md q-px-md">
               <div class="flex flex-center q-pt-md">
                 <q-img
                   src="/img/logo/logo_sgma003.png"
@@ -44,6 +42,7 @@
               <q-form @submit="onSubmit" ref="myForm">
                 <div class="col-12 col-sm-4 q-mb-md">
                   <q-input
+                    class="transparent"
                     filled
                     ref="nameRef"
                     color="primary"
@@ -185,14 +184,15 @@ const senhaRules = [
 
 <style>
 .card-login {
-  min-height: calc(100vh - 50px - 42px);
+
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
 }
 
 .container-login {
-  min-height: calc(100vh - 50px - 42px);
+  min-height: 70vh;
 }
 </style>
