@@ -16,7 +16,7 @@
         label="Pesquisar aluno"
       >
         <template v-slot:append>
-          <q-icon name="search" color="primary"/>
+          <q-icon name="search" color="primary" />
         </template>
       </q-input>
       <q-btn
@@ -37,6 +37,7 @@
       :columns="columns"
       :filter="filter"
       row-key="id"
+      v-model:pagination="paginacao_inicial"
     >
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
@@ -50,7 +51,7 @@
           />
         </q-dialog>
 
-        <q-td :props="props">        
+        <q-td :props="props">
           <q-btn
             class="q-mr-xs"
             icon="edit"
@@ -68,7 +69,7 @@
             size="md"
             :to="`/matriculas/${props.row.id}`"
           />
-            <q-btn
+          <q-btn
             class="q-mr-xs"
             icon="delete"
             color="negative"
@@ -78,12 +79,30 @@
           />
         </q-td>
       </template>
+      <template v-slot:bottom>
+        <div class="pagination_container">
+          <q-pagination
+            v-if="max_paginas > 1"
+            v-model="pagination.page"
+            @input="console.log(pagination.page)"
+            color="grey"
+            active-color="primary"
+            :max="max_paginas"
+            :max-pages="max_paginas"
+            direction-links
+            size="md"
+          >
+          </q-pagination>
+        </div>
+      </template>
     </q-table>
   </div>
   <router-link to="/home" style="text-decoration: none">
     <div class="row justify-end-left q-px-xs q-ml-sm">
       <div class="col-12 btn-voltar">
-        <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
+        <q-btn outline class="text-orange-10" icon="arrow_back_ios_new"
+          >Voltar</q-btn
+        >
       </div>
     </div>
   </router-link>
@@ -92,7 +111,7 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { api } from "src/boot/axios";
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
@@ -103,11 +122,30 @@ const route = useRoute();
 const filter = ref("");
 const rows_alunos = ref([]);
 const $q = useQuasar();
+
 const showModalEditar = ref(false);
-//const showModal = ref(false);
 const showModalCadastrar = ref(false);
 const showMensagemDeletarAluno = ref(false);
+
 const alunoAtual = ref({});
+
+const max_paginas = ref(0);
+const rowsPerPage = ref(10);
+const paginacao_inicial = ref({
+  page: 1,
+  rowsPerPage: props.itensPorPagina,
+});
+
+const pagination = ref({
+  rowsPerPage,
+  maxPages: 0,
+  page: paginacao_inicial.value.page,
+  pageShow: 1,
+});
+
+const props = defineProps({
+  itensPorPagina: Number,
+});
 
 const columns = [
   {
@@ -139,7 +177,7 @@ const columns = [
 ];
 
 onMounted(() => {
-  getAlunos();
+  buscaDados();
 });
 
 // Abre o modal componente para deletar  o aluno
@@ -154,16 +192,39 @@ const iniciarModalEditar = async (aluno) => {
   showModalEditar.value = true;
 };
 
-//Mostrar alunos
-const getAlunos = async () => {
+//const getAlunos = async () => {
+async function buscaDados() {
+  const pagina = pagination.value.page;
+  const url = `alunos/?pagina=${pagina}&itensPorPagina=${props.itensPorPagina}&busca=${filter.value}`;
+
+  //Mostrar alunos
+
   try {
-    const { data } = await api.get("alunos");
+    //const { data } = await api.get("alunos");
+    const { data } = await api.get(url);
     console.log(data);
     rows_alunos.value = data;
+    max_paginas.value = data.maxPage;
   } catch (error) {
     console.log(error);
   }
-};
+}
+
+watch(
+  () => pagination,
+  () => {
+    nextTick(async () => {
+      await buscaDados();
+    });
+  },
+  { deep: true }
+);
+
+watch(filter, () => {
+  nextTick(async () => {
+    await buscaDados();
+  });
+});
 </script>
 
 <style>
