@@ -131,9 +131,10 @@ const alunoAtual = ref({});
 
 const max_paginas = ref(0);
 const rowsPerPage = ref(10);
+const itensPorPagina = ref(10);
 const paginacao_inicial = ref({
   page: 1,
-  rowsPerPage: props.itensPorPagina,
+  rowsPerPage: itensPorPagina,
 });
 
 const pagination = ref({
@@ -143,9 +144,7 @@ const pagination = ref({
   pageShow: 1,
 });
 
-const props = defineProps({
-  itensPorPagina: Number,
-});
+
 
 const columns = [
   {
@@ -195,7 +194,7 @@ const iniciarModalEditar = async (aluno) => {
 //const getAlunos = async () => {
 async function buscaDados() {
   const pagina = pagination.value.page;
-  const url = `alunos/?pagina=${pagina}&itensPorPagina=${props.itensPorPagina}&busca=${filter.value}`;
+  const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
 
   //Mostrar alunos
 
@@ -220,11 +219,11 @@ watch(
   { deep: true }
 );
 
-watch(filter, () => {
-  nextTick(async () => {
-    await buscaDados();
-  });
-});
+// watch(filter, () => {
+//   nextTick(async () => {
+//     await buscaDados();
+//   });
+// });
 </script>
 
 <style>
