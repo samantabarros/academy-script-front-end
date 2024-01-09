@@ -131,11 +131,8 @@ const getAlunos = async (idModulo) => {
 }
 
 async function calcularMediaStatus(rows_alunos) {
-  console.log("Entrou em calcularMediaStatusEStatus");
   let matriculas = rows_alunos.value;
-  console.log(rows_alunos.value);
   rows_alunos.value.forEach((value, index) => {
-    console.log("Testando");
     const media = ref(0);
 
     media.value =

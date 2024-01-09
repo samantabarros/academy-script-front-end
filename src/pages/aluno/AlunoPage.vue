@@ -35,7 +35,6 @@
       class="q-mt-lg"
       :rows="rows_alunos"
       :columns="columns"
-      :filter="filter"
       row-key="id"
       v-model:pagination="paginacao_inicial"
     >
@@ -195,6 +194,7 @@ const iniciarModalEditar = async (aluno) => {
 async function buscaDados() {
   const pagina = pagination.value.page;
   const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
+  console.log(url);
 
   //Mostrar alunos
 
@@ -202,7 +202,7 @@ async function buscaDados() {
     //const { data } = await api.get("alunos");
     const { data } = await api.get(url);
     console.log(data);
-    rows_alunos.value = data;
+    rows_alunos.value = data.data;
     max_paginas.value = data.maxPage;
   } catch (error) {
     console.log(error);
@@ -219,11 +219,12 @@ watch(
   { deep: true }
 );
 
-// watch(filter, () => {
-//   nextTick(async () => {
-//     await buscaDados();
-//   });
-// });
+//Se alterar o filtro, então chama a função buscaDados novamente
+watch(filter, () => {
+  nextTick(async () => {
+    await buscaDados();
+  });
+});
 </script>
 
 <style>
