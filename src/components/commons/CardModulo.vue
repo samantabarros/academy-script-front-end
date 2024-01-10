@@ -29,7 +29,7 @@
         <q-btn
           class="q-mr-xs"
           icon="group"
-          color="amber-10"
+          color="grey"
           dense
           size="md"
           :to="`/alunosPorCurso/${modulo.id}`"

@@ -79,7 +79,7 @@
         </q-td>
       </template>
       <template v-slot:bottom>
-        <div class="pagination_container">
+        <div class="full-width flex justify-center pagination_container">
           <q-pagination
             v-if="max_paginas > 1"
             v-model="pagination.page"
@@ -227,8 +227,6 @@ watch(filter, () => {
 });
 </script>
 
-<style>
-/* .card-container {
-  min-height: calc(100vh - 50px - 42px);
-} */
+<style scoped>
+
 </style>
