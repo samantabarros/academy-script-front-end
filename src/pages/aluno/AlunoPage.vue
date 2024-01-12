@@ -141,9 +141,8 @@ const pagination = ref({
   maxPages: 0,
   page: paginacao_inicial.value.page,
   pageShow: 1,
+  
 });
-
-
 
 const columns = [
   {
@@ -195,6 +194,8 @@ async function buscaDados() {
   const pagina = pagination.value.page;
   const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
   console.log(url);
+  console.log(pagina);
+
 
   //Mostrar alunos
 
@@ -221,6 +222,7 @@ watch(
 
 //Se alterar o filtro, então chama a função buscaDados novamente
 watch(filter, () => {
+  console.log("entrou em watch 2");
   nextTick(async () => {
     await buscaDados();
   });
