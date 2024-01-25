@@ -13,15 +13,12 @@
         min-width: 100vh;
       "
     />
-    
-    <div class="row flex justify-center items-center">
+
+    <div class="row flex justify-center items-center" style="min-height: 100vh">
       <div class="col-12 flex justify-center items-center">
         <q-card
           class="q-ma-md q-px-lg transparent card-login"
-          style="
-            max-width: 700px;
-            min-width: 20vh;
-          "
+          style="max-width: 700px; min-width: 20vh"
           :style="
             $q.screen.lt.md
               ? { width: '100%', height: '95%' }
@@ -43,10 +40,12 @@
                 <div class="col-12 col-sm-4 q-mb-md">
                   <q-input
                     class="transparent"
-                    filled
+                    rounded
+                    standout
                     ref="nameRef"
                     color="primary"
                     bg-color="white"
+                    dense
                     v-model="usuario.email"
                     label="Insira seu nome de usuário*"
                     lazy-rules
@@ -59,7 +58,9 @@
                 </div>
                 <div class="col-12 col-sm-4 q-mb-md">
                   <q-input
-                    filled
+                    rounded
+                    standout
+                    dense
                     color="primary"
                     bg-color="white"
                     label="Insira sua senha*"
@@ -86,6 +87,8 @@
                     label="Entrar"
                     color="blue-7"
                     type="submit"
+                    rounded
+                    standout
                   />
                 </div>
                 <div class="q-mb-md flex flex-center">
@@ -184,15 +187,13 @@ const senhaRules = [
 
 <style>
 .card-login {
-
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-
 }
 
 .container-login {
-  min-height: 70vh;
+  min-height: 75vh;
 }
 </style>
