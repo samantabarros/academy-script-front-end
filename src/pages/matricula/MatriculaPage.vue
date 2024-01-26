@@ -16,7 +16,7 @@
         class="q-pr-md col-6"
       >
         <template v-slot:append>
-          <q-icon name="search" color="primary"/>
+          <q-icon name="search" color="primary" />
         </template>
       </q-input>
       <q-btn
@@ -38,7 +38,16 @@
       :columns="columns"
       :filter="filter"
       row-key="id"
+      no-data-label="Esse aluno não possui nenhuma matrícula!"
+      no-results-label="Não há dados disponíveis!"
     >
+      <template v-slot:no-data="{ icon, message, filter }">
+        <div class="full-width row flex-center q-gutter-sm">
+          <q-icon size="2em" name="sentiment_dissatisfied" />
+          <span> Ops... {{ message }} </span>
+          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+        </div>
+      </template>
       <template v-slot:body-cell-status="props">
         <q-td class="text-center">
           <q-badge :color="corStatus(props.row.status)">
@@ -51,7 +60,11 @@
           <modal-editar-matricula :dados_modulo="moduloAtual" />
         </q-dialog>
         <q-dialog v-model="showMensagemDeletarMatricula" persistent>
-          <mensagem-deletar-matricula :id="moduloAtual.id" :nomeAluno="nomeAlunoSelecionado " :nomeDoModulo="nomeModulo"/>
+          <mensagem-deletar-matricula
+            :id="moduloAtual.id"
+            :nomeAluno="nomeAlunoSelecionado"
+            :nomeDoModulo="nomeModulo"
+          />
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
@@ -74,7 +87,9 @@
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-px-xs">
-      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
+      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new"
+        >Voltar</q-btn
+      >
     </div>
   </router-link>
 </template>

@@ -28,7 +28,18 @@
       :columns="columns"
       :filter="filter"
       row-key="id"
+      no-data-label="Ainda não há alunos cadastrados nesse módulo!"
+      no-results-label="Não há dados disponíveis!"
     >
+      <template v-slot:no-data="{ icon, message, filter }">
+        <div class="full-width row flex-center q-gutter-sm">
+          <q-icon size="2em" name="sentiment_dissatisfied" />
+          <span>
+            Ops... {{ message }}
+          </span>
+          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+        </div>
+      </template>
       <template v-slot:body-cell-status="props">
         <q-td class="flex justify-center items-center">
           <q-badge :color="corStatus(props.row.status)">{{ props.row.status }}</q-badge>

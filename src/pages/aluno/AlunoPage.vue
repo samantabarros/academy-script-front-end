@@ -37,12 +37,22 @@
       :columns="columns"
       row-key="id"
       v-model:pagination="paginacao_inicial"
+      no-data-label= "Ainda não há alunos cadastrados!"
+      no-results-label="Não há dados disponíveis!"
     >
+       <template v-slot:no-data="{ icon, message, filter }">
+        <div class="full-width row flex-center q-gutter-sm">
+          <q-icon size="2em" name="sentiment_dissatisfied" />
+          <span>
+            Ops... {{ message }}
+          </span>
+          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+        </div>
+      </template>
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
           <modal-editar :dados_aluno="alunoAtual" />
         </q-dialog>
-
         <q-dialog v-model="showMensagemDeletarAluno" persistent>
           <mensagem-deletar-aluno
             :id="alunoAtual.id"
@@ -222,7 +232,6 @@ watch(
 
 //Se alterar o filtro, então chama a função buscaDados novamente
 watch(filter, () => {
-  console.log("entrou em watch 2");
   nextTick(async () => {
     await buscaDados();
   });
