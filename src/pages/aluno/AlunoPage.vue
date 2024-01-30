@@ -37,16 +37,15 @@
       :columns="columns"
       row-key="id"
       v-model:pagination="paginacao_inicial"
-      no-data-label= "Ainda não há alunos cadastrados!"
-      no-results-label="Não há dados disponíveis!"
+      no-data-label= "Nenhum dado foi encontrado!"
+      no-results-label="Nenhum dado foi encontrado!"
     >
        <template v-slot:no-data="{ icon, message, filter }">
         <div class="full-width row flex-center q-gutter-sm">
-          <q-icon size="2em" name="sentiment_dissatisfied" />
-          <span>
-            Ops... {{ message }}
-          </span>
           <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+          <span>
+            {{ message }}
+          </span>
         </div>
       </template>
       <template v-slot:body-cell-acoes="props">
