@@ -16,7 +16,7 @@
         label="Pesquisar aluno"
       >
         <template v-slot:append>
-          <q-icon name="search" color="primary"/>
+          <q-icon name="search" color="primary" />
         </template>
       </q-input>
     </div>
@@ -26,8 +26,8 @@
       :rows="rows_alunos"
       :title="nomeModuloSelecionado"
       :columns="columns"
-      :filter="filter"
       row-key="id"
+      v-model:pagination="paginacao_inicial"
       no-data-label="Nenhum dado foi encontrado!"
       no-results-label="Nenhum dado foi encontrado!"
     >
@@ -41,9 +41,10 @@
       </template>
       <template v-slot:body-cell-status="props">
         <q-td class="flex justify-center items-center">
-          <q-badge :color="corStatus(props.row.status)">{{ props.row.status }}</q-badge>
+          <q-badge :color="corStatus(props.row.status)">{{
+            props.row.status
+          }}</q-badge>
         </q-td>
-
       </template>
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
@@ -66,6 +67,22 @@
           />
         </q-td>
       </template>
+      <template v-slot:bottom >
+        <div class="full-width flex justify-center pagination_container">
+          <q-paginaiton
+            v-if="max_paginas > 1"
+            v-model="pagination.page"
+            @input="console.log(pagination.page)"
+            color="grey"
+            active-color="primary"
+            :max="max_paginas"
+            :max-pages="max_paginas"
+            direction-links
+            size="md"
+          >
+          </q-paginaiton>
+        </div>
+      </template>
     </q-table>
   </div>
   <router-link to="/modulos" style="text-decoration: none">
@@ -77,7 +94,7 @@
 
 <script setup>
 import { api } from "src/boot/axios";
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 const nomeModuloSelecionado = ref("");
@@ -85,6 +102,21 @@ const route = useRoute();
 const rows_alunos = ref([]);
 const idModulo = route.params.id;
 const filter = ref("");
+
+const max_paginas=ref(0);
+const rowsPerPage = ref(10);
+const itensPorPagina = ref(10);
+const paginacao_inicial = ref({
+  page: 1,
+  rowsPerPage: itensPorPagina,
+})
+
+const pagination = ref({
+  rowsPerPage,
+  maxPages: 0,
+  page: paginacao_inicial.value.page,
+  pageShow: 1,
+})
 
 const columns = [
   {
@@ -121,24 +153,43 @@ const columns = [
 ];
 
 onMounted(() => {
-    getAlunos(idModulo);
+  // getAlunos(idModulo);
+  buscaDados(idModulo);
 });
 //Mostra alunos por curso
+async function buscaDados(idModulo) {
+  const pagina = pagination.value.page;
+  const url = `modulos/${idModulo}/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
+  console.log(url);
 
-const getAlunos = async (idModulo) => {
-    try{
-        const resp = await api.get(`modulos/${idModulo}`);
-        console.log(resp);
-        resp.data.Matricula.map((aluno) => {
-            rows_alunos.value.push(aluno);
-        });
-        nomeModuloSelecionado.value = resp.data.nome_modulo
-        calcularMediaStatus(rows_alunos)
-
-    }catch(error){
-        console.log(error);
-    }
+  try {
+    const  resp = await api.get(url);
+    console.log(resp.data);
+    console.log(resp.data.data);
+    resp.data.Matricula.map((aluno) => {
+      rows_alunos.value.push(aluno);
+    })
+    nomeModuloSelecionado.value = resp.data.nome_modulo;
+    console.log(nomeModuloSelecionado.value);
+    calcularMediaStatus(rows_alunos);
+  } catch (error) {
+    console.log(error);
+  }
 }
+// const getAlunos = async (idModulo) => {
+//     try{
+//         const resp = await api.get(`modulos/${idModulo}`);
+//         console.log(resp);
+//         resp.data.Matricula.map((aluno) => {
+//             rows_alunos.value.push(aluno);
+//         });
+//         nomeModuloSelecionado.value = resp.data.nome_modulo
+//         calcularMediaStatus(rows_alunos)
+
+//     }catch(error){
+//         console.log(error);
+//     }
+// }
 
 async function calcularMediaStatus(rows_alunos) {
   let matriculas = rows_alunos.value;
@@ -181,5 +232,20 @@ function corStatus(status) {
   console.log(status);
 }
 
+watch(
+  () => pagination,
+  () => {
+    nextTick(async () => {
+      await buscaDados();
+    });
+  },
+  {deep: true }
+);
 
+//Se alterar o filtro, então chama a função buscaDados novamente
+watch(filter, () => {
+    nextTick(async () => {
+      await buscaDados();
+    });
+});
 </script>

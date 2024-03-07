@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div
       class="row justify-center card-modulo"
-      style="width: 300px; height: 180px"
+      style="width: 350px; height: 200px"
     >
       <div class="col-4 q-pl-md q-py-md">
         <div class="column items-center">
@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <div class="col-8 flex flex-center text-center text-blue-5">
+      <div class="col-8 flex flex-center text-center text-blue-5 q-px-lg">
         <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
       </div>
       <div class="justify-between">

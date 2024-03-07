@@ -202,12 +202,8 @@ const iniciarModalEditar = async (aluno) => {
 async function buscaDados() {
   const pagina = pagination.value.page;
   const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
-  console.log(url);
-  console.log(pagina);
-
-
+  
   //Mostrar alunos
-
   try {
     //const { data } = await api.get("alunos");
     const { data } = await api.get(url);
