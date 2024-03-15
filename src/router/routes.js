@@ -51,13 +51,11 @@ export default routes;
 //   routes,
 // });
 // router.beforeEach(async (to, from, next) => {
-//   console.log("Entrou aqui!")
 //   if (to.matched.some(record => record.meta.requiredLogin)) {
 //     const auth = useAuthStore();
 //     //const token = localStorage.getItem('token');
 //     if (auth.token && auth.user_email) {
 //       const isAuthenticated = auth.checkToken();
-//       console.log(isAuthenticated);
 //       if (isAuthenticated) {
 //         next();
 //       } else {

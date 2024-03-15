@@ -113,9 +113,7 @@ const submitForm = async () => {
       : null;
 
     delete cadastro.value.modulo;
-    console.log(cadastro.value);
     const { data } = await api.post(`matricula`, cadastro.value);
-    console.log(data);
     $q.notify({
       message: "Matrícula realizada com sucesso!",
       color: "positive",

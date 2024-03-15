@@ -175,10 +175,8 @@ const iniciarEditarMatricula = async (modulo) => {
 };
 
 const buscarAlunoSelecionado = async () => {
-  // console.log(idAluno)
   try {
     const response = await api.get(`alunos/${idAluno}`);
-    // console.log(response);
     nomeAlunoSelecionado.value = response.data.nome_aluno;
   } catch (error) {
     console.error("Erro ao buscar o nome do aluno:", error);
@@ -189,8 +187,6 @@ const buscarAlunoSelecionado = async () => {
 const getModulos = async (idAluno) => {
   try {
     const resp = await api.get(`alunos/${idAluno}`);
-    console.log(resp);
-
     resp.data.Matricula.map((modulo) => {
       rows_matriculas.value.push(modulo);
     });
@@ -204,9 +200,7 @@ const getModulos = async (idAluno) => {
 const calcularMediaStatus = async (rows_matriculas) => {
   //async function calcularMediaStatus(rows_matriculas) {
   let matriculas = rows_matriculas.value;
-  console.log(rows_matriculas.value);
   rows_matriculas.value.forEach((value, index) => {
-    console.log("Testando");
     const media = ref(0);
 
     media.value =
@@ -242,7 +236,6 @@ function corStatus(status) {
     return "purple";
   }
 
-  console.log(status);
 }
 </script>
 <style></style>

@@ -57,7 +57,6 @@ const cadastro = ref({
 const submitForm = async () => {
   try {
     const { data } = await api.post("modulos", cadastro.value);
-    console.log(data);
     $q.notify({
       message: "Módulo cadastrado com sucesso!",
       color: "positive",
