@@ -148,7 +148,7 @@ const columns = [
   },
   {
     name: "acoes",
-    field: "nota3",
+    field: "acoes",
     label: "Ações",
     align: "center",
   },
