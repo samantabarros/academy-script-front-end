@@ -204,9 +204,7 @@ async function buscaDados() {
   const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
  
   //Mostrar alunos
-
   try {
-    //const { data } = await api.get("alunos");
     const { data } = await api.get(url);
     rows_alunos.value = data.data;
     max_paginas.value = data.maxPage;

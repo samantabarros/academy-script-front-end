@@ -152,8 +152,6 @@ const columns = [
   },
 ];
 
-
-
 //Mostra alunos por curso
 
 const getAlunos = async () => {
