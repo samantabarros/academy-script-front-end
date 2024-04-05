@@ -10,10 +10,10 @@
         dense
         debounce="300"
         type="search"
-        class="q-pr-md col-6"
         v-model="filter"
         color="primary"
         label="Pesquisar aluno"
+        class="q-pr-md col-6"
       >
         <template v-slot:append>
           <q-icon name="search" color="primary" />
@@ -151,8 +151,6 @@ const columns = [
     align: "center",
   },
 ];
-
-
 
 //Mostra alunos por curso
 
