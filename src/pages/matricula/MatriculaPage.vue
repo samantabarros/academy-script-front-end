@@ -36,8 +36,8 @@
       :title="nomeAlunoSelecionado"
       :rows="rows_matriculas"
       :columns="columns"
-      :filter="filter"
       row-key="id"
+      v-model:pagination="paginacao_inicial"
       no-data-label="Nenhum dado foi encontrado!"
       no-results-label="Nenhum dado foi encontrado!"
     >
@@ -82,6 +82,22 @@
           />
         </q-td>
       </template>
+      <template v-slot:bottom>
+        <div class="full-width flex justify-center pagination_container">
+          <q-pagination
+            v-if="max_paginas > 1"
+            v-model="pagination.page"
+            @input="console.log(pagination.page)"
+            color="grey"
+            active-color="primary"
+            :max="max_paginas"
+            :max-pages="max_paginas"
+            direction-links
+            size="md"
+          >
+          </q-pagination>
+        </div>
+      </template>
     </q-table>
   </div>
   <router-link to="/alunos" style="text-decoration: none">
@@ -94,7 +110,7 @@
 </template>
 
 <script setup>
-import { defineComponent, ref, onMounted } from "vue";
+import { nextTick, defineComponent, ref, onMounted, watch } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroMatricula from "src/components/modals/ModalCadastroMatricula.vue";
 import ModalEditarMatricula from "src/components/modals/ModalEditarMatricula.vue";
@@ -113,6 +129,21 @@ const nomeAlunoSelecionado = ref("");
 const showModalCadastroMatricula = ref(false);
 const showModalEditarMatricula = ref(false);
 const showMensagemDeletarMatricula = ref(false);
+
+const max_paginas = ref(0);
+const rowsPerPage = ref(10);
+const itensPorPagina = ref(10);
+const paginacao_inicial = ref({
+  page: 1,
+  rowsPerPage: itensPorPagina,
+});
+
+const pagination = ref({
+  rowsPerPage,
+  maxPages: 0,
+  page: paginacao_inicial.value.page,
+  pageShow: 1,
+});
 
 const columns = [
   {
@@ -148,7 +179,7 @@ const columns = [
   },
   {
     name: "acoes",
-    field: "nota3",
+    field: "acoes",
     label: "Ações",
     align: "center",
   },
@@ -157,8 +188,6 @@ const columns = [
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  //calcularMediaStatusEStatus(rows_matriculas);
-  //calcularMediaStatus(rows_matriculas)
 });
 
 // Abre o modal componente para deletar o módulo
@@ -175,10 +204,9 @@ const iniciarEditarMatricula = async (modulo) => {
 };
 
 const buscarAlunoSelecionado = async () => {
-  // console.log(idAluno)
   try {
-    const response = await api.get(`alunos/${idAluno}`);
-    // console.log(response);
+    const url = `alunos/${idAluno}`;
+    const response = await api.get(url);
     nomeAlunoSelecionado.value = response.data.nome_aluno;
   } catch (error) {
     console.error("Erro ao buscar o nome do aluno:", error);
@@ -187,14 +215,13 @@ const buscarAlunoSelecionado = async () => {
 
 //Mostrar módulos
 const getModulos = async (idAluno) => {
+  const pagina = pagination.value.page;
+  const url = `matricula/${idAluno}/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
   try {
-    const resp = await api.get(`alunos/${idAluno}`);
-    console.log(resp);
-
-    resp.data.Matricula.map((modulo) => {
-      rows_matriculas.value.push(modulo);
-    });
+    const resp = await api.get(url);
+    rows_matriculas.value = resp.data.data;
     calcularMediaStatus(rows_matriculas);
+    max_paginas.value = resp.data.maxPage;
   } catch (error) {
     console.error(error);
   }
@@ -204,9 +231,7 @@ const getModulos = async (idAluno) => {
 const calcularMediaStatus = async (rows_matriculas) => {
   //async function calcularMediaStatus(rows_matriculas) {
   let matriculas = rows_matriculas.value;
-  console.log(rows_matriculas.value);
   rows_matriculas.value.forEach((value, index) => {
-    console.log("Testando");
     const media = ref(0);
 
     media.value =
@@ -241,8 +266,23 @@ function corStatus(status) {
   if (status == "Incompleto") {
     return "purple";
   }
-
-  console.log(status);
 }
+
+watch(
+  () => pagination,
+  () => {
+    nextTick(async () => {
+      await getModulos(idAluno);
+    });
+  },
+  {deep: true}
+);
+
+watch(filter, () => {
+  nextTick(async () => {
+    await getModulos(idAluno);
+  });
+});
+
 </script>
 <style></style>

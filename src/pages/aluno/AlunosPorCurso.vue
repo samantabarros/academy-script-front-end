@@ -10,17 +10,16 @@
         dense
         debounce="300"
         type="search"
-        class="q-pr-md col-6"
         v-model="filter"
         color="primary"
         label="Pesquisar aluno"
+        class="q-pr-md col-6"
       >
         <template v-slot:append>
           <q-icon name="search" color="primary" />
         </template>
       </q-input>
     </div>
-
     <q-table
       class="q-mt-lg"
       :rows="rows_alunos"
@@ -67,9 +66,9 @@
           />
         </q-td>
       </template>
-      <template v-slot:bottom >
+      <template v-slot:bottom>
         <div class="full-width flex justify-center pagination_container">
-          <q-paginaiton
+          <q-pagination
             v-if="max_paginas > 1"
             v-model="pagination.page"
             @input="console.log(pagination.page)"
@@ -80,7 +79,7 @@
             direction-links
             size="md"
           >
-          </q-paginaiton>
+          </q-pagination>
         </div>
       </template>
     </q-table>
@@ -95,28 +94,29 @@
 <script setup>
 import { api } from "src/boot/axios";
 import { nextTick, onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const nomeModuloSelecionado = ref("");
 const route = useRoute();
+const router = useRouter();
 const rows_alunos = ref([]);
 const idModulo = route.params.id;
 const filter = ref("");
 
-const max_paginas=ref(0);
+const max_paginas = ref(0);
 const rowsPerPage = ref(10);
 const itensPorPagina = ref(10);
 const paginacao_inicial = ref({
   page: 1,
   rowsPerPage: itensPorPagina,
-})
+});
 
 const pagination = ref({
   rowsPerPage,
   maxPages: 0,
   page: paginacao_inicial.value.page,
   pageShow: 1,
-})
+});
 
 const columns = [
   {
@@ -152,44 +152,22 @@ const columns = [
   },
 ];
 
-onMounted(() => {
-  // getAlunos(idModulo);
-  buscaDados(idModulo);
-});
 //Mostra alunos por curso
-async function buscaDados(idModulo) {
+
+const getAlunos = async () => {
   const pagina = pagination.value.page;
   const url = `modulos/${idModulo}/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
-  console.log(url);
 
   try {
-    const  resp = await api.get(url);
-    console.log(resp.data);
-    console.log(resp.data.data);
-    resp.data.Matricula.map((aluno) => {
-      rows_alunos.value.push(aluno);
-    })
+    const resp = await api.get(url);
+    rows_alunos.value = resp.data.data;
     nomeModuloSelecionado.value = resp.data.nome_modulo;
-    console.log(nomeModuloSelecionado.value);
     calcularMediaStatus(rows_alunos);
+    max_paginas.value = resp.data.maxPage;
   } catch (error) {
     console.log(error);
   }
-}
-// const getAlunos = async (idModulo) => {
-//     try{
-//         const resp = await api.get(`modulos/${idModulo}`);
-//         console.log(resp);
-//         resp.data.Matricula.map((aluno) => {
-//             rows_alunos.value.push(aluno);
-//         });
-//         nomeModuloSelecionado.value = resp.data.nome_modulo
-//         calcularMediaStatus(rows_alunos)
-
-//     }catch(error){
-//         console.log(error);
-//     }
-// }
+};
 
 async function calcularMediaStatus(rows_alunos) {
   let matriculas = rows_alunos.value;
@@ -228,24 +206,25 @@ function corStatus(status) {
   if (status == "Incompleto") {
     return "purple";
   }
-
-  console.log(status);
 }
 
 watch(
   () => pagination,
   () => {
     nextTick(async () => {
-      await buscaDados();
+      await getAlunos();
     });
   },
-  {deep: true }
+  { deep: true }
 );
 
 //Se alterar o filtro, então chama a função buscaDados novamente
 watch(filter, () => {
-    nextTick(async () => {
-      await buscaDados();
-    });
+  nextTick(async () => {
+    await getAlunos();
+  });
+});
+onMounted(() => {
+  getAlunos();
 });
 </script>

@@ -49,7 +49,6 @@ const props = defineProps({
 const deletarAluno = async (id) => {
   try {
     const { data } = await api.delete(`alunos/${id}`);
-    console.log("O valor de data em DeletarAluno é " + data);
     $q.notify({
       message: "Aluno excluido com sucesso!",
       color: "positive",

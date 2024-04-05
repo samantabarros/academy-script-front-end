@@ -86,21 +86,15 @@ onMounted(() => {
 });
 
 function onSubmit(id) {
-  console.log("Atualizando dados");
   atualizarDados(id);
 }
 
 const atualizarDados = async (id) => {
   try {
-    //console.log("Antes da função formatar data" + formularioEditar.value.data_nascimento);
     formularioEditar.value.data_nascimento = new Date(
       formularioEditar.value.data_nascimento
     ).toISOString();
-    //console.log("Depois da função formatar data" + formularioEditar.value.data_nascimento);
     const { data } = await api.put(`alunos/${id}`, formularioEditar.value);
-    console.log(
-      "Depois da requisição put " + formularioEditar.value.data_nascimento
-    );
     $q.notify({
       message: "Aluno atualizado com sucesso!",
       position: "top",
