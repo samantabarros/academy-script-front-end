@@ -16,7 +16,7 @@
         class="q-pr-md col-6"
       >
         <template v-slot:append>
-          <q-icon name="search" color="primary"/>
+          <q-icon name="search" color="primary" />
         </template>
       </q-input>
       <q-btn
@@ -36,9 +36,17 @@
       :title="nomeAlunoSelecionado"
       :rows="rows_matriculas"
       :columns="columns"
-      :filter="filter"
       row-key="id"
+      v-model:pagination="paginacao_inicial"
+      no-data-label="Nenhum dado foi encontrado!"
+      no-results-label="Nenhum dado foi encontrado!"
     >
+      <template v-slot:no-data="{ icon, message, filter }">
+        <div class="full-width row flex-center q-gutter-sm">
+          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+          <span> {{ message }} </span>
+        </div>
+      </template>
       <template v-slot:body-cell-status="props">
         <q-td class="text-center">
           <q-badge :color="corStatus(props.row.status)">
@@ -51,7 +59,11 @@
           <modal-editar-matricula :dados_modulo="moduloAtual" />
         </q-dialog>
         <q-dialog v-model="showMensagemDeletarMatricula" persistent>
-          <mensagem-deletar-matricula :id="moduloAtual.id" :nomeAluno="nomeAlunoSelecionado " :nomeDoModulo="nomeModulo"/>
+          <mensagem-deletar-matricula
+            :id="moduloAtual.id"
+            :nomeAluno="nomeAlunoSelecionado"
+            :nomeDoModulo="nomeModulo"
+          />
         </q-dialog>
         <q-td :props="props" class="q-gutter-sm">
           <q-btn
@@ -70,17 +82,35 @@
           />
         </q-td>
       </template>
+      <template v-slot:bottom>
+        <div class="full-width flex justify-center pagination_container">
+          <q-pagination
+            v-if="max_paginas > 1"
+            v-model="pagination.page"
+            @input="console.log(pagination.page)"
+            color="grey"
+            active-color="primary"
+            :max="max_paginas"
+            :max-pages="max_paginas"
+            direction-links
+            size="md"
+          >
+          </q-pagination>
+        </div>
+      </template>
     </q-table>
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-px-xs">
-      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
+      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new"
+        >Voltar</q-btn
+      >
     </div>
   </router-link>
 </template>
 
 <script setup>
-import { defineComponent, ref, onMounted } from "vue";
+import { nextTick, defineComponent, ref, onMounted, watch } from "vue";
 import { api } from "boot/axios";
 import ModalCadastroMatricula from "src/components/modals/ModalCadastroMatricula.vue";
 import ModalEditarMatricula from "src/components/modals/ModalEditarMatricula.vue";
@@ -99,6 +129,21 @@ const nomeAlunoSelecionado = ref("");
 const showModalCadastroMatricula = ref(false);
 const showModalEditarMatricula = ref(false);
 const showMensagemDeletarMatricula = ref(false);
+
+const max_paginas = ref(0);
+const rowsPerPage = ref(10);
+const itensPorPagina = ref(10);
+const paginacao_inicial = ref({
+  page: 1,
+  rowsPerPage: itensPorPagina,
+});
+
+const pagination = ref({
+  rowsPerPage,
+  maxPages: 0,
+  page: paginacao_inicial.value.page,
+  pageShow: 1,
+});
 
 const columns = [
   {
@@ -134,7 +179,7 @@ const columns = [
   },
   {
     name: "acoes",
-    field: "nota3",
+    field: "acoes",
     label: "Ações",
     align: "center",
   },
@@ -143,8 +188,6 @@ const columns = [
 onMounted(() => {
   buscarAlunoSelecionado(idAluno);
   getModulos(idAluno);
-  //calcularMediaStatusEStatus(rows_matriculas);
-  //calcularMediaStatus(rows_matriculas)
 });
 
 // Abre o modal componente para deletar o módulo
@@ -161,10 +204,9 @@ const iniciarEditarMatricula = async (modulo) => {
 };
 
 const buscarAlunoSelecionado = async () => {
-  // console.log(idAluno)
   try {
-    const response = await api.get(`alunos/${idAluno}`);
-    // console.log(response);
+    const url = `alunos/${idAluno}`;
+    const response = await api.get(url);
     nomeAlunoSelecionado.value = response.data.nome_aluno;
   } catch (error) {
     console.error("Erro ao buscar o nome do aluno:", error);
@@ -173,14 +215,13 @@ const buscarAlunoSelecionado = async () => {
 
 //Mostrar módulos
 const getModulos = async (idAluno) => {
+  const pagina = pagination.value.page;
+  const url = `matricula/${idAluno}/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
   try {
-    const resp = await api.get(`alunos/${idAluno}`);
-    console.log(resp);
-
-    resp.data.Matricula.map((modulo) => {
-      rows_matriculas.value.push(modulo);
-    });
+    const resp = await api.get(url);
+    rows_matriculas.value = resp.data.data;
     calcularMediaStatus(rows_matriculas);
+    max_paginas.value = resp.data.maxPage;
   } catch (error) {
     console.error(error);
   }
@@ -190,9 +231,7 @@ const getModulos = async (idAluno) => {
 const calcularMediaStatus = async (rows_matriculas) => {
   //async function calcularMediaStatus(rows_matriculas) {
   let matriculas = rows_matriculas.value;
-  console.log(rows_matriculas.value);
   rows_matriculas.value.forEach((value, index) => {
-    console.log("Testando");
     const media = ref(0);
 
     media.value =
@@ -227,8 +266,23 @@ function corStatus(status) {
   if (status == "Incompleto") {
     return "purple";
   }
-
-  console.log(status);
 }
+
+watch(
+  () => pagination,
+  () => {
+    nextTick(async () => {
+      await getModulos(idAluno);
+    });
+  },
+  {deep: true}
+);
+
+watch(filter, () => {
+  nextTick(async () => {
+    await getModulos(idAluno);
+  });
+});
+
 </script>
 <style></style>

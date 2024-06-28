@@ -37,12 +37,21 @@
       :columns="columns"
       row-key="id"
       v-model:pagination="paginacao_inicial"
+      no-data-label= "Nenhum dado foi encontrado!"
+      no-results-label="Nenhum dado foi encontrado!"
     >
+       <template v-slot:no-data="{ icon, message, filter }">
+        <div class="full-width row flex-center q-gutter-sm">
+          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+          <span>
+            {{ message }}
+          </span>
+        </div>
+      </template>
       <template v-slot:body-cell-acoes="props">
         <q-dialog v-model="showModalEditar" persistent>
           <modal-editar :dados_aluno="alunoAtual" />
         </q-dialog>
-
         <q-dialog v-model="showMensagemDeletarAluno" persistent>
           <mensagem-deletar-aluno
             :id="alunoAtual.id"
@@ -193,16 +202,10 @@ const iniciarModalEditar = async (aluno) => {
 async function buscaDados() {
   const pagina = pagination.value.page;
   const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
-  console.log(url);
-  console.log(pagina);
-
-
+ 
   //Mostrar alunos
-
   try {
-    //const { data } = await api.get("alunos");
     const { data } = await api.get(url);
-    console.log(data);
     rows_alunos.value = data.data;
     max_paginas.value = data.maxPage;
   } catch (error) {
@@ -222,7 +225,6 @@ watch(
 
 //Se alterar o filtro, então chama a função buscaDados novamente
 watch(filter, () => {
-  console.log("entrou em watch 2");
   nextTick(async () => {
     await buscaDados();
   });

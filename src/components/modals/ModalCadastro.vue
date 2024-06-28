@@ -85,7 +85,6 @@ const submitForm = async () => {
       cadastro.value.data_nascimento
     ).toISOString();
     const { data } = await api.post("alunos", cadastro.value);
-    console.log(data);
     $q.notify({
       message: "Aluno cadastrado com sucesso!",
       color: "positive",

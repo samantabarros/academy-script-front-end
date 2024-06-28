@@ -71,7 +71,6 @@ const formularioEditar = ref({
 });
 
 function onSubmit(id) {
-  console.log("Atualizando dados");
   atualizarDados(id);
 }
 
