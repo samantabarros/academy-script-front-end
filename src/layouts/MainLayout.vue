@@ -11,7 +11,7 @@
           @click="isOpen = !isOpen"
         />
 
-        <q-toolbar-title> SGMA </q-toolbar-title>
+        <q-toolbar-title> Academy Script </q-toolbar-title>
 
         <q-btn flat label="Sair" icon="logout" to="/" @click="authStore.logout()"/>
       </q-toolbar>
@@ -34,7 +34,7 @@
     </q-drawer>
 
     <q-footer elevated class="q-pa-xs text-center bg-blue-10 flex flex-center" style="height: 3em;">
-      <span> Samanta Barros &copy; 2023</span>
+      <span> Samanta Barros &copy; 2024</span>
     </q-footer>
 
     <q-page-container>

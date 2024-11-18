@@ -1,6 +1,6 @@
-# SGMA  (front-end)
+# Academy Script  (front-end)
 
-Sistema de Gerenciamento de Módulos Avaliativos
+Sistema de Gestão Acadêmica para Docentes Universitários
 
 ## Install the dependencies
 ```bash

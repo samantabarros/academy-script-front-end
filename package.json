@@ -1,8 +1,8 @@
 {
-  "name": "front-end-gema",
+  "name": "front-end-academy-script",
   "version": "0.0.1",
-  "description": "Sistema de Gerenciamento de Módulos Avaliativos",
-  "productName": "SIGMA",
+  "description": "Sistema de Gestão Acadêmica para Docentes Universitários",
+  "productName": "Academy Script",
   "author": "Samanta <samantadesenvolvedora@gmail.com>",
   "private": true,
   "scripts": {
