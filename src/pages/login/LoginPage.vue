@@ -142,7 +142,7 @@ const showMensagemServicoIndisponivel = ref(false);
 
 const usuario = ref({
   email: "admin@gmail.com",
-  password: "admin",
+  password: "123456",
 });
 
 /* quando define-se uma variável dentro de uma função com const ela fica visível só dentro
