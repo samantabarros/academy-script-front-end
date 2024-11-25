@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr hFf">
-    <q-header elevated class="bg-primary" >
+    <q-header elevated class="bg-primary" style="height: 60px">
       <q-toolbar>
         <q-btn
           flat
@@ -10,10 +10,15 @@
           aria-label="Menu"
           @click="isOpen = !isOpen"
         />
+        <div class="row flex justify-between full-width items-center" >
+           <img src="../assets/images/logo.png" alt="Academy Script logo" style="max-width: 300px;">
+            <p>Bem-vindo(a), usuário </p>
+            <div class="flex justify-end q-mx-md">
+              <img src="../assets/images/avatar-professor.png" alt="Avatar do usuário"  style="max-width: 40px; height: 40px;">
+              <p class="q-pl-md flex items-center">Usuário</p>
+             </div>
+        </div>
 
-        <q-toolbar-title> Academy Script </q-toolbar-title>
-
-        <q-btn flat label="Sair" icon="logout" to="/" @click="authStore.logout()"/>
       </q-toolbar>
     </q-header>
 
@@ -22,9 +27,7 @@
       bordered
       :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
     >
-      <q-list>
-        <q-item-label header class="row justify-left"> Menu </q-item-label>
-
+      <q-list class="q-mt-lg q-ml-md">
         <EssentialLink
           v-for="link in linksList"
           :key="link.title"
@@ -52,10 +55,16 @@ const authStore = useAuthStore();
 const isOpen = ref(false);
 const linksList = [
   {
-    title: "Home",
+    title: "Dashboard",
     caption: "",
     icon: "home",
     route: "/home",
+  },
+  {
+    title: "Disciplinas",
+    caption: "",
+    icon: "auto_stories",
+    route: "/modulos",
   },
   {
     title: "Alunos",
@@ -63,12 +72,11 @@ const linksList = [
     icon: "group",
     route: "/alunos",
   },
-
   {
-    title: "Módulos",
+    title: "Sair",
     caption: "",
-    icon: "auto_stories",
-    route: "/modulos",
+    icon: "logout",
+    route: "/",
   },
 ];
 

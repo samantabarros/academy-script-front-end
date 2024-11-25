@@ -1,19 +1,12 @@
 <template>
-  <div class="q-pa-md">
-    <div
-      class="row justify-center card-modulo"
-      style="width: 350px; height: 200px"
-    >
-      <div class="col-4 q-pl-md q-py-md">
-        <div class="column items-center">
-          <q-icon name="auto_stories" size="100px" color="blue-5" />
-        </div>
+    <div class="row card-modulo">
+      <div class="col-2 q-pl-md q-mt-sm">
+        <img src="../../assets/images/Graph.png" alt="Ícone de disciplina">
       </div>
-
-      <div class="col-8 flex flex-center text-center text-blue-5 q-px-lg">
+      <div class="col-6 flex flex-center text-center q-mx-sm q-mt-sm">
         <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
       </div>
-      <div class="justify-between">
+      <div class="col-3 q-mx-md">
         <q-dialog v-model="showMensagemDeletarModulo" persistent>
           <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
         </q-dialog>
@@ -36,7 +29,7 @@
         />
       </div>
     </div>
-  </div>
+
 </template>
 
 <script setup>
@@ -55,7 +48,7 @@ const iniciarModalDeletar = async (id_modulo) => {
 
 <style>
 .card-modulo {
-  border: 2px solid #24afff;
+  border: 2px solid #D9D9D9;
   border-radius: 20px;
   transition: transform 0.4s;
 }

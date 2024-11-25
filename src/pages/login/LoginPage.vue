@@ -7,7 +7,8 @@
             <img src="/img/logo_alternativa.png" alt="Logo"  style="max-height: 300px; max-width: 200px">
           </div> -->
           <div class="col-12 q-my-md">
-           <p class="text-h3 text-weight-bold text-primary">ACADEMY SCRIPT</p>
+           <img src="../../assets/images/logo.png" alt="Academy Script logo">
+
           </div>
         </div>
         <div class="row justify-center">
@@ -80,10 +81,9 @@
       </div>
 
     </div>
-    <div class="aside col-xs-0 col-md-6 column justify-center">
-
+    <div class="aside col-xs-0 col-md-6 column justify-center ">
       <div class="flex flex-center q-mb-md">
-        <img src="/img/img_tela_login.png" alt="Background login">
+        <img src="../../assets/images/background.png" alt="Background login">
       </div>
     </div>
   </main>
