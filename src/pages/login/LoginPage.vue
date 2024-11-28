@@ -82,8 +82,8 @@
 
     </div>
     <div class="aside col-xs-0 col-md-6 column justify-center flex">
-      <div class="flex flex-center q-mb-md">
-        <img src="../../assets/images/background.jpg" alt="Background login">
+      <div>
+        <img src="../../assets/images/background_three.png" alt="Background login">
       </div>
     </div>
   </main>
@@ -184,10 +184,26 @@ const senhaRules = [
     url(../assets/images/imagem-de-fundo.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 50%;
+  background-size: 100%;
+  width: auto;
+  max-width: 1000px;
+  max-height: 1600px;
+  height: auto;
+}
+
+.css-background{
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  display: block;
 }
+
 
 .blue-secondary {
   color: #104D87;
