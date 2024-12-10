@@ -3,7 +3,14 @@
     class="q-pa-md text-body-1"
     :style="`min-height: ${$q.screen.height - 130}px`"
   >
-    <div class="row justify-end q-pb-md">
+    <div class="row justify-between q-pb-md">
+      <q-btn
+        dense
+        class="btn-color text-white q-px-md q-mr-md"
+        icon="add"
+        label="Adicionar"
+        @click="showModalCadastrarModulo = true"
+      ></q-btn>
       <q-input
         outlined
         borderless
@@ -19,19 +26,12 @@
           <q-icon name="search" @click="getModulos(filtro)" color="primary" />
         </template>
       </q-input>
-      <q-btn
-        dense
-        class="bg-blue-7 text-white q-px-md"
-        icon="add"
-        label="Adicionar"
-        @click="showModalCadastrarModulo = true"
-      ></q-btn>
     </div>
     <q-dialog v-model="showModalCadastrarModulo" persistent>
       <modal-cadastro-modulo />
     </q-dialog>
-    <div class="row justify-center">
-      <div v-for="modulo in modulos" :key="modulo.id">
+    <div class="row">
+      <div v-for="modulo in modulos" :key="modulo.id" class="col-12 items-center">
         <card-modulo :modulo="modulo"> </card-modulo>
       </div>
     </div>
@@ -79,3 +79,9 @@ async function getModulos(filtro = "") {
   }
 }
 </script>
+
+<style>
+.btn-color{
+  background-color: #104D87;
+}
+</style>

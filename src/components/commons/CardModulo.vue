@@ -1,12 +1,12 @@
 <template>
-    <div class="row card-modulo">
-      <div class="col-2 q-pl-md q-mt-sm">
+    <div class="row card-modulo q-mb-md flex justify-center items-center">
+      <div class="col-1 q-mt-sm flex justify-center items-center">
         <img src="../../assets/images/Graph.png" alt="Ícone de disciplina">
       </div>
-      <div class="col-6 flex flex-center text-center q-mx-sm q-mt-sm">
-        <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
+      <div class="col-8 flex flex-center text-center q-mx-sm q-mt-sm">
+          <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
       </div>
-      <div class="col-3 q-mx-md">
+      <div class="col-2 q-mx-md flex justify-center items-center">
         <q-dialog v-model="showMensagemDeletarModulo" persistent>
           <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
         </q-dialog>
@@ -29,7 +29,6 @@
         />
       </div>
     </div>
-
 </template>
 
 <script setup>

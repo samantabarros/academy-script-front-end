@@ -14,7 +14,7 @@
            <img src="../assets/images/logo.png" alt="Academy Script logo" style="max-width: 300px;">
             <p>Bem-vindo(a), usuário </p>
             <div class="flex justify-end q-mx-md">
-              <img src="../assets/images/avatar-professor.png" alt="Avatar do usuário"  style="max-width: 40px; height: 40px;">
+              <img src="../assets/images/26.png" alt="Avatar do usuário"  style="max-width: 40px; height: 40px;">
               <p class="q-pl-md flex items-center">Usuário</p>
              </div>
         </div>

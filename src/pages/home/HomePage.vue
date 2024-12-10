@@ -21,7 +21,7 @@
         >
           <div class="column items-center">
             <q-icon name="auto_stories" size="100px" color="white" />
-            <p class="text-white" style="font-size: 30px">Módulos</p>
+            <p class="text-white" style="font-size: 30px">Disciplinas</p>
           </div>
         </div>
       </router-link>
