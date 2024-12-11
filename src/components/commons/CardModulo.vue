@@ -1,34 +1,29 @@
 <template>
-    <div class="row card-modulo q-mb-md flex justify-center items-center">
-      <div class="col-1 q-mt-sm flex justify-center items-center">
+  <div class="row card-modulo q-mb-md flex items-center justify-evenly">
+
+    <div class="col-8 flex q-mx-sm ">
+      <div class="col-2 flex justify-center items-center q-pr-md">
         <img src="../../assets/images/Graph.png" alt="Ícone de disciplina">
       </div>
-      <div class="col-8 flex flex-center text-center q-mx-sm q-mt-sm">
-          <p style="font-size: 30px">{{ modulo.nome_modulo }}</p>
-      </div>
-      <div class="col-2 q-mx-md flex justify-center items-center">
-        <q-dialog v-model="showMensagemDeletarModulo" persistent>
-          <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
-        </q-dialog>
-        <q-btn
-          class="q-mr-xs"
-          icon="delete"
-          color="negative"
-          border=""
-          dense
-          size="md"
-          @click="iniciarModalDeletar(modulo.id)"
-        />
-        <q-btn
-          class="q-mr-xs"
-          icon="group"
-          color="grey"
-          dense
-          size="md"
-          :to="`/alunosPorCurso/${modulo.id}`"
-        />
+      <div class="column">
+        <p style="font-size: 30px" class="q-ma-none text-bold">{{ modulo.nome_modulo }}</p>
+        <div class="row q-pb-sm q-ma-none">
+          <p class="text-bold  q-ma-none">Docente:</p>
+          <p class="q-pr-md q-pr-md q-pl-xs  q-ma-none">Nome Sobrenome</p>
+          <p class="text-bold  q-ma-none"> Carga Horária:</p>
+          <p class="q-pr-md q-pr-md q-pl-xs  q-ma-none">60h</p>
+        </div>
       </div>
     </div>
+    <div class="col-2 q-mx-md flex justify-center items-center">
+      <q-dialog v-model="showMensagemDeletarModulo" persistent>
+        <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
+      </q-dialog>
+      <q-btn class="q-mr-xs" icon="delete" color="negative" border="" dense size="md"
+        @click="iniciarModalDeletar(modulo.id)" />
+      <q-btn class="q-mr-xs" icon="group" color="grey" dense size="md" :to="`/alunosPorCurso/${modulo.id}`" />
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -50,9 +45,11 @@ const iniciarModalDeletar = async (id_modulo) => {
   border: 2px solid #D9D9D9;
   border-radius: 20px;
   transition: transform 0.4s;
+  min-height: 120px;
+
 }
 
 .card-modulo:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 </style>
