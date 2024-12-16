@@ -34,12 +34,7 @@ register(process.env.SERVICE_WORKER_FILE, {
     Notify.create({
       message: 'Nova atualização disponível!',
       icon: "update",
-      closeBtn: {
-        label: 'Atualizar',
-        color: 'white',
-        outline: true,
-        class: 'text-white'
-      },
+      closeBtn: 'Atualizar',
       timeout: 1000,
       color: "deep-orange",
       icon: "error",
