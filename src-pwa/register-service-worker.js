@@ -1,5 +1,5 @@
-import { register } from 'register-service-worker'
 import { Notify } from 'quasar'
+import { register } from 'register-service-worker'
 // The ready(), registered(), cached(), updatefound() and updated()
 // events passes a ServiceWorkerRegistration instance in their arguments.
 // ServiceWorkerRegistration: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
@@ -11,23 +11,25 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   // registrationOptions: { scope: './' },
 
-  ready (/* registration */) {
+  ready(/* registration */) {
     // console.log('Service worker is active.')
   },
 
-  registered (/* registration */) {
+  registered(/* registration */) {
     // console.log('Service worker has been registered.')
   },
 
-  cached (/* registration */) {
+  cached(/* registration */) {
     // console.log('Content has been cached for offline use.')
   },
 
-  updatefound (/* registration */) {
+  updatefound(/* registration */) {
     // console.log('New content is downloading.')
   },
 
-  updated (/* registration */) {
+  updated(/* registration */) {
+    // console.log('New content is available; please refresh.')
+
     // console.log('New content is available; please refresh.')
     Notify.create({
       message: 'Nova atualização disponível!',
@@ -42,17 +44,17 @@ register(process.env.SERVICE_WORKER_FILE, {
       color: "deep-orange",
       icon: "error",
       position: "top",
-      onDismiss(){
+      onDismiss() {
         location.reload(true)
       }
     })
   },
 
-  offline () {
+  offline() {
     // console.log('No internet connection found. App is running in offline mode.')
   },
 
-  error (/* err */) {
+  error(/* err */) {
     // console.error('Error during service worker registration:', err)
   }
 })
