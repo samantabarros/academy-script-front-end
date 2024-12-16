@@ -9,7 +9,6 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require("quasar/wrappers");
-const { clientsClaim } = require("workbox-core");
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -149,7 +148,8 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
       workboxMode: "generateSW", // or 'injectManifest'
-      workboxOption: {skipWaiting: true, clientClaim: true},
+      workboxPuglinMode: "GenerateSW", // or 'injectManifest'
+      workboxOption: {skipWaiting: true, clientsClaim: true},
       injectPwaMetaTags: true,
       swFilename: "sw.js",
       manifestFilename: "manifest.json",
