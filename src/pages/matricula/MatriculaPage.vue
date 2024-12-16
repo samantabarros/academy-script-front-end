@@ -105,9 +105,7 @@
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-px-xs">
-      <q-btn outline class="text-orange-10" icon="arrow_back_ios_new"
-        >Voltar</q-btn
-      >
+      <q-btn flat icon="arrow_back_ios_new" style="text-color: #104D87">Voltar</q-btn>
     </div>
   </router-link>
 </template>

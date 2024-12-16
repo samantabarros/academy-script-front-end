@@ -2,7 +2,7 @@
   <card-modelo :titulo="titulo" icone="group" class="q-my-lg q-mx-lg">
     <div
       class="q-pa-md text-body1"
-      :style="`min-height: ${$q.screen.height - 130}px`"
+      :style="`min-height: ${$q.screen.height - 200}px`"
     >
       <div class="row justify-end">
         <q-input

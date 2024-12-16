@@ -1,7 +1,7 @@
 <template>
   <div
     class="q-pa-md text-body1"
-    :style="`max-height: ${$q.screen.height - 130}px`"
+    :style="`min-height: ${$q.screen.height - 150}px`"
   >
     <div class="row justify-end">
       <q-input
@@ -86,7 +86,7 @@
   </div>
   <router-link to="/modulos" style="text-decoration: none">
     <div class="justify-end-left q-pa-xs q-mb-xs">
-      <q-btn outline class="text-orange-10">Voltar</q-btn>
+      <q-btn flat icon="arrow_back_ios_new" style="text-color: #104D87">Voltar</q-btn>
     </div>
   </router-link>
 </template>
