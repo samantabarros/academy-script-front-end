@@ -31,7 +31,7 @@ register(process.env.SERVICE_WORKER_FILE, {
     // console.log('New content is available; please refresh.')
     Notify.create({
       message: 'Nova atualização disponível!',
-      icon: 'mdi-clould-download-outline',
+      icon: 'update',
       closeBtn: 'Atualizar',
       timeout: 1000,
       onDismiss(){
