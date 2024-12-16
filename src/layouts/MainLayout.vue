@@ -10,15 +10,40 @@
           aria-label="Menu"
           @click="isOpen = !isOpen"
         />
-        <div class="row flex justify-between full-width items-center" >
-           <img src="../assets/images/logo.png" alt="Academy Script logo" style="max-width: 300px;">
-            <p>Bem-vindo(a), usuário </p>
-            <div class="flex justify-end q-mx-md">
-              <img src="../assets/images/26.png" alt="Avatar do usuário"  style="max-width: 40px; height: 40px;">
-              <p class="q-pl-md flex items-center">Usuário</p>
-             </div>
+        <div
+          class="row flex justify-between full-width items-center"
+          v-if="!isMobile"
+        >
+          <img
+            src="../assets/images/logo.png"
+            alt="Academy Script logo"
+            style="max-width: 300px"
+          />
+          <p>Bem-vindo(a), usuário</p>
+          <div class="flex justify-end q-mx-md">
+            <img
+              src="../assets/images/26.png"
+              alt="Avatar do usuário"
+              style="max-width: 40px; height: 40px"
+            />
+            <p class="q-pl-md flex items-center">Usuário</p>
+          </div>
         </div>
+        <div
+          class="row flex justify-end full-width items-center"
+          v-if="isMobile"
+        >
+          <p class="text-caption q-mr-sm">Bem-vindo(a), usuário</p>
 
+          <div class="flex justify-end q-mx-md">
+            <img
+              src="../assets/images/26.png"
+              alt="Avatar do usuário"
+              style="max-width: 30px; height: 30px"
+            />
+            <p class="q-pl-md flex items-center">Usuário</p>
+          </div>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -36,7 +61,11 @@
       </q-list>
     </q-drawer>
 
-    <q-footer elevated class="q-pa-xs text-center bg-primary flex flex-center" style="height: 3em;">
+    <q-footer
+      elevated
+      class="q-pa-xs text-center bg-primary flex flex-center"
+      style="height: 3em"
+    >
       <span> Todos os direitos reservados &copy; 2024</span>
     </q-footer>
 
@@ -47,10 +76,13 @@
 </template>
 
 <script setup>
-import { defineComponent, onMounted, ref, useAttrs } from "vue";
+import { computed, defineComponent, onMounted, ref, useAttrs } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { useAuthStore } from "src/stores/auth";
+import { useQuasar } from "quasar";
 
+const $q = useQuasar();
+const isMobile = computed(() => $q.screen.lt.md);
 const authStore = useAuthStore();
 const isOpen = ref(false);
 const linksList = [
@@ -79,7 +111,6 @@ const linksList = [
     route: "/",
   },
 ];
-
 </script>
 
 <style scoped></style>
