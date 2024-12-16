@@ -26,22 +26,23 @@
             <div class="row q-pa-md q-gutter-md justify-end">
               <q-btn
                 dense
-                class="q-pa-sm"
-                color="blue-7"
-                label="Atualizar"
+                class="q-pa-sm text-white"
+                label="Cancelar"
+                v-close-popup
                 size="12px"
-                @click="onSubmit(id)"
-                icon="save"
+                icon="close"
+                @click="atualizaPagina"
+                style="background-color: #991b1b"
               />
               <q-btn
                 dense
-                class="q-pa-sm"
-                color="grey-7"
-                label="Cancelar"
+                class="q-pa-sm text-white"
+                type="submit"
+                label="Atualizar"
+                @click="onSubmit(id)"
                 size="12px"
-                v-close-popup
-                icon="close"
-                @click="atualizaPagina"
+                icon="check"
+                style="background-color: #174933"
               />
             </div>
           </div>

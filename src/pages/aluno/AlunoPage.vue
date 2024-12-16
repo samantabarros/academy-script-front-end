@@ -1,119 +1,113 @@
 <template>
-  <div
-    class="q-pa-md text-body1"
-    :style="`min-height: ${$q.screen.height - 130}px`"
-  >
-    <div class="row justify-end">
-      <q-input
-        outlined
-        borderless
-        dense
-        debounce="300"
-        type="search"
-        class="q-pr-md col-6"
-        v-model="filter"
-        color="primary"
-        label="Pesquisar aluno"
-      >
-        <template v-slot:append>
-          <q-icon name="search" color="primary" />
-        </template>
-      </q-input>
-      <q-btn
-        dense
-        class="bg-blue-7 text-white q-px-md"
-        icon="person_add"
-        label="Adicionar"
-        @click="showModalCadastrar = true"
-      ></q-btn>
-    </div>
-    <q-dialog v-model="showModalCadastrar" persistent>
-      <modal-cadastro />
-    </q-dialog>
-
-    <q-table
-      class="q-mt-lg"
-      :rows="rows_alunos"
-      :columns="columns"
-      row-key="id"
-      v-model:pagination="paginacao_inicial"
-      no-data-label= "Nenhum dado foi encontrado!"
-      no-results-label="Nenhum dado foi encontrado!"
+  <card-modelo :titulo="titulo" icone="group" class="q-my-lg q-mx-lg">
+    <div
+      class="q-pa-md text-body1"
+      :style="`min-height: ${$q.screen.height - 130}px`"
     >
-       <template v-slot:no-data="{ icon, message, filter }">
-        <div class="full-width row flex-center q-gutter-sm">
-          <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
-          <span>
-            {{ message }}
-          </span>
-        </div>
-      </template>
-      <template v-slot:body-cell-acoes="props">
-        <q-dialog v-model="showModalEditar" persistent>
-          <modal-editar :dados_aluno="alunoAtual" />
-        </q-dialog>
-        <q-dialog v-model="showMensagemDeletarAluno" persistent>
-          <mensagem-deletar-aluno
-            :id="alunoAtual.id"
-            :nome="alunoAtual.nome_aluno"
-          />
-        </q-dialog>
-
-        <q-td :props="props">
-          <q-btn
-            class="q-mr-xs"
-            icon="edit"
-            color="green"
-            dense
-            size="md"
-            @click="iniciarModalEditar(props.row)"
-          />
-
-          <q-btn
-            class="q-mr-xs"
-            icon="folder"
-            color="blue"
-            dense
-            size="md"
-            :to="`/matriculas/${props.row.id}`"
-          />
-          <q-btn
-            class="q-mr-xs"
-            icon="delete"
-            color="negative"
-            dense
-            size="md"
-            @click="iniciarModalDeletar(props.row)"
-          />
-        </q-td>
-      </template>
-      <template v-slot:bottom>
-        <div class="full-width flex justify-center pagination_container">
-          <q-pagination
-            v-if="max_paginas > 1"
-            v-model="pagination.page"
-            @input="console.log(pagination.page)"
-            color="grey"
-            active-color="primary"
-            :max="max_paginas"
-            :max-pages="max_paginas"
-            direction-links
-            size="md"
-          >
-          </q-pagination>
-        </div>
-      </template>
-    </q-table>
-  </div>
-  <router-link to="/home" style="text-decoration: none">
-    <div class="row justify-end-left q-px-xs q-ml-sm">
-      <div class="col-12 btn-voltar">
-        <q-btn outline class="text-orange-10" icon="arrow_back_ios_new"
-          >Voltar</q-btn
+      <div class="row justify-end">
+        <q-input
+          outlined
+          borderless
+          dense
+          debounce="300"
+          type="search"
+          class="q-pr-md col-6"
+          v-model="filter"
+          color="primary"
+          label="Pesquisar aluno"
         >
+          <template v-slot:append>
+            <q-icon name="search" color="primary" />
+          </template>
+        </q-input>
+        <q-btn
+          dense
+          class="text-white q-px-md"
+          icon="person_add"
+          style="background-color: #104d87"
+          label="Adicionar"
+          @click="showModalCadastrar = true"
+        ></q-btn>
       </div>
+      <q-dialog v-model="showModalCadastrar" persistent>
+        <modal-cadastro />
+      </q-dialog>
+
+      <q-table
+        class="q-mt-lg"
+        :rows="rows_alunos"
+        :columns="columns"
+        row-key="id"
+        v-model:pagination="paginacao_inicial"
+        no-data-label="Nenhum dado foi encontrado!"
+        no-results-label="Nenhum dado foi encontrado!"
+      >
+        <template v-slot:no-data="{ icon, message, filter }">
+          <div class="full-width row flex-center q-gutter-sm">
+            <q-icon size="2em" :name="filter ? 'filter_b_and_w' : icon" />
+            <span>
+              {{ message }}
+            </span>
+          </div>
+        </template>
+        <template v-slot:body-cell-acoes="props">
+          <q-dialog v-model="showModalEditar" persistent>
+            <modal-editar :dados_aluno="alunoAtual" />
+          </q-dialog>
+          <q-dialog v-model="showMensagemDeletarAluno" persistent>
+            <mensagem-deletar-aluno
+              :id="alunoAtual.id"
+              :nome="alunoAtual.nome_aluno"
+            />
+          </q-dialog>
+
+          <q-td :props="props">
+            <q-btn
+              flat
+              class="q-pa-none"
+              icon="edit"
+              style="color: #581c87"
+              size="lg"
+              @click="iniciarModalEditar(props.row)"
+            />
+            <q-btn
+              class="q-mr-xs"
+              icon="delete"
+              flat
+              style="color: #991b1b"
+              dense
+              size="lg"
+              @click="iniciarModalDeletar(props.row)"
+            />
+              <q-btn
+              class="q-pa-none"
+              icon="folder"
+              style="color: #821B4C"
+              flat
+              size="lg"
+              :to="`/matriculas/${props.row.id}`"
+            />
+          </q-td>
+        </template>
+        <template v-slot:bottom>
+          <div class="full-width flex justify-center pagination_container">
+            <q-pagination
+              v-if="max_paginas > 1"
+              v-model="pagination.page"
+              @input="console.log(pagination.page)"
+              color="grey"
+              active-color="primary"
+              :max="max_paginas"
+              :max-pages="max_paginas"
+              direction-links
+              size="md"
+            >
+            </q-pagination>
+          </div>
+        </template>
+      </q-table>
     </div>
-  </router-link>
+  </card-modelo>
 </template>
 
 <script setup>
@@ -124,12 +118,14 @@ import { useRoute, useRouter } from "vue-router";
 import ModalCadastro from "src/components/modals/ModalCadastro.vue";
 import ModalEditar from "src/components/modals/ModalEditar.vue";
 import MensagemDeletarAluno from "src/components/mensagem/MensagemDeletarAluno.vue";
+import CardModelo from "src/components/commons/CardModelo.vue";
 
 const router = useRouter();
 const route = useRoute();
 const filter = ref("");
 const rows_alunos = ref([]);
 const $q = useQuasar();
+const titulo = ref("Alunos");
 
 const showModalEditar = ref(false);
 const showModalCadastrar = ref(false);
@@ -150,7 +146,6 @@ const pagination = ref({
   maxPages: 0,
   page: paginacao_inicial.value.page,
   pageShow: 1,
-  
 });
 
 const columns = [
@@ -202,7 +197,7 @@ const iniciarModalEditar = async (aluno) => {
 async function buscaDados() {
   const pagina = pagination.value.page;
   const url = `alunos/?pagina=${pagina}&itensPorPagina=${itensPorPagina.value}&busca=${filter.value}`;
- 
+
   //Mostrar alunos
   try {
     const { data } = await api.get(url);
@@ -232,5 +227,4 @@ watch(filter, () => {
 </script>
 
 <style scoped>
-
 </style>

@@ -17,11 +17,9 @@
 
           <div class="q-pa-xs justify-end absolute-top-right">
             <q-btn
-              square
-              dense
-              color="grey"
+              flat
               icon="close"
-              size="10px"
+              size="md"
               @click="atualizaPagina"
               v-close-popup
             />

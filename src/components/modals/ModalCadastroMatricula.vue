@@ -8,7 +8,7 @@
               outlined
               v-model="cadastro.modulo"
               :options="modulos"
-              label="Selecione o módulo"
+              label="Selecione a disciplina"
               :rules="[
                 (val) => (val && val.length !== null) || 'Campo obrigatório',
               ]"
@@ -42,25 +42,24 @@
         </q-card-section>
       </q-form>
       <div class="btn-modal row q-pa-md q-gutter-md flex justify-end">
-        <q-btn
-          dense
-          class="q-pa-sm"
-          color="blue-7"
-          type="submit"
-          size="12px"
-          label="Cadastrar"
-          icon="save"
-          @click="submitForm"
-        />
-        <q-btn
-          dense
-          class="q-pa-sm"
-          color="grey-7"
-          size="12px"
-          label="Cancelar"
-          v-close-popup
-          icon="close"
-        />
+         <q-btn
+            dense
+            class="q-pa-sm text-white"
+            label="Cancelar"
+            v-close-popup
+            size="12px"
+            icon="close"
+            style="background-color: #991B1B; "
+          />
+          <q-btn
+            dense
+            class="q-pa-sm text-white"
+            @click="submitForm"
+            label="Confirmar"
+            size="12px"
+            icon="check"
+            style="background-color: #174933; "
+          />
       </div>
     </div>
   </card-base>

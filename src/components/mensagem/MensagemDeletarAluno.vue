@@ -8,25 +8,24 @@
     </div>
     <div class="row">
       <div class="col-12 btn-container">
-        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-end">
+        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-center">
           <q-btn
-            class="q-pa-sm"
             dense
-            label="Confirmar"
-            color="blue-7"
-            size="12px"
-            @click="deletarAluno(id)"
-            icon="check"
+            class="q-pa-sm text-white"
+            label="Cancelar"
             v-close-popup
+            size="12px"
+            icon="close"
+            style="background-color: #991b1b"
           />
           <q-btn
             dense
-            class="q-pa-sm"
-            label="Cancelar"
-            color="grey-7"
+            class="q-pa-sm text-white"
+            label="Confirmar"
             size="12px"
-            icon="close"
-            v-close-popup
+            icon="check"
+            @click="deletarAluno(id)"
+            style="background-color: #174933"
           />
         </div>
       </div>

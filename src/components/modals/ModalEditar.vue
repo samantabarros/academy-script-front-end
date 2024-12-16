@@ -34,22 +34,23 @@
             <div class="q-pa-lg q-gutter-md flex justify-end">
               <q-btn
                 dense
-                class="q-pa-sm"
-                color="blue-7"
+                class="q-pa-sm text-white"
+                label="Cancelar"
+                v-close-popup
                 size="12px"
-                label="Atualizar"
-                @click="onSubmit(id, dados_aluno)"
-                icon="save"
+                icon="close"
+                @click="atualizaPagina"
+                style="background-color: #991b1b"
               />
               <q-btn
                 dense
-                class="q-pa-sm"
-                color="grey-7"
+                class="q-pa-sm text-white"
+                type="submit"
+                label="Atualizar"
+                @click="onSubmit(id, dados_aluno)"
                 size="12px"
-                label="Cancelar"
-                icon="close"
-                @click="atualizaPagina"
-                v-close-popup
+                icon="check"
+                style="background-color: #174933"
               />
             </div>
           </div>

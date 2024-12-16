@@ -1,7 +1,7 @@
 <template>
   <div
     class="q-pa-md text-body1"
-    :style="`min-height: ${$q.screen.height - 130}px`"
+    :style="`min-height: ${$q.screen.height - 150}px`"
   >
     <div class="row justify-end">
       <q-input
@@ -21,8 +21,9 @@
       </q-input>
       <q-btn
         dense
-        class="bg-blue-7 text-white q-px-md"
+        class="text-white q-px-md"
         icon="add"
+        style="background-color: #104d87"
         label="Adicionar"
         @click="showModalCadastroMatricula = true"
       >
@@ -65,19 +66,21 @@
             :nomeDoModulo="nomeModulo"
           />
         </q-dialog>
-        <q-td :props="props" class="q-gutter-sm">
+        <q-td :props="props" class="q-gutter-xs">
           <q-btn
+            class="q-pa-none"
             icon="edit"
-            color="green"
-            dense
-            size="md"
+            flat
+            size="lg"
+            style="color: #581c87"
             @click="iniciarEditarMatricula(props.row)"
           />
           <q-btn
+            class="q-pa-none"
             icon="delete"
-            color="negative"
-            dense
-            size="md"
+            flat
+            size="lg"
+            style="color: #991b1b"
             @click="iniciarDeletarMatricula(props.row)"
           />
         </q-td>
@@ -275,7 +278,7 @@ watch(
       await getModulos(idAluno);
     });
   },
-  {deep: true}
+  { deep: true }
 );
 
 watch(filter, () => {
@@ -283,6 +286,5 @@ watch(filter, () => {
     await getModulos(idAluno);
   });
 });
-
 </script>
 <style></style>

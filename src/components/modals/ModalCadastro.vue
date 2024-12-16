@@ -39,21 +39,22 @@
         <div class="btn-modal q-pa-xs q-gutter-md q-mr-md flex justify-end">
           <q-btn
             dense
-            class="q-pa-sm"
-            color="blue-7"
-            type="submit"
+            class="q-pa-sm text-white"
+            label="Cancelar"
+            v-close-popup
             size="12px"
-            label="Cadastrar"
-            icon="save"
+            icon="close"
+            style="background-color: #991B1B; "
           />
           <q-btn
             dense
-            class="q-pa-sm"
-            color="grey-7"
+            class="q-pa-sm text-white"
+            type="submit"
+            label="Confirmar"
             size="12px"
-            label="Cancelar"
-            v-close-popup
-            icon="close"
+            icon="check"
+            style="background-color: #174933; "
+
           />
         </div>
       </q-form>

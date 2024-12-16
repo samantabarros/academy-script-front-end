@@ -1,5 +1,5 @@
 <template>
-  <card-base titulo="Cadastrar Módulo" tamanho="pequeno">
+  <card-base titulo="Cadastrar Disciplina" tamanho="pequeno">
     <div class="col-12 col-4-md">
       <q-form
         @submit.prevent="submitForm"
@@ -17,23 +17,24 @@
           </div>
         </q-card-section>
         <div class="btn-modal q-pa-md q-gutter-md flex justify-end">
-          <q-btn
+        <q-btn
             dense
-            class="q-pa-sm"
-            color="blue-7"
-            type="submit"
-            label="Cadastrar"
-            size="12px"
-            icon="save"
-          />
-          <q-btn
-            dense
-            class="q-pa-sm"
-            color="grey-7"
+            class="q-pa-sm text-white"
             label="Cancelar"
             v-close-popup
             size="12px"
             icon="close"
+            style="background-color: #991B1B; "
+          />
+          <q-btn
+            dense
+            class="q-pa-sm text-white"
+            type="submit"
+            label="Confirmar"
+            size="12px"
+            icon="check"
+            style="background-color: #174933; "
+
           />
         </div>
       </q-form>

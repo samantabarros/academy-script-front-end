@@ -1,32 +1,32 @@
 <template>
-  <card-mensagem titulo="Excluir Módulo?">
+  <card-mensagem titulo="Excluir Disciplina?">
     <div class="row">
       <span class="text-h6 q-ml-sm text-center">
-        Tem certeza que deseja excluir o módulo
+        Tem certeza que deseja excluir a disciplina
         <span class="text-bold">{{ nome }}</span
         >? Ao confirmar essa ação, você não poderá desfazê-la!
       </span>
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-end self-end">
+        <div class="btn-mensagem q-pa-md q-gutter-md q-mr-xs flex justify-center self-end">
           <q-btn
             dense
-            class="q-pa-sm"
-            label="Confirmar"
-            color="blue-7"
+            class="q-pa-sm text-white"
+            label="Cancelar"
+            v-close-popup
             size="12px"
-            icon="check"
-            @click="deletarModulo(props.id)"
+            icon="close"
+            style="background-color: #991B1B; "
           />
           <q-btn
             dense
-            class="q-pa-sm"
-            label="Cancelar"
+            class="q-pa-sm text-white"
+            label="Confirmar"
             size="12px"
-            color="grey-7"
-            icon="close"
-            v-close-popup
+            icon="check"
+            style="background-color: #174933; "
+            @click="deletarModulo(props.id)"
           />
         </div>
       </div>

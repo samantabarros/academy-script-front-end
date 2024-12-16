@@ -1,6 +1,5 @@
 <template>
   <div class="row card-modulo q-mb-md flex items-center justify-evenly">
-
     <div class="col-8 flex q-mx-sm ">
       <div class="col-2 flex justify-center items-center q-pr-md">
         <img src="../../assets/images/Graph.png" alt="Ícone de disciplina">
@@ -19,9 +18,9 @@
       <q-dialog v-model="showMensagemDeletarModulo" persistent>
         <mensagem-deletar-modulo :id="modulo.id" :nome="modulo.nome_modulo" />
       </q-dialog>
-      <q-btn class="q-mr-xs" icon="delete" color="negative" border="" dense size="md"
+      <q-btn class="q-pa-none" icon="delete" flat size="lg" style="color: #991b1b"
         @click="iniciarModalDeletar(modulo.id)" />
-      <q-btn class="q-mr-xs" icon="group" color="grey" dense size="md" :to="`/alunosPorCurso/${modulo.id}`" />
+      <q-btn class="q-pa-none" flat icon="group" dense size="lg"  style="color: #821B4C" :to="`/alunosPorCurso/${modulo.id}`" />
     </div>
   </div>
 </template>

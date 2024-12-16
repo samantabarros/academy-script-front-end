@@ -1,5 +1,6 @@
 <template>
-  <card-modelo :titulo="titulo" icone="book_2" class="q-my-lg q-mx-lg" >
+  <p class="text-h4 flex justify-center items-center q-ma-none q-my-md text-bold">Bacharelado em Ciência da Computação</p>
+  <card-modelo :titulo="titulo" icone="book_2" class="q-my-sm q-mx-lg" >
     <div class="q-pa-md text-body-1" :style="`min-height: ${$q.screen.height - 130}px`">
       <div class="row justify-between q-pb-md">
         <q-btn dense class="btn-color text-white q-px-md q-mr-md" icon="add" label="Adicionar"
@@ -21,11 +22,6 @@
       </div>
     </div>
   </card-modelo>
-  <router-link to="/home" style="text-decoration: none">
-      <div class="justify-end-left q-px-xs q-mx-md">
-        <q-btn outline class="text-orange-10" icon="arrow_back_ios_new">Voltar</q-btn>
-      </div>
-    </router-link>
 </template>
 
 <script setup>

@@ -1,7 +1,7 @@
 <template>
   <q-card
     class="bg-grey-2 card-mensagem"
-    style="width: 620px; height: 400px"
+    style="width: 620px; height: 430px"
     persistent
   >
     <div class="ro q-ma-md">
@@ -12,11 +12,10 @@
 
         <div class="q-pa-xs justify-end absolute-top-right">
           <q-btn
-            square
+            flat
             dense
-            color="grey"
             icon="close"
-            size="10px"
+            size="md"
             v-close-popup
           />
         </div>
