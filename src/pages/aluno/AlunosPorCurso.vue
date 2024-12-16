@@ -67,6 +67,13 @@
         </q-td>
       </template>
       <template v-slot:bottom>
+        <div
+          class="row items-center justify-center text-grey text-caption q-mb-sm"
+          v-if="isMobile"
+        >
+          <q-icon name="swipe" size="md" class="q-mr-sm" />
+          <span>Mova para os lados para ver mais</span>
+        </div>
         <div class="full-width flex justify-center pagination_container">
           <q-pagination
             v-if="max_paginas > 1"
@@ -86,7 +93,9 @@
   </div>
   <router-link to="/modulos" style="text-decoration: none">
     <div class="justify-end-left q-pa-xs q-mb-xs">
-      <q-btn flat icon="arrow_back_ios_new" style="text-color: #104D87">Voltar</q-btn>
+      <q-btn flat icon="arrow_back_ios_new" style="text-color: #104d87"
+        >Voltar</q-btn
+      >
     </div>
   </router-link>
 </template>
@@ -95,6 +104,11 @@
 import { api } from "src/boot/axios";
 import { nextTick, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { computed } from "vue";
+import { useQuasar } from "quasar";
+
+const $q = useQuasar();
+const isMobile = computed(() => $q.screen.lt.md);
 
 const nomeModuloSelecionado = ref("");
 const route = useRoute();

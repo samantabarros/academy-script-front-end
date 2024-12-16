@@ -1,17 +1,17 @@
 <template>
   <q-card :class="`card-${tamanho}`">
     <q-card-section>
-      <div class="row q-pl-md ">
+      <div class="row ">
         <div class="col-12">
-          <div class="q-pl-md">
+         
             <q-icon
               class="fixed q-mt-xs"
               name="edit_document"
-              size="35px"
+              size="30px"
               color="grey"
             />
-          </div>
-          <div class="text-h4 text-center">
+        
+          <div class="text-h5 text-center">
             <p>{{ titulo }}</p>
           </div>
 

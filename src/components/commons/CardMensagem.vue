@@ -1,12 +1,12 @@
 <template>
   <q-card
-    class="bg-grey-2 card-mensagem"
-    style="width: 620px; height: 430px"
+    class="bg-grey-2 card-mensagem items-center"
+    style="width: 620px; height: 470px"
     persistent
   >
     <div class="ro q-ma-md">
       <div class="col-12">
-        <div class="text-h4 text-center">
+        <div class="text-h5 text-center text-bold">
           <p>{{ titulo }}</p>
         </div>
 

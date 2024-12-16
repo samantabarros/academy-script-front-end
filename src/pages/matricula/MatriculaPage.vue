@@ -86,6 +86,12 @@
         </q-td>
       </template>
       <template v-slot:bottom>
+        <div
+          class="row items-center justify-center text-grey text-caption q-mb-sm" v-if="isMobile"
+        >
+          <q-icon name="swipe" size="md" class="q-mr-sm" />
+          <span>Mova para os lados para ver mais</span>
+        </div>
         <div class="full-width flex justify-center pagination_container">
           <q-pagination
             v-if="max_paginas > 1"
@@ -105,7 +111,9 @@
   </div>
   <router-link to="/alunos" style="text-decoration: none">
     <div class="justify-end-left q-px-xs">
-      <q-btn flat icon="arrow_back_ios_new" style="text-color: #104D87">Voltar</q-btn>
+      <q-btn flat icon="arrow_back_ios_new" style="text-color: #104d87"
+        >Voltar</q-btn
+      >
     </div>
   </router-link>
 </template>
@@ -118,8 +126,10 @@ import ModalEditarMatricula from "src/components/modals/ModalEditarMatricula.vue
 import MensagemDeletarMatricula from "src/components/mensagem/MensagemDeletarMatricula.vue";
 import { useRoute } from "vue-router";
 import { useQuasar } from "quasar";
+import { computed } from "vue";
 
 const $q = useQuasar();
+const isMobile = computed(() => $q.screen.lt.md);
 const route = useRoute();
 const filter = ref("");
 const rows_matriculas = ref([]);
