@@ -35,7 +35,7 @@ register(process.env.SERVICE_WORKER_FILE, {
       message: 'Nova atualização disponível!',
       icon: "update",
       closeBtn: 'Atualizar',
-      timeout: 1000,
+      timeout: 10000,
       color: "deep-orange",
       icon: "error",
       position: "top",
